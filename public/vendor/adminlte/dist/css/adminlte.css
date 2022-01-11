@@ -4363,8 +4363,8 @@ input[type="button"].btn-block {
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
-  color: #ffffff;
-  background-color: #007bff;
+  color: #fff;
+  background-color: #98293D;
 }
 
 .nav-fill .nav-item {
@@ -6590,7 +6590,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .carousel-control-prev:hover, .carousel-control-prev:focus,
 .carousel-control-next:hover,
 .carousel-control-next:focus {
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
   outline: 0;
   opacity: 0.9;
@@ -6646,7 +6646,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
   margin-left: 3px;
   text-indent: -999px;
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: #000000;
   background-clip: padding-box;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
@@ -13732,7 +13732,8 @@ body.text-sm .control-sidebar {
 }
 
 .nav-pills .nav-link:not(.active):hover {
-  color: #007bff;
+  color: #262626;
+  background-color: #bfbfbf;
 }
 
 .nav-pills .nav-item.dropdown.show .nav-link:hover {

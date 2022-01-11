@@ -52,8 +52,8 @@ class ProyectoController extends Controller
     {		
 		//VALIDAR CAMPOS
         $request->validate([
-            'no22' => 'required|unique:proyectos',
-            'no24' => 'required|unique:proyectos',
+            'no18' => 'required|unique:proyectos',
+            'no20' => 'required|unique:proyectos',
             'investigador' => 'required|unique:investigadores',
         ]);
 
@@ -126,10 +126,6 @@ class ProyectoController extends Controller
         $proyectos->no26 = $request->no26;
         $proyectos->no27 = $request->no27;
         $proyectos->no28 = $request->no28;
-        $proyectos->no29 = $request->no29;
-        $proyectos->no30 = $request->no30;
-        $proyectos->no31 = $request->no31;
-        $proyectos->no32 = $request->no32;
         $proyectos->investigador_id = $investigadores->id;
         $proyectos->empresa_id = $request->empresa_id;
         $proyectos->id_user = $id_user;
@@ -175,8 +171,8 @@ class ProyectoController extends Controller
     {
 		//VALIDAR CAMPOS
         $request->validate([
-            'no22' => 'required|unique:proyectos',
-            'no24' => 'required|unique:proyectos',
+            'no18' => 'required|unique:proyectos',
+            'no20' => 'required|unique:proyectos',
             'investigador' => 'required|unique:investigadores',
         ]);
 		
@@ -230,10 +226,6 @@ class ProyectoController extends Controller
         $proyecto->no26 = $request->no26;
         $proyecto->no27 = $request->no27;
         $proyecto->no28 = $request->no28;
-        $proyecto->no29 = $request->no29;
-        $proyecto->no30 = $request->no30;
-        $proyecto->no31 = $request->no31;
-        $proyecto->no32 = $request->no32;
         $proyecto->investigador_id = $investigador_id;
         $proyecto->empresa_id = $request->empresa_id;
         $proyecto->id_user = $id_user;

@@ -15,6 +15,8 @@ use App\Models\Empresas\Propiedad;
 use App\Models\Empresas\Vinculacion;
 use App\Models\Menu;
 use App\Models\User;
+use App\Models\Documentos\Formato;
+use App\Models\Documentos\Documentos_formatos;
 
 class Empresa extends Model
 {
@@ -42,6 +44,11 @@ class Empresa extends Model
     public function users(){
         return $this->belongsToMany(User::class,'empresa_user')
             ->withPivot('user_id');
+    }
+
+    public function formats(){
+        return $this->belongsToMany(Documentos_formatos::class, 'formato', 'empresa_id', 'documento_formato_id')
+        ->withPivot('datos', 'datos_json');
     }
 
     //RELACION DE UNO A MUCHOS NORMAL
@@ -79,5 +86,9 @@ class Empresa extends Model
 
     public function vinculacion(){
         return $this->hasMany(Vinculacion::class);
+    }
+
+    public function formatos(){
+        return $this->hasMany(Formato::class);
     }
 }

@@ -13,6 +13,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 use App\Models\Empresas\Empresa;
+use App\Models\Documentos\Formato;
+use App\Models\Documentos\Documentos_formatos;
 
 class User extends Authenticatable
 {
@@ -80,7 +82,7 @@ class User extends Authenticatable
     }
 
 
-
+    //RELACION MUCHOS A MUCHOS
     public function menus(){
         return $this->belongsToMany(Menu::class,'menu_user')
             ->withPivot('menu_id');
@@ -89,6 +91,16 @@ class User extends Authenticatable
     public function empresas(){
         return $this->belongsToMany(Empresa::class,'empresa_user')
             ->withPivot('empresa_id');
+    }
+
+    public function formats(){
+        return $this->belongsToMany(Documentos_formatos::class, 'formato', 'user_id', 'documento_formato_id')
+        ->withPivot('datos', 'datos_json');
+    }
+
+    //RELACION DE UNO A MUCHOS NORMAL
+    public function formatos(){
+        return $this->hasMany(Formato::class);
     }
 
 }

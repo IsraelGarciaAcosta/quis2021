@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Empresas\Empresa;
+use App\Models\Documentos\Formato; 
+use App\Models\Documentos\Documentos_formatos; 
 
 class Menu extends Model
 {
@@ -40,8 +42,17 @@ class Menu extends Model
             ->withPivot('user_id');
     }
 
+    public function formats(){
+        return $this->belongsToMany(Documentos_formatos::class, 'formato', 'menu_id', 'documento_formato_id')
+        ->withPivot('datos', 'datos_json');
+    }
+
     /*/RELACION DE UNO A MUCHOS NORMAL
     public function submenus(){
         return $this->hasMany(Submenu::class);
     }*/
+
+    public function formatos(){
+        return $this->hasMany(Formato::class);
+    }
 }
