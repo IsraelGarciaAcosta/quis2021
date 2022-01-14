@@ -267,6 +267,67 @@ function edit_formatos(formato_id) {
                         }
                     };
                 };
+                if (documento_formato_id == 9) {
+                    var doc = (datos_json.length - 10)/3;
+                    if (doc != 0) {
+                        for (let i = 0; i < doc; i++) {
+                            responsabilidades_res_count++;
+                            var id_nombre = 'id="9no' + responsabilidades_res_count + '"';
+
+                            responsabilidades_res_count++;
+                            var id_rol_estudio = 'id="9no' + responsabilidades_res_count + '"';
+
+                            responsabilidades_res_count++;
+                            var id_responsabilidades = '9no' + responsabilidades_res_count + '';
+
+                            begin = '<div class="p-2 rounded border border-5">';
+
+                            input_nombre = '<div class="form-group"><label class="form-label" name="' + id_nombre + '">Nombre</label>' +
+                            '<div class="input-group-prepend">' + '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+                            '<input class="responsabilidades form-control" type="text" placeholder="Nombre" ' + id_nombre + ' value="" required/>' +
+                            '</div>' + '</div>'; 
+
+                            input_rol_estudio = '<div class="form-group"><label class="form-label" name="' + id_rol_estudio + '">Rol en el estudio</label>' +
+                            '<div class="input-group-prepend">' + '<span class="input-group-text"><i class="fas fa-user-circle"></i></span>' +
+                            '<input class="responsabilidades form-control" type="text" placeholder="Rol en el estudio" ' + id_rol_estudio + ' value="" required/>' +
+                            '</div>' + '</div>';
+
+                            begin_responsabilidades = '<div class="container form-group">' + '<label class="form-label" name="9no">Responsabilidades</label>';
+
+                            array_responsabilidades = ["1 Conducir el estudio", "2 Selección de pacientes", "3 Firma de ICF", "4 Confirmar elegibilidad", "5 Examen físico", "6 Signos vitales", "7 Aleatorización", "8 Comunicación IVRS", "9 Prescripción de producto", "10 Dispensar medicamento",
+                                "11 Registro de medicamentos", "12 Control de medicamento", "13 Preparación y ministración de producto de investigación", "14 Terapias de rescate", "15 Finalizar tratamiento", "16 Evaluación de EA", "17 Información a los sujetos", "18 Entrega de materiales", "19 Obtener muestras biológicas", "20 Preparación de muestras",
+                                "21 ECG", "22 Recolectar datos", "23 Captura de datos CRF", "24 Actividades administrativas", "25 Aplicación de escalas", "26 Técnico radiólogo", "27 Dermatólogo", "28 Técnico en espirometría", "29 Oftalmólogo",];
+
+                            input_responsabilidades = '';
+
+                            $.each(array_responsabilidades, function(i, val) {
+                                var aux = i + 1;
+                                if (i != 28) {
+                                    if (i % 2 == 0) {
+                                        // Par
+                                        input_responsabilidades += '<div class="row">' + '<div class="col-sm form-check">' +
+                                        '<label>' + '<input type="checkbox" value="' + aux + '" name="' + id_responsabilidades + '[]" class="responsabilidades form-check-input">' +
+                                        val + '</label>' + '</div>';
+                                    } else {
+                                        // Impar
+                                        input_responsabilidades += '<div class="col-sm form-check">' + '<label>' +
+                                        '<input type="checkbox" value="' + aux + '" name="' + id_responsabilidades + '[]" class="responsabilidades form-check-input">' +
+                                        val + '</label>' + '</div>' + '</div>';
+                                    }
+                                } else {
+                                    input_responsabilidades += '<div class="row">' + '<div class="col-sm form-check">' + '<label>' +
+                                    '<input type="checkbox" value="' + aux + '" name="' + id_responsabilidades + '[]" class="responsabilidades form-check-input">' +
+                                    val + '</label>' + '</div>' + '</div>';
+                                }
+                            })
+                            end_responsabilidades = '</div>';
+                            end = '<div class="row">' + '<div class="col">' + '<button type="button" class="remove_button btn btn-block btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button>' + '</div>' + '</div>' +'</div>';
+
+                            var fieldHTML = begin + input_nombre + input_rol_estudio + begin_responsabilidades + input_responsabilidades + end_responsabilidades + end;
+                            $("#wrapper_responsabilidades").append(fieldHTML);
+                        }
+                    };
+                };
                 
                 $('#documentoformato_id').val(formato.documento_formato_id);
                 $('#empresa_id').val(formato.empresa_id);
@@ -281,6 +342,20 @@ function edit_formatos(formato_id) {
                     var id = '#' + formato.documento_formato_id + 'no' + aux;
                     $(id).val(datos_json[i]);
                 };
+
+                if (documento_formato_id == 9) {
+                    aux = 9;
+                    rep = (datos_json.length - 7)/3;
+                    for (let i = 0; i < rep; i++) {
+                        let checked_array = datos_json[aux];
+                        nameId = aux + 1;
+                        $.each(checked_array, function(i, val) {
+                            val = val - 1;
+                            $('input[name="9no' + nameId + '[]"')[val].checked = true;
+                        })
+                        aux+=3;
+                    }
+                }
 
                 // list_proyectos();
                 $('#createFormatoModal').modal('toggle');
@@ -354,6 +429,12 @@ $('#no0').change(
                 $('#8no10').val(proyect[0]['investigador']);//investigador
                 $('#8no11').val(proyect[0]['cedula']);//cedula
 
+                $("#9no3").val(proyect[0]['no20']);//codigo
+                $("#9no4").val(proyect[0]['no19']);//titulo
+                $("#9no5").val(proyect[0]['no25']);//patrocinador
+                $("#9no6").val(proyect[0]['razon_social']);//Direccion
+                $("#9no7").val(proyect[0]['investigador']);//Investigador
+
             }
         });
 
@@ -364,6 +445,8 @@ $('#no0').change(
 
 // Borrar campos -- reset form
 function borrar_campos() {
+    documento_formato_id = $("#doc_formatos").val();
+
     $("#documentoformato_id").val(null);
     $("#empresa_id").val(null);
     $("#menu_id").val(null);
@@ -377,6 +460,25 @@ function borrar_campos() {
     $("#formcreate_sometimiento")[0].reset();
     $("#formcreate_compromisos")[0].reset();
     $("#formcreate_responsabilidades")[0].reset();
+
+    if (publicidad_req_count > 3) {
+        for (let i = 4; i <= publicidad_req_count; i++) {
+            $("#3no" + i).parent('div').remove();
+        }
+        publicidad_req_count = 3;
+    };
+    if (sometimiento_doc_count > 7) {
+        for (let i = 8; i <= sometimiento_doc_count; i++) {
+            $("#7no" + i).parent('div').remove();
+        }
+        sometimiento_doc_count = 7;
+    };
+    if (responsabilidades_res_count > 10) {
+        for (let i = 11; i <= responsabilidades_res_count; i++) {
+            $("#9no" + i).parents('.p-2.rounded.border.border-5').remove();
+        }
+        responsabilidades_res_count = 10;
+    };
 }
 // END borrar campos --- reset form
 
@@ -391,12 +493,6 @@ $('#btnCconstanciaAnual').click(function(){
 })
 $('#btnCpublicidad').click(function(){
     borrar_campos();
-    if (publicidad_req_count > 3) {
-        for (let i = 4; i <= publicidad_req_count; i++) {
-            $("#3no" + i).parent('div').remove();
-        }
-        publicidad_req_count = 3;
-    };
     list_formatos();
 })
 $('#btnCcodigotitulo').click(function(){
@@ -405,15 +501,13 @@ $('#btnCcodigotitulo').click(function(){
 })
 $('#btnCsometimiento').click(function(){
     borrar_campos();
-    if (sometimiento_doc_count > 7) {
-        for (let i = 8; i <= sometimiento_doc_count; i++) {
-            $("#7no" + i).parent('div').remove();
-        }
-        sometimiento_doc_count = 7;
-    };
     list_formatos();
 })
 $('#btnCcompromisos').click(function() {
+    borrar_campos();
+    list_formatos();
+})
+$('#btnCresponsabilidades').click(function(){
     borrar_campos();
     list_formatos();
 })
@@ -519,7 +613,7 @@ $("#add_requisito").click(
 
         var id_requisito = 'id="3no' + publicidad_req_count + '"';
 
-        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span><input class="publicidad form-control" type="text" placeholder="Requisito" ' + id_requisito + ' value=""/><button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>'
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span><input class="publicidad form-control" type="text" placeholder="Requisito" ' + id_requisito + ' value="" required/><button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>'
         $("#wrapper_publicidad").append(fieldHTML);
     }
 )
@@ -557,7 +651,7 @@ $("#add_documento").click(
 
         var id_documento = 'id="7no' + sometimiento_doc_count + '"';
 
-        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span><input class="sometimiento form-control" type="text" placeholder="Nombre, version y Fecha del documento" ' + id_documento + ' value=""/><button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>'
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span><input class="sometimiento form-control" type="text" placeholder="Nombre, version y Fecha del documento" ' + id_documento + ' value="" required/><button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>'
         $("#wrapper_sometimiento").append(fieldHTML);
     }
 )
@@ -585,6 +679,140 @@ $("#wrapper_sometimiento").on('click', '.remove_button', function(e) {
     // console.log(sometimiento_doc_count);
 })
 // END Agregar y eliminar campos del modal sometimiento
+
+// Agregar y eliminar campos del modal responsabilidades
+responsabilidades_res_count = 10;
+$("#add_personal").click(
+    function() {
+        responsabilidades_res_count++;
+        var id_nombre = 'id="9no' + responsabilidades_res_count + '"';
+
+        responsabilidades_res_count++;
+        var id_rol_estudio = 'id="9no' + responsabilidades_res_count + '"';
+
+        responsabilidades_res_count++;
+        var id_responsabilidades = '9no' + responsabilidades_res_count + '';
+
+        begin = '<div class="p-2 rounded border border-5">';
+
+        input_nombre = '<div class="form-group"><label class="form-label" name="' + id_nombre + '">Nombre</label>' +
+        '<div class="input-group-prepend">' +
+        '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+        '<input class="responsabilidades form-control" type="text" placeholder="Nombre" ' + id_nombre + ' value="" required/>' +
+        '</div>' +
+        '</div>'; 
+
+        input_rol_estudio = '<div class="form-group"><label class="form-label" name="' + id_rol_estudio + '">Rol en el estudio</label>' +
+        '<div class="input-group-prepend">' +
+        '<span class="input-group-text"><i class="fas fa-user-circle"></i></span>' +
+        '<input class="responsabilidades form-control" type="text" placeholder="Rol en el estudio" ' + id_rol_estudio + ' value="" required/>' +
+        '</div>' +
+        '</div>';
+
+        begin_responsabilidades = '<div class="container form-group">' +
+        '<label class="form-label" name="9no">Responsabilidades</label>';
+
+        array_responsabilidades = [ "1 Conducir el estudio", "2 Selección de pacientes", "3 Firma de ICF", "4 Confirmar elegibilidad", "5 Examen físico",
+            "6 Signos vitales", "7 Aleatorización", "8 Comunicación IVRS", "9 Prescripción de producto", "10 Dispensar medicamento", "11 Registro de medicamentos",
+            "12 Control de medicamento", "13 Preparación y ministración de producto de investigación", "14 Terapias de rescate", "15 Finalizar tratamiento",
+            "16 Evaluación de EA", "17 Información a los sujetos", "18 Entrega de materiales", "19 Obtener muestras biológicas", "20 Preparación de muestras",
+            "21 ECG", "22 Recolectar datos", "23 Captura de datos CRF", "24 Actividades administrativas", "25 Aplicación de escalas",
+            "26 Técnico radiólogo", "27 Dermatólogo", "28 Técnico en espirometría", "29 Oftalmólogo",
+        ];
+
+        input_responsabilidades = '';
+
+        $.each(array_responsabilidades, function(i, val) {
+            var aux = i + 1;
+            if (i != 28) {
+                if (i % 2 == 0) {
+                    // Par
+                    input_responsabilidades += '<div class="row">' +
+                    '<div class="col-sm form-check">' +
+                        '<label>' +
+                        '<input type="checkbox" value="' + aux + '" name="' + id_responsabilidades + '[]" class="responsabilidades form-check-input">' +
+                        // {!! Form::checkbox('9no10[]', 29, null,['class' => 'form-check-input']) !!}
+                        val +
+                        '</label>' +
+                    '</div>';
+                } else {
+                    // Impar
+                    input_responsabilidades += '<div class="col-sm form-check">' +
+                        '<label>' +
+                        '<input type="checkbox" value="' + aux + '" name="' + id_responsabilidades + '[]" class="responsabilidades form-check-input">' +
+                        // {!! Form::checkbox('9no10[]', 29, null,['class' => 'form-check-input']) !!}
+                        val +
+                        '</label>' +
+                    '</div>' +
+                '</div>';
+                }
+            } else {
+                input_responsabilidades += '<div class="row">' +
+                    '<div class="col-sm form-check">' +
+                        '<label>' +
+                        '<input type="checkbox" value="' + aux + '" name="' + id_responsabilidades + '[]" class="responsabilidades form-check-input">' +
+                        // {!! Form::checkbox('9no10[]', 29, null,['class' => 'form-check-input']) !!}
+                        val +
+                        '</label>' +
+                    '</div>' +
+                '</div>';
+            }
+        })
+
+        end_responsabilidades = '</div>';
+
+        end = '<div class="row">' +
+        '<div class="col">' +
+        '<button type="button" class="remove_button btn btn-block btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+
+        var fieldHTML = begin + input_nombre + input_rol_estudio + begin_responsabilidades + input_responsabilidades + end_responsabilidades + end;
+        $("#wrapper_responsabilidades").append(fieldHTML);
+    }
+)
+$("#wrapper_responsabilidades").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var div = $(this).parents('#body-responsabilidades');
+    // console.log(div.find(".responsabilidades").length)
+
+    $(this).parents('.p-2.rounded.border.border-5').remove();
+
+    var aux = 11;
+    var aux2 = 1;
+    var auxId = '9no';
+    var hijos = div.find(".responsabilidades");
+    // console.log(hijos[0].id)
+    $.each(hijos, function(i, val) {
+        // console.log(i);
+        // var aux_id = this.id;
+
+        if (aux2 < 3) {
+            var aux_id = this.id;
+            $("#"+ aux_id +"").prop('id', auxId + aux);
+            aux++;
+            aux2++;
+        } else {
+            var aux_id = this.name;
+            // $('input[name="' + aux_id + '[]"')[i].prop('name', aux_id + aux);
+            // $('input[name="' + aux_id + '[]"').eq(i).attr('id', '9no' + aux + '[]');
+            $('input[name="' + aux_id + '"').prop('name', '9no' + aux + '[]');
+            aux2++;
+            if (aux2 == 32) {
+                aux++;
+                aux2 = 1;
+            }
+        }
+
+        console.log(this);
+    });
+
+    responsabilidades_res_count -= 3;
+    // console.log(responsabilidades_res_count);
+})
+// END Agregar y eliminar campos del modal responsabilidades
 
 
 
@@ -1224,3 +1452,130 @@ $('#formcreate_compromisos').on('submit', function(e) {
     
 });
 // END Submit Compromisos
+
+
+// Submit Responsabilidades
+$('#formcreate_responsabilidades').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    // console.log(responsabilidades_res_count);
+    if (responsabilidades_res_count > 10) {
+        auxCount = 1;
+        for (let i = 11; i <= responsabilidades_res_count; i++) {
+            if (auxCount < 3) {
+                var idAppend = "9no" + i;
+                var value = $("#" + idAppend).val();
+                formData.append(idAppend, value);
+                auxCount++;
+            } else {
+                auxCount = 1;
+            }
+        }
+    }
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (responsabilidades_res_count > 10) {
+                        for (let i = 11; i <= responsabilidades_res_count; i++) {
+                            $("#9no" + i).parents('.p-2.rounded.border.border-5').remove();
+                        }
+                        responsabilidades_res_count = 10;
+                    };
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    };
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (responsabilidades_res_count > 10) {
+                        for (let i = 11; i <= responsabilidades_res_count; i++) {
+                            $("#9no" + i).parents('.p-2.rounded.border.border-5').remove();
+                        }
+                        responsabilidades_res_count = 10;
+                    };
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Responsabilidades

@@ -50,7 +50,7 @@
         <div class="modal-content" id="content_presentacion">
             <div class="modal-header">
                 <h5 class="modal-title" id="createModalLabel">Nuevo Formato</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cancelar">
+                <button type="button" onclick="borrar_campos(); list_formatos();" class="close" data-bs-dismiss="modal" aria-label="Cancelar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -595,198 +595,246 @@
 
                         <div class="form-group" id="div8">
                             {!! Form::label('9no8', '8. Personal', ['class' => 'form-label']) !!}
-                            <div id="wrapper_sometimiento">
-                            <div class="p-2 rounded border border-primary">
+                            <div id="wrapper_responsabilidades">
+                            <div class="p-2 rounded border border-5">
 
                                 <div class="form-group">
                                     {!! Form::label('9no8', 'Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                                    {!! Form::text('9no9', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('9no8', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    {!! Form::label('9no8', 'Rol en el estudio', ['class' => 'form-label']) !!}
+                                    {!! Form::label('9no9', 'Rol en el estudio', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
-                                    {!! Form::text('9no10', null, ['class' => 'form-control', 'placeholder' => 'Rol en el estudio', 'required']) !!}
+                                    {!! Form::text('9no9', null, ['class' => 'form-control', 'placeholder' => 'Rol en el estudio', 'required']) !!}
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    {!! Form::label('9no8', 'Responsabilidades', ['class' => 'form-label']) !!}
+                                <div class="container form-group">
+                                    {!! Form::label('9no', 'Responsabilidades', ['class' => 'form-label']) !!}
 
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '1 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 1, null,['class' => 'form-check-input']) !!}
+                                            1 Conducir el estudio
+                                            </label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '2 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '3 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '4 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 2, null,['class' => 'form-check-input']) !!}
+                                            2 Selección de pacientes
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '5 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 3, null,['class' => 'form-check-input']) !!}
+                                            3 Firma de ICF
+                                            </label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '6 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '7 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '8 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 4, null,['class' => 'form-check-input']) !!}
+                                            4 Confirmar elegibilidad
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '9 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 5, null,['class' => 'form-check-input']) !!}
+                                            5 Examen físico
+                                            </label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '10 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '11 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '12 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 6, null,['class' => 'form-check-input']) !!}
+                                            6 Signos vitales
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '13 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 7, null,['class' => 'form-check-input']) !!}
+                                            7 Aleatorización
+                                            </label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '14 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '15 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '16 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 8, null,['class' => 'form-check-input']) !!}
+                                            8 Comunicación IVRS
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '17 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 9, null,['class' => 'form-check-input']) !!}
+                                            9 Prescripción de producto
+                                            </label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '18 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '19 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '20 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 10, null,['class' => 'form-check-input']) !!}
+                                            10 Dispensar medicamento
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '21 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 11, null,['class' => 'form-check-input']) !!}
+                                            11 Registro de medicamentos
+                                            </label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '22 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '23 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '24 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 12, null,['class' => 'form-check-input']) !!}
+                                            12 Control de medicamento
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '25 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 13, null,['class' => 'form-check-input']) !!}
+                                            13 Preparación y ministración de producto de investigación
+                                            </label>
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '26 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '27 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no12', 2, false,['class' => 'form-check-input']) !!}
-                                            <div></div>
-                                            {!! Form::label('9no12', '28 Selección de pacientes', ['class' => 'form-check-label', 'for' => '9no12']) !!}
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 14, null,['class' => 'form-check-input']) !!}
+                                            14 Terapias de rescate
+                                            </label>
                                         </div>
                                     </div>
-                                    <div class="form-check">
-                                        <div class="form-check form-check-inline">
-                                            {!! Form::checkbox('9no11', 1, false,['class' => 'form-check-input']) !!}
-                                            {!! Form::label('9no11', '29 Conducir el estudio', ['class' => 'form-check-label', 'for' => '9no11']) !!}
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 15, null,['class' => 'form-check-input']) !!}
+                                            15 Finalizar tratamiento
+                                            </label>
+                                        </div>
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 16, null,['class' => 'form-check-input']) !!}
+                                            16 Evaluación de EA
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 17, null,['class' => 'form-check-input']) !!}
+                                            17 Información a los sujetos
+                                            </label>
+                                        </div>
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 18, null,['class' => 'form-check-input']) !!}
+                                            18 Entrega de materiales
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 19, null,['class' => 'form-check-input']) !!}
+                                            19 Obtener muestras biológicas
+                                            </label>
+                                        </div>
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 20, null,['class' => 'form-check-input']) !!}
+                                            20 Preparación de muestras
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 21, null,['class' => 'form-check-input']) !!}
+                                            21 ECG
+                                            </label>
+                                        </div>
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 22, null,['class' => 'form-check-input']) !!}
+                                            22 Recolectar datos
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 23, null,['class' => 'form-check-input']) !!}
+                                            23 Captura de datos CRF
+                                            </label>
+                                        </div>
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 24, null,['class' => 'form-check-input']) !!}
+                                            24 Actividades administrativas
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 25, null,['class' => 'form-check-input']) !!}
+                                            25 Aplicación de escalas
+                                            </label>
+                                        </div>
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 26, null,['class' => 'form-check-input']) !!}
+                                            26 Técnico radiólogo
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 27, null,['class' => 'form-check-input']) !!}
+                                            27 Dermatólogo
+                                            </label>
+                                        </div>
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 28, null,['class' => 'form-check-input']) !!}
+                                            28 Técnico en espirometría
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm form-check">
+                                            <label>
+                                            {!! Form::checkbox('9no10[]', 29, null,['class' => 'form-check-input']) !!}
+                                            29 Oftalmólogo
+                                            </label>
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <button type="button" id="add_documento" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                                <div class="row">
+                                    <div class="col">
+                                    <button type="button" id="add_personal" class="btn btn-block btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                                    </div>
+                                </div>
                             </div>
                             </div>
                         </div>
                 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnCcompromisos" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGcompromisos" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                        <button type="button" id="btnCresponsabilidades" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGresponsabilidades" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
                     </div>
                     {!! Form::close() !!}
                 </div>
