@@ -328,6 +328,23 @@ function edit_formatos(formato_id) {
                         }
                     };
                 };
+                if (documento_formato_id == 11) {
+                    var doc = (datos_json.length - 10)/2;
+                    if (doc != 0) {
+                        for (let i = 0; i < doc; i++) {
+                            instalaciones_doc_count++;
+                            var id_servicio = 'id="11no' + instalaciones_doc_count + '"';
+                            instalaciones_doc_count++;
+                            var id_proveedores = 'id="11no' + instalaciones_doc_count + '"';
+
+                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+                            '<input class="instalaciones form-control" type="text" placeholder="Servicio" ' + id_servicio + ' value="" required/>' +
+                            '<input class="instalaciones form-control" type="text" placeholder="Proveedor" ' + id_proveedores + ' value="" required/>' +
+                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campos"><i class="fas fa-minus-square"></i></button></div>';
+                            $("#wrapper_instalaciones").append(fieldHTML);
+                        }
+                    };
+                };
                 
                 $('#documentoformato_id').val(formato.documento_formato_id);
                 $('#empresa_id').val(formato.empresa_id);
@@ -435,6 +452,19 @@ $('#no0').change(
                 $("#9no6").val(proyect[0]['razon_social']);//Direccion
                 $("#9no7").val(proyect[0]['investigador']);//Investigador
 
+                $("#10no3").val(proyect[0]['no20']);//Codigo
+                $("#10no4").val(proyect[0]['no19']);//titulo
+                $("#10no5").val(proyect[0]['no25']);//patrocinador
+                // TODO Hacer metodo para obtener la direccion dependiendo de la empresa
+                $("#10no6").val(proyect[0]['razon_social']);//Direcciona sitio clinico
+                $("#10no7").val(proyect[0]['investigador']);//investigador
+
+                $('#11no3').val(proyect[0]['no20']);//Codigo
+                $('#11no5').val(proyect[0]['no19']);//Titulo
+                $('#11no6').val(proyect[0]['razon_social']);//Direccion
+                $('#11no7').val(proyect[0]['titulo']);//Titulo investigador
+                $('#11no8').val(proyect[0]['investigador']);//investigador
+
             }
         });
 
@@ -460,6 +490,8 @@ function borrar_campos() {
     $("#formcreate_sometimiento")[0].reset();
     $("#formcreate_compromisos")[0].reset();
     $("#formcreate_responsabilidades")[0].reset();
+    $("#formcreate_autorizacion")[0].reset();
+    $("#formcreate_instalaciones")[0].reset();
 
     if (publicidad_req_count > 3) {
         for (let i = 4; i <= publicidad_req_count; i++) {
@@ -479,6 +511,12 @@ function borrar_campos() {
         }
         responsabilidades_res_count = 10;
     };
+    if (instalaciones_doc_count > 10) {
+        for (let i = 11; i <= instalaciones_doc_count; i++) {
+            $("#11no" + i).parent('div').remove();
+        }
+        instalaciones_doc_count = 10;
+    }
 }
 // END borrar campos --- reset form
 
@@ -511,6 +549,14 @@ $('#btnCresponsabilidades').click(function(){
     borrar_campos();
     list_formatos();
 })
+$('#btnCautorizacion').click(function(){
+    borrar_campos();
+    list_formatos();
+})
+$('#btnCinstalaciones').click(function(){
+    borrar_campos();
+    list_formatos();
+})
 // END Limpiar campos - botones cancelar -
 
 // Metodo para seleccionar el form del modal
@@ -524,6 +570,8 @@ function select_content_modal(documento_formato_id) {
         $("#body-sometimiento").hide();
         $("#body-compromisos").hide();
         $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
     }
     if (documento_formato_id == 2) {
         $("#createModalLabel").text('Nuevo Formato Constancia Anual');
@@ -534,6 +582,8 @@ function select_content_modal(documento_formato_id) {
         $("#body-sometimiento").hide();
         $("#body-compromisos").hide();
         $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
     }
     if (documento_formato_id == 3) {
         $("#createModalLabel").text('Nuevo Formato Publicidad');
@@ -544,6 +594,8 @@ function select_content_modal(documento_formato_id) {
         $("#body-sometimiento").hide();
         $("#body-compromisos").hide();
         $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
     }
     if (documento_formato_id == 4) {
         $("#createModalLabel").text('Nuevo Formato Códigos y Títulos');
@@ -554,6 +606,8 @@ function select_content_modal(documento_formato_id) {
         $("#body-sometimiento").hide();
         $("#body-compromisos").hide();
         $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
     }
     if (documento_formato_id == 7) {
         $("#createModalLabel").text('Nuevo Formato Sometimiento');
@@ -564,6 +618,8 @@ function select_content_modal(documento_formato_id) {
         $("#body-sometimiento").show();
         $("#body-compromisos").hide();
         $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
     }
     if (documento_formato_id == 8) {
         $("#createModalLabel").text('Nuevo Formato Compromisos');
@@ -574,6 +630,8 @@ function select_content_modal(documento_formato_id) {
         $("#body-sometimiento").hide();
         $("#body-compromisos").show();
         $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
     }
     if (documento_formato_id == 9) {
         $("#createModalLabel").text('Nuevo Formato Responsabilidades');
@@ -584,6 +642,32 @@ function select_content_modal(documento_formato_id) {
         $("#body-sometimiento").hide();
         $("#body-compromisos").hide();
         $("#body-responsabilidades").show();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
+    }
+    if (documento_formato_id == 10) {
+        $("#createModalLabel").text('Nuevo Formato Autorización');
+        $("#body-presentacion").hide();
+        $("#body-constanciaAnual").hide();
+        $("#body-publicidad").hide();
+        $("#body-codigoTitulo").hide();
+        $("#body-sometimiento").hide();
+        $("#body-compromisos").hide();
+        $("#body-responsabilidades").hide();
+        $("#body-autorizacion").show();
+        $("#body-instalaciones").hide();
+    }
+    if (documento_formato_id == 11) {
+        $("#createModalLabel").text('Nuevo Formato Instalaciones');
+        $("#body-presentacion").hide();
+        $("#body-constanciaAnual").hide();
+        $("#body-publicidad").hide();
+        $("#body-codigoTitulo").hide();
+        $("#body-sometimiento").hide();
+        $("#body-compromisos").hide();
+        $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").show();
     }
 }
 // END Metodo para seleccionar form del modal
@@ -813,6 +897,47 @@ $("#wrapper_responsabilidades").on('click', '.remove_button', function(e) {
     // console.log(responsabilidades_res_count);
 })
 // END Agregar y eliminar campos del modal responsabilidades
+
+// Metodo para agregar y eliminar campos del modal de instalaciones
+var instalaciones_doc_count = 10;
+$("#add_doc_instalaciones").click(
+    function() {
+        instalaciones_doc_count++;
+        var id_servicio = 'id="11no' + instalaciones_doc_count + '"';
+        instalaciones_doc_count++;
+        var id_proveedores = 'id="11no' + instalaciones_doc_count + '"';
+
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+        '<input class="instalaciones form-control" type="text" placeholder="Servicio" ' + id_servicio + ' value="" required/>' +
+        '<input class="instalaciones form-control" type="text" placeholder="Proveedor" ' + id_proveedores + ' value="" required/>' +
+        '<button type="button" class="remove_button btn btn-danger" title="Eliminar campos"><i class="fas fa-minus-square"></i></button></div>';
+        $("#wrapper_instalaciones").append(fieldHTML);
+    }
+)
+$("#wrapper_instalaciones").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var div = $(this).parents('#body-instalaciones');
+
+    $(this).parent('div').remove();
+
+    var aux = 11;
+    var auxId = '11no';
+    var hijos = div.find(".instalaciones");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+
+        aux++;
+        console.log(this);
+    });
+
+    instalaciones_doc_count -= 2;
+    // console.log(instalaciones_doc_count);
+})
+// END Agregar y eliminar campos del modal instalaciones
 
 
 
@@ -1579,3 +1704,223 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
     
 });
 // END Submit Responsabilidades
+
+
+// Submit Autorizacion
+$('#formcreate_autorizacion').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Autorizacion
+
+
+// Submit Instalaciones
+$('#formcreate_instalaciones').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    // console.log(instalaciones_doc_count);
+    if (instalaciones_doc_count > 10) {
+        for (let i = 11; i <= instalaciones_doc_count; i++) {
+            var idAppend = "11no" + i;
+            var value = $("#" + idAppend).val();
+            formData.append(idAppend, value);
+        }
+    }
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (instalaciones_doc_count > 10) {
+                        for (let i = 11; i <= instalaciones_doc_count; i++) {
+                            $("#11no" + i).parent('div').remove();
+                        }
+                        instalaciones_doc_count = 10;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    };
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (instalaciones_doc_count > 10) {
+                        for (let i = 11; i <= instalaciones_doc_count; i++) {
+                            $("#11no" + i).parent('div').remove();
+                        }
+                        instalaciones_doc_count = 10;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Instalaciones

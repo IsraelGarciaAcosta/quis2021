@@ -44,7 +44,7 @@
 
 <!-- Modal Formato-->
 <div class="modal fade" id="createFormatoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         
         <!-- content PRESENTACION -->
         <div class="modal-content" id="content_presentacion">
@@ -839,6 +839,176 @@
                     {!! Form::close() !!}
                 </div>
                 {{-- END Responsabilidades --}}
+
+                {{-- Autorizacion --}}
+                <div id="body-autorizacion">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_autorizacion']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('10no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::select('10no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('10no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('10no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('10no3', '3. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('10no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('10no4', '4. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('10no4', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('10no5', '5. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('10no5', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div6">
+                            {!! Form::label('10no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                {!! Form::text('10no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div7">
+                            {!! Form::label('10no7', '7. Nombre del Investigador principal', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('10no7', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('10no8', '8. Nombre del Hospital', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-hospital"></i></span>
+                                {!! Form::text('10no8', null, ['class' => 'form-control', 'placeholder' => 'Hospital urgencias', 'required']) !!}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCautorizacion" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGautorizacion" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Autorizacion --}}
+
+                {{-- Instalaciones --}}
+                <div id="body-instalaciones">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_instalaciones']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('11no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {{-- {!! Form::text('11no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
+                                {!! Form::select('11no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('11no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('11no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('11no3', '3. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('11no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('11no4', '4. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('11no4', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('11no5', '5. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                {!! Form::text('11no5', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('11no6', '6. Título Investigador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
+                                {!! Form::text('11no6', null, ['class' => 'form-control', 'placeholder' => 'Título investigador', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div7">
+                            {!! Form::label('11no7', '7. Nombre del Investigador principal', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('11no7', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('11no8', '8. Cláusula de proveedores externos', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-file-contract"></i></span>
+                                {!! Form::select('11no8', [ 'Si' => 'Si', 'No' => 'No' ], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div9">
+                            {!! Form::label('11no9', '9. Documentos convenios de atención', ['class' => 'form-label']) !!}
+                            <div id="wrapper_instalaciones">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                {!! Form::text('11no9', null, ['class' => 'form-control', 'placeholder' => 'Servicio', 'required']) !!}
+                                {!! Form::label('11no10', 'Proveedor', ['class' => 'form-label', 'hidden']) !!}
+                                {!! Form::text('11no10', null, ['class' => 'form-control', 'placeholder' => 'Proveedor', 'required']) !!}
+                                <button type="button" id="add_doc_instalaciones" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                            </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCinstalaciones" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGinstalaciones" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Instalaciones --}}
 
         </div>
         <!-- END PRESENTACION -->
