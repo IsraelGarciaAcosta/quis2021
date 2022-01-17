@@ -367,6 +367,29 @@ function edit_formatos(formato_id) {
                         }
                     };
                 };
+                if (documento_formato_id == 28) {
+                    var doc = (datos_json.length - 12)/4;
+                    if (doc != 0) {
+                        for (let i = 0; i < doc; i++) {
+                            destruccion_productos_count++;
+                            var id_nombre_generico = 'id="28no' + destruccion_productos_count + '"';
+                            destruccion_productos_count++;
+                            var id_estado = 'id="28no' + destruccion_productos_count + '"';
+                            destruccion_productos_count++;
+                            var id_numero_kit = 'id="28no' + destruccion_productos_count + '"';
+                            destruccion_productos_count++;
+                            var id_cantidad = 'id="28no' + destruccion_productos_count + '"';
+
+                            var fieldHTML = '<div class="input-group-prepend">' +
+                            '<input class="destruccionProductos form-control" type="text" placeholder="Material" ' + id_nombre_generico + ' value="" required/>' +
+                            '<select class="destruccionProductos form-control" ' + id_estado + ' required><option disabled selected>Selecciona un estado</option><option value="Nuevo">Nuevo</option><option value="Devolución">Devolución</option></select>' +
+                            '<input class="destruccionProductos form-control" type="text" placeholder="Cantidad" ' + id_numero_kit + ' value="" required/>' +
+                            '<input class="destruccionProductos form-control" type="number" placeholder="Cantidad" ' + id_cantidad + ' value="" required/>' +
+                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campos"><i class="fas fa-minus-square"></i></button></div>';
+                            $("#wrapper_destruccionproductos").append(fieldHTML);
+                        }
+                    };
+                };
                 
                 $('#documentoformato_id').val(formato.documento_formato_id);
                 $('#empresa_id').val(formato.empresa_id);
@@ -494,6 +517,10 @@ $('#no0').change(
                 $('#27no7').val(proyect[0]['no20']);//Codigo
                 $('#27no8').val(proyect[0]['no19']);//Titulo
 
+                $('#28no6').val(proyect[0]['razon_social']);//Direccion sitio clinico
+                $('#28no7').val(proyect[0]['no20']);//Codigo
+                $('#28no8').val(proyect[0]['no19']);//Titulo
+
             }
         });
 
@@ -523,6 +550,7 @@ function borrar_campos() {
     $("#formcreate_instalaciones")[0].reset();
     $("#formcreate_anticorupcion")[0].reset();
     $("#formcreate_destruccionMateriales")[0].reset();
+    $("#formcreate_destruccionProductos")[0].reset();
 
     if (publicidad_req_count > 3) {
         for (let i = 4; i <= publicidad_req_count; i++) {
@@ -553,6 +581,12 @@ function borrar_campos() {
             $("#27no" + i).parent('div').remove();
         }
         destruccion_materiales_count = 11;
+    }
+    if (destruccion_productos_count > 12) {
+        for (let i = 13; i <= destruccion_productos_count; i++) {
+            $("#28no" + i).parent('div').remove();
+        }
+        destruccion_productos_count = 12;
     }
 }
 // END borrar campos --- reset form
@@ -602,6 +636,10 @@ $('#btnCdestruccionMateriales').click(function(){
     borrar_campos();
     list_formatos();
 })
+$('#btnCdestruccionProductos').click(function(){
+    borrar_campos();
+    list_formatos();
+})
 // END Limpiar campos - botones cancelar -
 
 // Metodo para seleccionar el form del modal
@@ -619,6 +657,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 2) {
         $("#createModalLabel").text('Nuevo Formato Constancia Anual');
@@ -633,6 +672,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 3) {
         $("#createModalLabel").text('Nuevo Formato Publicidad');
@@ -647,6 +687,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 4) {
         $("#createModalLabel").text('Nuevo Formato Códigos y Títulos');
@@ -661,6 +702,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 7) {
         $("#createModalLabel").text('Nuevo Formato Sometimiento');
@@ -675,6 +717,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 8) {
         $("#createModalLabel").text('Nuevo Formato Compromisos');
@@ -689,6 +732,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 9) {
         $("#createModalLabel").text('Nuevo Formato Responsabilidades');
@@ -703,6 +747,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 10) {
         $("#createModalLabel").text('Nuevo Formato Autorización');
@@ -717,6 +762,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 11) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -731,6 +777,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").show();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 12) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -745,6 +792,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").show();
         $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
     }
     if (documento_formato_id == 27) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de materiales');
@@ -759,6 +807,22 @@ function select_content_modal(documento_formato_id) {
         $("#body-instalaciones").hide();
         $("#body-anticorrupcion").hide();
         $("#body-destruccionmateriales").show();
+        $("#body-destruccionproductos").hide();
+    }
+    if (documento_formato_id == 28) {
+        $("#createModalLabel").text('Nuevo Formato Destrucción de productos');
+        $("#body-presentacion").hide();
+        $("#body-constanciaAnual").hide();
+        $("#body-publicidad").hide();
+        $("#body-codigoTitulo").hide();
+        $("#body-sometimiento").hide();
+        $("#body-compromisos").hide();
+        $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
+        $("#body-anticorrupcion").hide();
+        $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").show();
     }
 }
 // END Metodo para seleccionar form del modal
@@ -1076,6 +1140,52 @@ $("#wrapper_destruccionmateriales").on('click', '.remove_button', function(e) {
 })
 // END Agregar y eliminar campos del modal Destruccion de Materiales
 
+// Metodo para agregar y eliminar campos del modal de Destrucciones de productos
+var destruccion_productos_count = 12;
+$("#add_productos").click(
+    function() {
+        destruccion_productos_count++;
+        var id_nombre_generico = 'id="28no' + destruccion_productos_count + '"';
+        destruccion_productos_count++;
+        var id_estado = 'id="28no' + destruccion_productos_count + '"';
+        destruccion_productos_count++;
+        var id_numero_kit = 'id="28no' + destruccion_productos_count + '"';
+        destruccion_productos_count++;
+        var id_cantidad = 'id="28no' + destruccion_productos_count + '"';
+
+        var fieldHTML = '<div class="input-group-prepend">' +
+        '<input class="destruccionProductos form-control" type="text" placeholder="Nombre genérico" ' + id_nombre_generico + ' value="" required/>' +
+        '<select class="destruccionProductos form-control" ' + id_estado + ' required><option disabled selected>Selecciona un estado</option><option value="Nuevo">Nuevo</option><option value="Devolución">Devolución</option></select>' +
+        '<input class="destruccionProductos form-control" type="text" placeholder="Número de kit" ' + id_numero_kit + ' value="" required/>' +
+        '<input class="destruccionProductos form-control" type="number" placeholder="Cantidad de unidades en el kit" ' + id_cantidad + ' value="" required/>' +
+        '<button type="button" class="remove_button btn btn-danger" title="Eliminar campos"><i class="fas fa-minus-square"></i></button></div>';
+        $("#wrapper_destruccionproductos").append(fieldHTML);
+    }
+)
+$("#wrapper_destruccionproductos").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var div = $(this).parents('#body-destruccionproductos');
+
+    $(this).parent('div').remove();
+
+    var aux = 13;
+    var auxId = '28no';
+    var hijos = div.find(".destruccionProductos");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+
+        aux++;
+        // console.log(this);
+    });
+
+    destruccion_productos_count -= 4;
+    // console.log(destruccion_productos_count);
+})
+// END Agregar y eliminar campos del modal Destruccion de productos
 
 
 // Metodos submit de los forms 
@@ -2186,7 +2296,7 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
 
     // console.log(destruccion_materiales_count);
     if (destruccion_materiales_count > 11) {
-        for (let i = 11; i <= destruccion_materiales_count; i++) {
+        for (let i = 12; i <= destruccion_materiales_count; i++) {
             var idAppend = "27no" + i;
             var value = $("#" + idAppend).val();
             formData.append(idAppend, value);
@@ -2281,3 +2391,124 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
     
 });
 // END Submit Destrucción de Materiales
+
+
+// Submit Destrucción de Productos
+$('#formcreate_destruccionProductos').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    // console.log(destruccion_productos_count);
+    if (destruccion_productos_count > 12) {
+        for (let i = 13; i <= destruccion_productos_count; i++) {
+            var idAppend = "28no" + i;
+            var value = $("#" + idAppend).val();
+            formData.append(idAppend, value);
+        }
+    }
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    console.log(resp);
+
+                    if (destruccion_productos_count > 12) {
+                        for (let i = 13; i <= destruccion_productos_count; i++) {
+                            $("#28no" + i).parent('div').remove();
+                        }
+                        destruccion_productos_count = 12;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    };
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (destruccion_productos_count > 12) {
+                        for (let i = 13; i <= destruccion_productos_count; i++) {
+                            $("#28no" + i).parent('div').remove();
+                        }
+                        destruccion_productos_count = 12;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Destrucción de Productos

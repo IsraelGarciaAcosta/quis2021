@@ -1169,6 +1169,129 @@
                 </div>
                 {{-- END Destruccion de Materiales --}}
 
+                {{-- Destruccioen de productos --}}
+                <div id="body-destruccionproductos">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_destruccionProductos']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('28no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {{-- {!! Form::text('12no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
+                                {!! Form::select('28no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('28no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('28no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div3">
+                            {!! Form::label('28no3', '3. Hora', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::time('28no3', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div4">
+                            {!! Form::label('28no4', '4. Número del día', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {{-- {!! Form::text('28no4', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
+                                {!! Form::select('28no4', [ '1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14' => '14', '15' => '15', '16' => '16', '17' => '17', '18' => '18', '19' => '19', '20' => '20', '21' => '21', '22' => '22', '23' => '23', '24' => '24', '25' => '25', '26' => '26', '27' => '27', '28' => '28', '29' => '29', '30' => '30', '31' => '31']
+                                ,null, ['class' => 'form-control', 'placeholder' => 'Seleccione el día', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('28no5', '5. Nombre del mes', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {{-- {!! Form::text('28no5', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
+                                {!! Form::select('28no5', [ 'Enero' => 'Enero', 'Febrero' => 'Febrero', 'Marzo' => 'Marzo', 'Abril' => 'Abril', 'Mayo' => 'Mayo', 'Junio' => 'Junio', 'Julio' => 'Julio', 'Agosto' => 'Agosto', 'Septiembre' => 'Septiembre', 'Octubre' => 'Octubre', 'Noviembre' => 'Noviembre', 'Diciembre' => 'Diciembre' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione el mes', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('28no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                {!! Form::text('28no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div7">
+                            {!! Form::label('28no7', '7. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('28no7', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div8">
+                            {!! Form::label('28no8', '8. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('28no8', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div9">
+                            {!! Form::label('28no', '9. Materiales destruidos', ['class' => 'form-label']) !!}
+                            
+                            <div class="row">
+                                <div class="col-sm">
+                                        {!! Form::label('28no', 'Nombre genérico', ['class' => 'form-label']) !!}
+                                </div>
+                                <div class="col-sm">
+                                        {!! Form::label('28no', 'Estado', ['class' => 'form-label']) !!}
+                                </div>
+                                <div class="col-sm">
+                                        {!! Form::label('28no', 'Número de kit', ['class' => 'form-label']) !!}
+                                </div>
+                                <div class="col-sm">
+                                        {!! Form::label('28no', 'Cantidad de unidades en el kit', ['class' => 'form-label']) !!}
+                                </div>
+                            </div>
+
+                            <div id="wrapper_destruccionproductos">
+
+                                <div class="input-group-prepend">
+                                    
+                                    {!! Form::label('28no9', '', ['class' => 'form-label', 'hidden']) !!}
+                                    {!! Form::text('28no9', null, ['class' => 'form-control', 'placeholder' => 'Nombre genérico', 'required']) !!}
+
+                                    {!! Form::label('28no10', '', ['class' => 'form-label', 'hidden']) !!}
+                                    {!! Form::select('28no10', [ 'Nuevo' => 'Nuevo', 'Devolución' => 'Devolución' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione el estado', 'required']) !!}
+
+                                    {!! Form::label('28no11', '', ['class' => 'form-label', 'hidden']) !!}
+                                    {!! Form::text('28no11', null, ['class' => 'form-control', 'placeholder' => 'Número de kit', 'required']) !!}
+
+                                    {!! Form::label('28no12', '', ['class' => 'form-label', 'hidden']) !!}
+                                    {!! Form::number('28no12', null, ['class' => 'form-control', 'placeholder' => 'Cantidad de unidades en el kit', 'required']) !!}
+
+                                    <button type="button" id="add_productos" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCdestruccionProductos" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGdestruccionProductos" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Destruccion de Productos --}}
+
         </div>
         <!-- END Modal -->
 
