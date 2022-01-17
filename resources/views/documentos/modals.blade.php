@@ -73,7 +73,7 @@
             </div>
 
             {{-- Presentacion --}}
-            <div id="body-presentacion">
+            <div style="display: none" id="body-presentacion">
             <div class="modal-body">
                 {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_presentacion']) !!}
 
@@ -151,7 +151,7 @@
             {{-- END Presentacion --}}
 
             {{-- Constancia anual --}}
-            <div id="body-constanciaAnual">
+            <div style="display: none" id="body-constanciaAnual">
             <div class="modal-body">
                 {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_constanciaAnual']) !!}
 
@@ -230,7 +230,7 @@
             {{-- END constancia anual --}}
 
             {{-- Publicidad --}}
-            <div id="body-publicidad">
+            <div style="display: none" id="body-publicidad">
                 <div class="modal-body">
                     {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_publicidad']) !!}
     
@@ -272,7 +272,7 @@
                 {{-- END Publicidad --}}
 
                 {{-- Codigo y titulo --}}
-                <div id="body-codigoTitulo">
+                <div style="display: none" id="body-codigoTitulo">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_codigoTitulo']) !!}
         
@@ -350,7 +350,7 @@
                 {{-- END Codigo y titulo --}}
 
                 {{-- Sometimiento --}}
-                <div id="body-sometimiento">
+                <div style="display: none" id="body-sometimiento">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_sometimiento']) !!}
         
@@ -423,7 +423,7 @@
                 {{-- END Sometimiento --}}
 
                 {{-- Compromisos --}}
-                <div id="body-compromisos">
+                <div style="display: none" id="body-compromisos">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_compromisos']) !!}
         
@@ -533,7 +533,7 @@
                 {{-- END Compromisos --}}
 
                 {{-- Responsabilidades --}}
-                <div id="body-responsabilidades">
+                <div style="display: none" id="body-responsabilidades">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_responsabilidades']) !!}
         
@@ -841,7 +841,7 @@
                 {{-- END Responsabilidades --}}
 
                 {{-- Autorizacion --}}
-                <div id="body-autorizacion">
+                <div style="display: none" id="body-autorizacion">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_autorizacion']) !!}
         
@@ -919,7 +919,7 @@
                 {{-- END Autorizacion --}}
 
                 {{-- Instalaciones --}}
-                <div id="body-instalaciones">
+                <div style="display: none" id="body-instalaciones">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_instalaciones']) !!}
         
@@ -1011,7 +1011,7 @@
                 {{-- END Instalaciones --}}
 
                 {{-- Anticorrupcion --}}
-                <div id="body-anticorrupcion">
+                <div style="display: none" id="body-anticorrupcion">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_anticorupcion']) !!}
         
@@ -1050,7 +1050,7 @@
                 {{-- END Anticorrupcion --}}
 
                 {{-- Destruccioen de materiales --}}
-                <div id="body-destruccionmateriales">
+                <div style="display: none" id="body-destruccionmateriales">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_destruccionMateriales']) !!}
         
@@ -1170,7 +1170,7 @@
                 {{-- END Destruccion de Materiales --}}
 
                 {{-- Destruccioen de productos --}}
-                <div id="body-destruccionproductos">
+                <div style="display: none" id="body-destruccionproductos">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_destruccionProductos']) !!}
         
@@ -1292,6 +1292,53 @@
                 </div>
                 {{-- END Destruccion de Productos --}}
 
+                {{-- Tarjeta de Bolsillo --}}
+                <div style="display: none" id="body-tarjetabolsillo">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_tarjetaBolsillo']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('55no1', '1. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('55no1', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('55no2', '2. Patología', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-briefcase-medical"></i></span>
+                                {!! Form::text('55no2', null, ['class' => 'form-control', 'placeholder' => 'Patología', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div3">
+                            {!! Form::label('55no3', '3. Teléfono', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                {!! Form::select('55no3', [ '437 2837 y 614 129 4020 ' => '437 2837 y 614 129 4020 ', '55 1451 1757 y 55 2127 1039' => '55 1451 1757 y 55 2127 1039' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un teléfono', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div4">
+                            {!! Form::label('55no4', '4. Móvil', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-mobile"></i></span>
+                                {!! Form::text('55no4', null, ['class' => 'form-control', 'placeholder' => 'Móvil', 'readonly']) !!}
+                                {{-- {!! Form::select('55no4', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCtarjetabolsillo" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGtarjetabolsillo" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Tarjeta de Bolsillo --}}
+
         </div>
         <!-- END Modal -->
 
@@ -1305,7 +1352,7 @@
                 </button>
             </div> --}}
             
-            {{-- <div class="modal-body" id="body-constanciaanual">
+            {{-- <div class="modal-body" style="display: none" id="body-constanciaanual">
                 {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_constanciaAnual']) !!}
                 <!-- Datos ID -->
                 {!! Form::hidden('documentoformato_id', null, ['id' => 'documentoformato_id']) !!} --}}
