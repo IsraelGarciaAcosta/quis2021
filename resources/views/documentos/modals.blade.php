@@ -1246,16 +1246,16 @@
                             {!! Form::label('28no', '9. Materiales destruidos', ['class' => 'form-label']) !!}
                             
                             <div class="row">
-                                <div class="col-sm">
+                                <div class="col">
                                         {!! Form::label('28no', 'Nombre genérico', ['class' => 'form-label']) !!}
                                 </div>
-                                <div class="col-sm">
+                                <div class="col">
                                         {!! Form::label('28no', 'Estado', ['class' => 'form-label']) !!}
                                 </div>
-                                <div class="col-sm">
+                                <div class="col">
                                         {!! Form::label('28no', 'Número de kit', ['class' => 'form-label']) !!}
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-md-auto">
                                         {!! Form::label('28no', 'Cantidad de unidades en el kit', ['class' => 'form-label']) !!}
                                 </div>
                             </div>
