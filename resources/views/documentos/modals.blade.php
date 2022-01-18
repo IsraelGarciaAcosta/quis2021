@@ -1481,6 +1481,273 @@
                 </div>
                 {{-- END Carpeta Hoja inicial --}}
 
+                {{-- Contacto --}}
+                <div style="display: none" id="body-contacto">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_contacto']) !!}
+        
+                        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('58no1', '1. Número de sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                {!! Form::text('58no1', null, ['class' => 'form-control', 'placeholder' => '# sujeto', 'required']) !!}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('58no2', '2. Iniciales del sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('58no2', null, ['class' => 'form-control', 'placeholder' => 'Iniciales del sujeto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div3">
+                            {!! Form::label('58no3', '3. Código de protocolo', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('58no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('58no', 'Contacto', ['class' => 'form-label']) !!}
+                            <div class="p-2 rounded border border-5">
+
+                                <div class="form-group" id="div4">
+                                    {!! Form::label('58no4', '4. Nombre', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        {!! Form::text('58no4', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group" id="div5">
+                                    {!! Form::label('58no5', '5. Sexo', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                                        {!! Form::select('58no5', [ 'Masculino' => 'Masculino', 'Femenino' => 'Femenino' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un campo', 'required']) !!}
+                                    </div>
+                                </div>
+        
+                                <div class="form-group" id="div6">
+                                    {!! Form::label('58no6', '6. Fecha nacimiento', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        {!! Form::date('58no6', null, ['class' => 'form-control', 'required']) !!}
+                                    </div>
+                                </div>
+        
+                                <div class="form-group">
+                                    {!! Form::label('58no', 'Domicilio', ['class' => 'form-label']) !!}
+                                    <div class="p-2 rounded border border-5">
+
+                                        <div class="form-group" id="div7">
+                                            {!! Form::label('58no7', '7. Calle y número', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-road"></i></span>
+                                                {!! Form::text('58no7', null, ['class' => 'form-control', 'placeholder' => 'Calle y número', 'required']) !!}
+                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                            </div>
+                                        </div>
+                
+                                        <div class="form-group" id="div8">
+                                            {!! Form::label('58no8', '8. Colonia', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-house-user"></i></span>
+                                                {!! Form::text('58no8', null, ['class' => 'form-control', 'placeholder' => 'Colonia', 'required']) !!}
+                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                            </div>
+                                        </div>
+                
+                                        <div class="form-group" id="div9">
+                                            {!! Form::label('58no9', '9. Ciudad y estado', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                                {!! Form::text('58no9', null, ['class' => 'form-control', 'placeholder' => 'Ciudad y estado', 'required']) !!}
+                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                            </div>
+                                        </div>
+                
+                                        <div class="form-group" id="div10">
+                                            {!! Form::label('58no10', '10. Código postal', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-mail-bulk"></i></span>
+                                                {!! Form::text('58no10', null, ['class' => 'form-control', 'placeholder' => 'Código postal', 'required']) !!}
+                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                            </div>
+                                        </div>
+                
+                                        <div class="form-group" id="div11">
+                                            {!! Form::label('58no11', '11. Tel casa', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                {!! Form::text('58no11', null, ['class' => 'form-control', 'placeholder' => 'Tel casa']) !!}
+                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                            </div>
+                                        </div>
+                
+                                        <div class="form-group" id="div12">
+                                            {!! Form::label('58no12', '12. Tel móvil', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                                {!! Form::text('58no12', null, ['class' => 'form-control', 'placeholder' => 'Tel móvil']) !!}
+                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                            </div>
+                                        </div>
+                
+                                        <div class="form-group" id="div13">
+                                            {!! Form::label('58no13', '13. Tel trabajo', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                {!! Form::text('58no13', null, ['class' => 'form-control', 'placeholder' => 'Tel trabajo']) !!}
+                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                            </div>
+                                        </div>
+                
+                                        <div class="form-group" id="div14">
+                                            {!! Form::label('58no14', '14. Correo electrónico', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                                {!! Form::email('58no14', null, ['class' => 'form-control', 'placeholder' => 'Correo electrónico', 'required']) !!}
+                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('58no', 'Persona de contacto 1', ['class' => 'form-label']) !!}
+                            <div class="p-2 rounded border border-5">
+
+                                <div class="form-group" id="div15">
+                                    {!! Form::label('58no15', '15. Nombre', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        {!! Form::text('58no15', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="div16">
+                                    {!! Form::label('58no16', '16. Domicilio', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                        {!! Form::text('58no16', null, ['class' => 'form-control', 'placeholder' => 'Domicilio', 'required']) !!}
+                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="div17">
+                                    {!! Form::label('58no17', '17. Parentesco', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
+                                        {!! Form::text('58no17', null, ['class' => 'form-control', 'placeholder' => 'Parentesco', 'required']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="div18">
+                                    {!! Form::label('58no18', '18. Tel casa', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        {!! Form::text('58no18', null, ['class' => 'form-control', 'placeholder' => 'Tel casa']) !!}
+                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                    </div>
+                                </div>
+        
+                                <div class="form-group" id="div19">
+                                    {!! Form::label('58no19', '19. Tel móvil', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                        {!! Form::text('58no19', null, ['class' => 'form-control', 'placeholder' => 'Tel móvil']) !!}
+                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                    </div>
+                                </div>
+        
+                                <div class="form-group" id="div20">
+                                    {!! Form::label('58no20', '20. Tel trabajo', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        {!! Form::text('58no20', null, ['class' => 'form-control', 'placeholder' => 'Tel trabajo']) !!}
+                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('58no', 'Persona de contacto 2', ['class' => 'form-label']) !!}
+                            <div class="p-2 rounded border border-5">
+
+                                <div class="form-group" id="div21">
+                                    {!! Form::label('58no21', '21. Nombre', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        {!! Form::text('58no21', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="div22">
+                                    {!! Form::label('58no22', '22. Domicilio', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                        {!! Form::text('58no22', null, ['class' => 'form-control', 'placeholder' => 'Domicilio']) !!}
+                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="div23">
+                                    {!! Form::label('58no23', '23. Parentesco', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
+                                        {!! Form::text('58no23', null, ['class' => 'form-control', 'placeholder' => 'Parentesco']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="div24">
+                                    {!! Form::label('58no24', '24. Tel casa', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        {!! Form::text('58no24', null, ['class' => 'form-control', 'placeholder' => 'Tel casa']) !!}
+                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                    </div>
+                                </div>
+        
+                                <div class="form-group" id="div25">
+                                    {!! Form::label('58no25', '25. Tel móvil', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                        {!! Form::text('58no25', null, ['class' => 'form-control', 'placeholder' => 'Tel móvil']) !!}
+                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                    </div>
+                                </div>
+        
+                                <div class="form-group" id="div26">
+                                    {!! Form::label('58no26', '26. Tel trabajo', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                        {!! Form::text('58no26', null, ['class' => 'form-control', 'placeholder' => 'Tel trabajo']) !!}
+                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCcontacto" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGcontacto" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Contacto --}}
+
         </div>
         <!-- END Modal -->
 
