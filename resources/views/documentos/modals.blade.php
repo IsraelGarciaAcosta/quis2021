@@ -41,7 +41,7 @@
 </div>
 </div>
 
-
+<!-- TODO Para los formatos que se van a descargar se rellenan algunos campos como el Codigo del protocolo -->
 <!-- Modal Formato-->
 <div class="modal fade" id="createFormatoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -1747,6 +1747,93 @@
                     {!! Form::close() !!}
                 </div>
                 {{-- END Contacto --}}
+
+                {{-- Señalador de visita --}}
+                <div style="display: none" id="body-señaladorvisita">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_señaladorVisita']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('63no1', '1. Nombre de la visita', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('63no1', null, ['class' => 'form-control', 'placeholder' => 'Visita', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div2">
+                            {!! Form::label('63no2', '2. Fecha de la visita', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::date('63no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div3">
+                            {!! Form::label('63no3', '3. Código del protocolo', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('63no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('63no4', '4. Investigador principal', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('63no4', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('63no5', '5. Sub Investigador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('63no5', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="div6">
+                            {!! Form::label('63no6', '6. Coordinador de estudios', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('63no6', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div7">
+                            {!! Form::label('63no7', '7. Número de sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                {!! Form::text('63no7', null, ['class' => 'form-control', 'placeholder' => '# sujeto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('63no8', '8. Iniciales del sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('63no8', null, ['class' => 'form-control', 'placeholder' => 'Iniciales del sujeto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div9">
+                            {!! Form::label('63no9', '9. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                {!! Form::text('63no9', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
+                                {{-- {!! Form::select('63no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCseñaladorvisita" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGseñaladorvisita" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Señalador de visita --}}
 
         </div>
         <!-- END Modal -->
