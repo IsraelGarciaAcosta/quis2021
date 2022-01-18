@@ -529,7 +529,16 @@ $('#no0').change(
                 $('#56no1').val(proyect[0]['no20']);//Codigo
                 $('#56no2').val(proyect[0]['investigador']);//Investigador
                 // TODO: Ver donde esta la dirreccion, y checar si va a llevar la ciudad y la fecha en el formato.
-                // $('#55no5').val(proyect[0]['']);//Direccion sisitio clinico
+                $('#55no5').val(proyect[0]['razon_social']);//Direccion sisitio clinico
+
+                $('#57no1').val(proyect[0]['no20']);//Codigo
+                $('#57no2').val(proyect[0]['investigador']);//Investigador
+                // TODO Ver donde esta el sub investigador
+                // $('#57no3').val(proyect[0]['subinvestigador']);//sub investigador
+                // TODO ver donde esta el coordinador de estudios
+                // $('#57no4').val(proyect[0]['coordinadorestudios']);//sub investigador
+                // TODO: Ver donde esta la dirreccion, y checar si va a llevar la ciudad y la fecha en el formato.
+                $('#55no9').val(proyect[0]['razon_social']);//Direccion sisitio clinico
 
             }
         });
@@ -563,6 +572,7 @@ function borrar_campos() {
     $("#formcreate_destruccionProductos")[0].reset();
     $("#formcreate_tarjetaBolsillo")[0].reset();
     $("#formcreate_documentoFuente")[0].reset();
+    $("#formcreate_hojaInicial")[0].reset();
 
     if (publicidad_req_count > 3) {
         for (let i = 4; i <= publicidad_req_count; i++) {
@@ -660,6 +670,10 @@ $('#btnCdocumentofuente').click(function(){
     borrar_campos();
     list_formatos();
 })
+$('#btnChojainicial').click(function(){
+    borrar_campos();
+    list_formatos();
+})
 // END Limpiar campos - botones cancelar -
 
 // Metodo para seleccionar el form del modal
@@ -680,6 +694,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 2) {
         $("#createModalLabel").text('Nuevo Formato Constancia Anual');
@@ -697,6 +712,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 3) {
         $("#createModalLabel").text('Nuevo Formato Publicidad');
@@ -714,6 +730,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 4) {
         $("#createModalLabel").text('Nuevo Formato Códigos y Títulos');
@@ -731,6 +748,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 7) {
         $("#createModalLabel").text('Nuevo Formato Sometimiento');
@@ -748,6 +766,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 8) {
         $("#createModalLabel").text('Nuevo Formato Compromisos');
@@ -765,6 +784,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 9) {
         $("#createModalLabel").text('Nuevo Formato Responsabilidades');
@@ -782,6 +802,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 10) {
         $("#createModalLabel").text('Nuevo Formato Autorización');
@@ -799,6 +820,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 11) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -816,6 +838,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 12) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -833,6 +856,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 27) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de materiales');
@@ -850,6 +874,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 55) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de productos');
@@ -867,6 +892,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").show();
         $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
     }
     if (documento_formato_id == 56) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de productos');
@@ -884,6 +910,25 @@ function select_content_modal(documento_formato_id) {
         $("#body-destruccionproductos").hide();
         $("#body-tarjetabolsillo").hide();
         $("#body-documentofuente").show();
+        $("#body-hojainicial").hide();
+    }
+    if (documento_formato_id == 57) {
+        $("#createModalLabel").text('Nuevo Formato Destrucción de productos');
+        $("#body-presentacion").hide();
+        $("#body-constanciaAnual").hide();
+        $("#body-publicidad").hide();
+        $("#body-codigoTitulo").hide();
+        $("#body-sometimiento").hide();
+        $("#body-compromisos").hide();
+        $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
+        $("#body-anticorrupcion").hide();
+        $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
+        $("#body-tarjetabolsillo").hide();
+        $("#body-documentofuente").hide();
+        $("#body-hojainicial").show();
     }
 }
 // END Metodo para seleccionar form del modal
@@ -2771,3 +2816,102 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
     
 });
 // END Submit Carpeta Documentos Fuente
+
+
+// Submit Hoja Inicial
+$('#formcreate_hojaInicial').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Hoja Inicial

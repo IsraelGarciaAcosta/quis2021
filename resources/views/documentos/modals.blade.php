@@ -1394,6 +1394,93 @@
                 </div>
                 {{-- END Carpeta documento fuente --}}
 
+                {{-- Carpeta Hoja inicial --}}
+                <div style="display: none" id="body-hojainicial">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_hojaInicial']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('57no1', '1. Código de protocolo', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('57no1', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('57no2', '2. Investigador principal', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('57no2', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div3">
+                            {!! Form::label('57no3', '3. Sub Investigador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('57no3', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('57no4', '4. Coordinador de estudios', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('57no4', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('57no5', '5. Número de sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                {!! Form::text('57no5', null, ['class' => 'form-control', 'placeholder' => '# sujeto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('57no6', '6. Iniciales del sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('57no6', null, ['class' => 'form-control', 'placeholder' => 'Iniciales del sujeto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div7">
+                            {!! Form::label('57no7', '7. Sexo', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                                {!! Form::select('57no7', [ 'Masculino' => 'Masculino', 'Femenino' => 'Femenino' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un campo', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('57no8', '8. Edad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::number('57no8', null, ['class' => 'form-control', 'placeholder' => 'Edad', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div9">
+                            {!! Form::label('57no9', '9. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                {!! Form::text('57no9', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
+                                {{-- {!! Form::select('57no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnChojainicial" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGhojainicial" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Carpeta Hoja inicial --}}
+
         </div>
         <!-- END Modal -->
 
