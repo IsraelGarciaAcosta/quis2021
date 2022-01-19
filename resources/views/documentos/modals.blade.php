@@ -1835,6 +1835,93 @@
                 </div>
                 {{-- END Señalador de visita --}}
 
+                {{-- Recibo ICF --}}
+                <!-- Preguntar por nombre de sujeto y firma del sujeto -->
+                <div style="display: none" id="body-reciboicf">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_reciboICF']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('72no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {{-- {!! Form::text('72no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
+                                {!! Form::text('72no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('72no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('72no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('72no3', '3. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('72no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('72no4', '4. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('72no4', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('72no5', '5. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('72no5', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('72no', 'Datos del documento', ['class' => 'form-label']) !!}
+                            <div class="p-2 rounded border border-5">
+
+                                <div class="form-group" id="div6">
+                                    {!! Form::label('72no6', '6. Nombre del documento', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-file"></i></span>
+                                        {!! Form::text('72no6', null, ['class' => 'form-control', 'placeholder' => 'Nombre del documento', 'required']) !!}
+                                    </div>
+                                </div>
+        
+                                <div class="form-group" id="div7">
+                                    {!! Form::label('72no7', '7. Versión', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
+                                        {!! Form::text('72no7', null, ['class' => 'form-control', 'placeholder' => 'Versión', 'required']) !!}
+                                    </div>
+                                </div>
+        
+                                <div class="form-group" id="div8">
+                                    {!! Form::label('72no8', '8. Fecha de versión', ['class' => 'form-label']) !!}
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        {!! Form::date('72no8', null, ['class' => 'form-control', 'required']) !!}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCreciboicf" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGreciboicf" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Recibo ICF --}}
+
         </div>
         <!-- END Modal -->
 
