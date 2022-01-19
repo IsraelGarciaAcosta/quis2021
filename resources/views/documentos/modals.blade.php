@@ -1836,7 +1836,7 @@
                 {{-- END Señalador de visita --}}
 
                 {{-- Recibo ICF --}}
-                <!-- Preguntar por nombre de sujeto y firma del sujeto -->
+                <!-- TODO: Preguntar por nombre de sujeto y firma del sujeto -->
                 <div style="display: none" id="body-reciboicf">
                     <div class="modal-body">
                         {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_reciboICF']) !!}
@@ -1921,6 +1921,68 @@
                     {!! Form::close() !!}
                 </div>
                 {{-- END Recibo ICF --}}
+
+                {{-- Privacidad de sujetos --}}
+                <div style="display: none" id="body-privicidadsujetos">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_privacidadSujetos']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('77no1', '1. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('77no1', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('77no2', '2. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('77no2', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div3">
+                            {!! Form::label('77no3', '3. Investigador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('77no3', null, ['class' => 'form-control', 'placeholder' => 'Investigador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div4">
+                            {!! Form::label('77no4', '4. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('77no4', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('77no5', '5. Sitio clínico', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('77no5', null, ['class' => 'form-control', 'placeholder' => 'Sitio clínico', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('77no6', '6. Dirección', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('77no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly']) !!}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCprivacidadsujetos" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGprivacidadsujetos" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Privacidad de sujetos --}}
 
         </div>
         <!-- END Modal -->
