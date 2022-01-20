@@ -2121,6 +2121,149 @@
                 </div>
                 {{-- END Orden de compra --}}
 
+                {{-- Envío de muestras --}}
+                <div style="display: none" id="body-enviomuestras">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_envioMuestras']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('80no1', '1. Lugar', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('80no1', null, ['class' => 'form-control', 'placeholder' => 'Lugar', 'readonly']) !!}
+                                {{-- {!! Form::select('80no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div2">
+                            {!! Form::label('80no2', '2. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('80no2', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('80no3', '3. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('80no3', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div4">
+                            {!! Form::label('80no4', '4. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('80no4', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('80no5', '5. # Sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('80no5', null, ['class' => 'form-control', 'placeholder' => '# Sujeto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('80no6', '6. # Visita', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('80no6', null, ['class' => 'form-control', 'placeholder' => '# Visita', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div7">
+                            {!! Form::label('80no7', '7. Fecha de recoleccón', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('80no7', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('80no8', '8. Requisitos de almacén', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-boxes"></i></span>
+                                {!! Form::select('80no8', [ 'Temperatura ambienete' => 'Temperatura ambienete', 'Refrigerado' => 'Refrigerado', 'Congelado' => 'Congelado' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required']) !!}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="div9">
+                            {!! Form::label('80no9', '9. Hubo desviaciones de temperatura durante el almacén de la muestra', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-temperature-high"></i></span>
+                                {!! Form::select('80no9', [ 'Si' => 'Si', 'No' => 'No'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una opción', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div10">
+                            {!! Form::label('80no10', '10. Courier', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('80no10', null, ['class' => 'form-control', 'placeholder' => 'Courier', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div11">
+                            {!! Form::label('80no11', '11. Número de guía', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                {!! Form::text('80no11', null, ['class' => 'form-control', 'placeholder' => 'Número de guía', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div12">
+                            {!! Form::label('80no12', '12. Fecha de envío', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('80no12', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div13">
+                            {!! Form::label('80no13', '13. Hora', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                {!! Form::time('80no13', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div14">
+                            {!! Form::label('80no14', '14. Temperatura de salida', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-temperature-low"></i></span>
+                                {!! Form::text('80no14', null, ['class' => 'form-control', 'placeholder' => 'Temperatura de salida', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div15">
+                            {!! Form::label('80no15', '15. Nombre de quien elabora la nota', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('80no15', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div16">
+                            {!! Form::label('80no16', '16. Iniciales', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('80no16', null, ['class' => 'form-control', 'placeholder' => 'Iniciales', 'required']) !!}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCenviomuestras" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGenviomuestras" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Envío de muestras --}}
+
         </div>
         <!-- END Modal -->
 
