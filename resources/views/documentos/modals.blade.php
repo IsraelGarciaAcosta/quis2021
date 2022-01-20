@@ -2039,6 +2039,88 @@
                 </div>
                 {{-- END Privacidad y datos --}}
 
+                {{-- Orden de compra --}}
+                <div style="display: none" id="body-ordencompra">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_ordenCompra']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('79no1', '1. Lugar', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('79no1', null, ['class' => 'form-control', 'placeholder' => 'Lugar', 'readonly']) !!}
+                                {{-- {!! Form::select('79no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('79no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('79no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('79no3', '3. Nombre del proveedor', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('79no3', null, ['class' => 'form-control', 'placeholder' => 'Nombre del proveedor', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('79no4', '4. Número de documento', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('79no4', null, ['class' => 'form-control', 'placeholder' => 'UIS-18-XXXXX', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('79no5', '5. Nombre del sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('79no5', null, ['class' => 'form-control', 'placeholder' => 'Nombre del sujeto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('79no6', '6. Nombre de la persona que solicita', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('79no6', null, ['class' => 'form-control', 'placeholder' => 'Nombre de la persona que solicita', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div7">
+                            {!! Form::label('79no7', '7. Puesto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('79no7', null, ['class' => 'form-control', 'placeholder' => 'Puesto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('79no8', '8. Estudios', ['class' => 'form-label']) !!}
+                            <div id="wrapper_ordenestudio">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-file"></i></span>
+                                {!! Form::text('79no8', null, ['class' => 'form-control','placeholder' => 'Nombre del estudio', 'required']) !!}
+                                <button type="button" id="add_estudio" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                            </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCordencompra" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGordencompra" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Orden de compra --}}
+
         </div>
         <!-- END Modal -->
 
