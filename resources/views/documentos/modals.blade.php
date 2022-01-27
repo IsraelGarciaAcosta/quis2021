@@ -2395,7 +2395,7 @@
                             {!! Form::label('82no3', '3. Código', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
-                                {!! Form::text('82no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                                {!! Form::text('82no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
                             </div>
                         </div>
         
@@ -2446,7 +2446,7 @@
                                         <div class="input-group-prepend">
                                         {!! Form::label('82no7', '', ['class' => 'form-label', 'hidden']) !!}
                                         <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
-                                        {!! Form::text('82no7', null, ['class' => 'form-control', 'placeholder' => '# Reporte', 'required']) !!}
+                                        {!! Form::text('82no7', null, ['class' => 'form-control', 'placeholder' => '# Sujeto', 'required']) !!}
                                         </div>
                                     </div>
 
@@ -2481,6 +2481,139 @@
                     {!! Form::close() !!}
                 </div>
                 {{-- END Aviso EAS --}}
+
+                {{-- Aviso SUSAR --}}
+                <div style="display: none" id="body-avisosusar">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_avisoSUSAR']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('83no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('83no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {{-- {!! Form::select('83no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('83no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('83no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('83no3', '3. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('83no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('83no4', '4. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('83no4', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('83no5', '5. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('83no5', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('83no6', '6. Investigador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('83no6', null, ['class' => 'form-control', 'placeholder' => 'Investigador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div7">
+                            {!! Form::label('83no', '7. Reportes internacionales de Sospechas de Reacción Adversa Inesperada', ['class' => 'form-label']) !!}
+
+                            <div id="wrapper_avisosusar">
+
+                                <div class="avisosusarinpust p-2 rounded border">
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('83no7', '# Reporte', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                            {!! Form::text('83no7', null, ['class' => 'form-control', 'placeholder' => '# Reporte', 'required']) !!}
+                                            </div>
+                                        </div>
+    
+                                        <div class="col form-group">
+                                            {!! Form::label('83no8', 'Fecha reporte', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            {!! Form::date('83no8', null, ['class' => 'form-control', 'required']) !!}
+                                            </div>
+                                        </div>
+    
+                                        <div class="col form-group">
+                                            {!! Form::label('83no9', 'Protocolo', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::text('83no9', null, ['class' => 'form-control', 'placeholder' => 'Protocolo', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('83no10', 'País', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-globe-americas"></i></span>
+                                            {!! Form::text('83no10', null, ['class' => 'form-control', 'placeholder' => 'País', 'required']) !!}
+                                            </div>
+                                        </div>
+    
+                                        <div class="col form-group">
+                                            {!! Form::label('83no11', 'Tipo reporte', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::text('83no11', null, ['class' => 'form-control', 'placeholder' => 'Tipo reporte', 'required']) !!}
+                                            </div>
+                                        </div>
+    
+                                        <div class="col form-group">
+                                            {!! Form::label('83no12', 'Descripción', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::textarea('83no12', null, ['class' => 'form-control', 'placeholder' => 'Descripción', 'rows' => '2','required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="button" id="add_reporte_susar" class="btn btn-block btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCavisosusar" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGavisosusar" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Aviso SUSAR --}}
 
         </div>
         <!-- END Modal -->
