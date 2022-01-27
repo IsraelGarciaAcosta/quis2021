@@ -2369,6 +2369,119 @@
                 </div>
                 {{-- END Orden de compra hospital --}}
 
+                {{-- Aviso EAS --}}
+                <div style="display: none" id="body-avisoeas">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_avisoEAS']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('82no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('82no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {{-- {!! Form::select('82no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('82no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('82no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('82no3', '3. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('82no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('82no4', '4. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('82no4', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('82no5', '5. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('82no5', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('82no6', '6. Investigador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('82no6', null, ['class' => 'form-control', 'placeholder' => 'Investigador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div7">
+                            {!! Form::label('82no', '7. NOTIFICO el siguiente Evento Adverso Serio:', ['class' => 'form-label']) !!}
+                            
+                            <div class="row">
+                                <div class="col-sm">
+                                        {!! Form::label('82no', 'No. de sujeto', ['class' => 'form-label']) !!}
+                                </div>
+                                <div class="col-sm">
+                                        {!! Form::label('82no', 'Fecha reporte', ['class' => 'form-label']) !!}
+                                </div>
+                                <div class="col-sm">
+                                        {!! Form::label('82no', 'Descripción', ['class' => 'form-label']) !!}
+                                </div>
+                            </div>
+
+                            <div id="wrapper_avisoeas">
+
+                                <div class="avisoeasinpust input-group-prepend">
+                                    
+                                    <div class="col">
+                                        <div class="input-group-prepend">
+                                        {!! Form::label('82no7', '', ['class' => 'form-label', 'hidden']) !!}
+                                        <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                        {!! Form::text('82no7', null, ['class' => 'form-control', 'placeholder' => '# Reporte', 'required']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="input-group-prepend">
+                                        {!! Form::label('82no8', '', ['class' => 'form-label', 'hidden']) !!}
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        {!! Form::date('82no8', null, ['class' => 'form-control', 'required']) !!}
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="input-group-prepend">
+                                        {!! Form::label('82no9', '', ['class' => 'form-label', 'hidden']) !!}
+                                        <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                        {!! Form::textarea('82no9', null, ['class' => 'form-control', 'placeholder' => 'Descripción', 'rows' => '3','required']) !!}
+                                        </div>
+                                    </div>
+
+                                    <button type="button" id="add_evento_adverso" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCavisoeas" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGavisoeas" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Aviso EAS --}}
+
         </div>
         <!-- END Modal -->
 
