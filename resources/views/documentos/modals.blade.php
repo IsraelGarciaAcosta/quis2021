@@ -2264,6 +2264,111 @@
                 </div>
                 {{-- END Envío de muestras --}}
 
+                {{-- Orden de compra hospital --}}
+                <div style="display: none" id="body-ordencomprahospital">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_ordenCompraHospital']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('81no1', '1. Lugar', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('81no1', null, ['class' => 'form-control', 'placeholder' => 'Lugar', 'readonly']) !!}
+                                {{-- {!! Form::select('81no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('81no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('81no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('81no3', '3. Nombre del proveedor', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('81no3', null, ['class' => 'form-control', 'placeholder' => 'Nombre del proveedor', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div4">
+                            {!! Form::label('81no4', '4. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('81no4', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div5">
+                            {!! Form::label('81no5', '5. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('81no5', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('81no6', '6. Nombre del sujeto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('81no6', null, ['class' => 'form-control', 'placeholder' => 'Nombre del sujeto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div7">
+                            {!! Form::label('81no7', '7. Nombre de la persona que solicita', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('81no7', null, ['class' => 'form-control', 'placeholder' => 'Nombre de la persona que solicita', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('81no8', '8. Puesto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('81no8', null, ['class' => 'form-control', 'placeholder' => 'Puesto', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="ordencompraHospitalCampos">
+                            <div class="form-group" id="div9">
+                                {!! Form::label('81no', '9. La atención que se solicita incluye los siguientes servicios:', ['class' => 'form-label']) !!}
+                                <div id="wrapper_ordenservicio">
+                                    {!! Form::label('81no9', '', ['class' => 'form-label', 'hidden']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-hand-holding"></i></span>
+                                    {!! Form::text('81no9', null, ['class' => 'form-control','placeholder' => 'Nombre del servicio', 'required']) !!}
+                                    <button type="button" id="add_servicio" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="div10">
+                                {!! Form::label('81no', '10. La atención que se solicita tiene las siguientes restricciones:', ['class' => 'form-label']) !!}
+                                <div id="wrapper_ordenrestriccion">
+                                    {!! Form::label('81no10', '', ['class' => 'form-label', 'hidden']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-ban"></i></span>
+                                    {!! Form::text('81no10', null, [ 'class' => 'ordencomprahospitalRestriccion form-control','placeholder' => 'Restricción', 'required']) !!}
+                                    <button type="button" id="add_restriccion" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCordencomprahospital" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGordencomprahospital" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Orden de compra hospital --}}
+
         </div>
         <!-- END Modal -->
 

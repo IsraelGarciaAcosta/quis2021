@@ -401,6 +401,73 @@ function edit_formatos(formato_id) {
                         }
                     };
                 };
+                if (documento_formato_id == 81) {
+                    var req = datos_json.length - 10;
+                    if (req != 0) {
+                        aux = 9;
+                        count_servicios = 0;
+                        count_restricciones = 0;
+                        for (let i = 9; i < datos_json.length; i++) {
+                            var element = datos_json[i];
+                            var choice = element.slice(0, 1);
+                            var only_data = element.slice(2, element.length);
+
+                            datos_json[i] = only_data;
+                            if (choice == 's') {
+                                count_servicios++;
+                            }
+                            if (choice == 'r') {
+                                count_restricciones++;
+                            }
+                        }
+                        for (let i = 0; i < count_servicios; i++) {
+                            ordencomprahospital_servicio_count++;
+                            var id_servicio = 'id="81no' + ordencomprahospital_servicio_count + '"';
+
+                            divCampos = $('.ordencompraHospitalCampos');
+                            wrapperRestriccion = divCampos.find('#wrapper_ordenrestriccion');
+                            inputs = wrapperRestriccion.find('.ordencomprahospitalRestriccion');
+                            
+                            var aux = ordencomprahospital_servicio_count + 1;
+                            var auxId = '81no';
+                            $.each(inputs, function() {
+                                var aux_id = this.name;
+                        
+                                $("[name='"+ aux_id +"']").prop('id', auxId + aux);
+
+                                aux++;
+                                // console.log(this);
+                            });
+
+                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-hand-holding"></i></span>' +
+                            '<input class="ordencomprahospitalServicio form-control" type="text" placeholder="Nombre del servicio" ' + id_servicio + 'required/>' +
+                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
+                            $("#wrapper_ordenservicio").append(fieldHTML);
+
+                            ordencomprahospital_restricciones_count++;
+                        }
+                        for (let i = 1; i < count_restricciones; i++) {
+                            ordencomprahospital_restricciones_count++;
+                            var id_restricciones = 'id="81no' + ordencomprahospital_restricciones_count + '"';
+                            var name_restricciones = 'name="81no' + ordencomprahospital_restricciones_count + '"';
+
+                            if (ordencomprahospital_restricciones_count == 11) {
+                                $("[name='81no10'").prop('id', '81no10');
+                            }
+
+                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-ban"></i></span>' +
+                            '<input class="ordencomprahospitalRestriccion add form-control" type="text" placeholder="Restricción" ' + name_restricciones + ' ' + id_restricciones + ' value="" required/>' +
+                            '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
+                            $("#wrapper_ordenrestriccion").append(fieldHTML);
+                        }
+                    }else{
+                        //si solo hay un servicio y una restricción quitar la r de la restricción
+                        utlimo_dato = datos_json[9];
+
+                        utlimo_dato = utlimo_dato.slice(2, utlimo_dato.length);
+                        datos_json[9] = utlimo_dato;
+                    }
+                }
                 
                 $('#documentoformato_id').val(formato.documento_formato_id);
                 $('#empresa_id').val(formato.empresa_id);
@@ -591,6 +658,11 @@ $('#no0').change(
                 $("#80no3").val(proyect[0]['no19']);//Título
                 $("#80no4").val(proyect[0]['no25']);//Patrocinador
 
+                // TODO Cambiar por la ciudad correcta
+                $("#81no1").val(proyect[0]['razon_social']);//Sitio clinico 
+                $("#81no4").val(proyect[0]['no20']);//Código
+                $("#81no5").val(proyect[0]['no19']);//Título
+
             }
         });
 
@@ -631,6 +703,7 @@ function borrar_campos() {
     $("#formcreate_privacidadDatos")[0].reset();
     $("#formcreate_ordenCompra")[0].reset();
     $("#formcreate_envioMuestras")[0].reset();
+    $("#formcreate_ordenCompraHospital")[0].reset();
 
     if (publicidad_req_count > 3) {
         for (let i = 4; i <= publicidad_req_count; i++) {
@@ -674,6 +747,39 @@ function borrar_campos() {
         }
         ordencompra_estudio_count = 8;
     };
+    if (ordencomprahospital_servicio_count > 9) {
+        aux_count = 0;
+        for (let i = 10; i <= ordencomprahospital_servicio_count; i++) {
+            $("#81no" + i).parent('div').remove();
+            aux_count++;
+        }
+
+        wrapperRestriccion = $('#wrapper_ordenrestriccion');
+        inputs = wrapperRestriccion.find('.form-control');
+        
+        var aux = 10;
+        var auxId = '81no';
+        $.each(inputs, function() {
+            var aux_id = this.id;
+
+            $("#"+ aux_id +"").prop('id', auxId + aux);
+
+            aux++;
+            // console.log(this);
+        });
+        // console.log(inputs);
+
+        ordencomprahospital_servicio_count = 9;
+        ordencomprahospital_restricciones_count = ordencomprahospital_restricciones_count - aux_count;
+    }
+    if (ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count > 1) {
+        aux = ordencomprahospital_servicio_count + 2;
+        for (let i = 1; i < ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count; i++) {
+            $("#81no" + aux).parent('div').remove();
+            aux++;
+        }
+        ordencomprahospital_restricciones_count = ordencomprahospital_servicio_count + 1;
+    }
 }
 // END borrar campos --- reset form
 
@@ -766,6 +872,10 @@ $('#btnCenviomuestras').click(function(){
     borrar_campos();
     list_formatos();
 })
+$('#btnCordencomprahospital').click(function(){
+    borrar_campos();
+    list_formatos();
+})
 // END Limpiar campos - botones cancelar -
 
 // Metodo para seleccionar el form del modal
@@ -794,6 +904,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 2) {
         $("#createModalLabel").text('Nuevo Formato Constancia Anual');
@@ -819,6 +930,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 3) {
         $("#createModalLabel").text('Nuevo Formato Publicidad');
@@ -844,6 +956,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 4) {
         $("#createModalLabel").text('Nuevo Formato Códigos y Títulos');
@@ -869,6 +982,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 7) {
         $("#createModalLabel").text('Nuevo Formato Sometimiento');
@@ -894,6 +1008,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 8) {
         $("#createModalLabel").text('Nuevo Formato Compromisos');
@@ -919,6 +1034,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 9) {
         $("#createModalLabel").text('Nuevo Formato Responsabilidades');
@@ -944,6 +1060,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 10) {
         $("#createModalLabel").text('Nuevo Formato Autorización');
@@ -969,6 +1086,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 11) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -994,6 +1112,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 12) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -1019,6 +1138,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 27) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de materiales');
@@ -1044,6 +1164,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 28) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de productos');
@@ -1069,6 +1190,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 55) {
         $("#createModalLabel").text('Nuevo Formato Tarjeta de bolsillo');
@@ -1094,6 +1216,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 56) {
         $("#createModalLabel").text('Nuevo Formato Documento fuente');
@@ -1119,6 +1242,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 57) {
         $("#createModalLabel").text('Nuevo Formato Hoja inicial');
@@ -1144,6 +1268,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 58) {
         $("#createModalLabel").text('Nuevo Formato contacto');
@@ -1169,6 +1294,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 63) {
         $("#createModalLabel").text('Nuevo Formato Señalador de visita');
@@ -1194,6 +1320,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 72) {
         $("#createModalLabel").text('Nuevo Formato Recibo ICF');
@@ -1219,6 +1346,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 77) {
         $("#createModalLabel").text('Nuevo Formato Privacidad de sujetos');
@@ -1244,6 +1372,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 78) {
         $("#createModalLabel").text('Nuevo Formato Privacidad y datos');
@@ -1269,6 +1398,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").show();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 79) {
         $("#createModalLabel").text('Nuevo Formato Orden de compra');
@@ -1294,6 +1424,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").show();
         $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
     }
     if (documento_formato_id == 80) {
         $("#createModalLabel").text('Nuevo Formato Envío de muestras');
@@ -1319,6 +1450,33 @@ function select_content_modal(documento_formato_id) {
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
         $("#body-enviomuestras").show();
+        $("#body-ordencomprahospital").hide();
+    }
+    if (documento_formato_id == 81) {
+        $("#createModalLabel").text('Nuevo Formato Orden de compra hospital');
+        $("#body-presentacion").hide();
+        $("#body-constanciaAnual").hide();
+        $("#body-publicidad").hide();
+        $("#body-codigoTitulo").hide();
+        $("#body-sometimiento").hide();
+        $("#body-compromisos").hide();
+        $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
+        $("#body-anticorrupcion").hide();
+        $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
+        $("#body-tarjetabolsillo").hide();
+        $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
+        $("#body-contacto").hide();
+        $("#body-señaladorvisita").hide();
+        $("#body-reciboicf").hide();
+        $("#body-privicidadsujetos").hide();
+        $("#body-privacidaddatos").hide();
+        $("#body-ordencompra").hide();
+        $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").show();
     }
 }
 // END Metodo para seleccionar form del modal
@@ -1720,6 +1878,137 @@ $("#wrapper_ordenestudio").on('click', '.remove_button', function(e) {
     // console.log(ordencompra_estudio_count);
 })
 // END Agregar y eliminar campos del modal orden de compra
+
+// Metodo para agregar y eliminar campos del modal de orden de compra Hospital
+var ordencomprahospital_servicio_count = 9;
+$("#add_servicio").click(
+    function() {
+        ordencomprahospital_servicio_count++;
+
+        var id_servicio = 'id="81no' + ordencomprahospital_servicio_count + '"';
+
+        divCampos = $(this).parents('.ordencompraHospitalCampos');
+        wrapperRestriccion = divCampos.find('#wrapper_ordenrestriccion');
+        inputs = wrapperRestriccion.find('.ordencomprahospitalRestriccion');
+        
+        var aux = ordencomprahospital_servicio_count + 1;
+        var auxId = '81no';
+        $.each(inputs, function() {
+            var aux_id = this.name;
+    
+            $("[name='"+ aux_id +"']").prop('id', auxId + aux);
+
+            aux++;
+            // console.log(this);
+        });
+
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-hand-holding"></i></span>' +
+        '<input class="ordencomprahospitalServicio form-control" type="text" placeholder="Nombre del servicio" ' + id_servicio + 'required/>' +
+        '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
+        $("#wrapper_ordenservicio").append(fieldHTML);
+
+        ordencomprahospital_restricciones_count++;
+    }
+)
+$("#wrapper_ordenservicio").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var div = $(this).parents('#body-ordencomprahospital');
+
+    $(this).parent('div').remove();
+
+    var aux = 10;
+    var auxId = '81no';
+    var hijos = div.find(".ordencomprahospitalServicio");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+
+        aux++;
+        // console.log(this);
+    });
+
+    ordencomprahospital_servicio_count--;
+    // console.log(ordencomprahospital_servicio_count);
+
+    divCampos = div.find('.ordencompraHospitalCampos');
+    wrapperRestriccion = divCampos.find('#wrapper_ordenrestriccion');
+    inputs = wrapperRestriccion.find('.ordencomprahospitalRestriccion');
+
+    var aux = ordencomprahospital_servicio_count + 1;
+    var auxId = '81no';
+    $.each(inputs, function() {
+        var aux_id = this.name;
+
+        $("[name='"+ aux_id +"']").prop('id', auxId + aux);
+
+        aux++;
+        // console.log(this);
+    });
+
+    ordencomprahospital_restricciones_count--;
+})
+var ordencomprahospital_restricciones_count = 10;
+$("#add_restriccion").click(
+    function() {
+        // console.log(ordencomprahospital_restricciones_count);
+        ordencomprahospital_restricciones_count++;
+
+        var id_restricciones = 'id="81no' + ordencomprahospital_restricciones_count + '"';
+        var name_restricciones = 'name="81no' + ordencomprahospital_restricciones_count + '"';
+
+        if (ordencomprahospital_restricciones_count == 11) {
+            $("[name='81no10'").prop('id', '81no10');
+        }
+
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-ban"></i></span>' +
+        '<input class="ordencomprahospitalRestriccion add form-control" type="text" placeholder="Restricción" ' + name_restricciones + ' ' + id_restricciones + ' value="" required/>' +
+        '<button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>';
+        $("#wrapper_ordenrestriccion").append(fieldHTML);
+    }
+)
+$("#wrapper_ordenrestriccion").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var div = $(this).parents('#body-ordencomprahospital');
+
+    $(this).parent('div').remove();
+
+    var aux = ordencomprahospital_servicio_count + 1;
+    var auxId = '81no';
+    var hijos = div.find(".ordencomprahospitalRestriccion");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+
+        aux++;
+        // console.log(this);
+    });
+
+    ordencomprahospital_restricciones_count--;
+    // console.log(ordencomprahospital_restricciones_count);
+
+    divCampos = div.find('.ordencompraHospitalCampos');
+    wrapperServicio = divCampos.find('#wrapper_ordenservicio');
+    inputs = wrapperServicio.find('.ordencomprahospitalServicio');
+    // console.log(inputs);
+    var aux = 10;
+    var auxId = '81no';
+    $.each(inputs, function() {
+        var aux_id = this.id;
+
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+
+        aux++;
+        // console.log(this);
+    });
+
+})
+// END Agregar y eliminar campos del modal orden de compra Hospital
 
 
 // Metodos submit de los forms 
@@ -4057,3 +4346,220 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
     
 });
 // END Submit Envío de nuestas
+
+
+// Submit Orden de compra hospital
+$('#formcreate_ordenCompraHospital').on('submit', function(e) {
+    e.preventDefault();
+
+    if (ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count > 1) {
+        div = $('#wrapper_ordenrestriccion');
+        inputs = div.find('.form-control');
+        
+        $.each(inputs, function() {
+            var aux_name = this.name;
+
+            if (aux_name != '81no10') {
+                var aux_id = this.id;
+                $("#" + aux_id + "").removeAttr('name');
+            }
+        });
+    }
+
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    prueba = $('.ordencompraHospitalCampos');
+    wrapperServicio = prueba.find('#wrapper_ordenservicio');
+    wrapperRestriccion = prueba.find('#wrapper_ordenrestriccion');
+    inputsRestriccion = wrapperRestriccion.find('.form-control');
+    inputsServicio = wrapperServicio.find('.form-control');
+
+    // console.log(ordencomprahospital_servicio_count);
+    if (ordencomprahospital_servicio_count > 9) {
+        // console.log('Hay 2 o mas servicios');
+        for (let i = 10; i <= ordencomprahospital_servicio_count; i++) {
+            var idAppend = "81no" + i;
+            var value = $("#" + idAppend).val();
+            formData.append(idAppend, 's-' + value);
+        }
+    }
+
+    if (ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count > 1) {
+        // console.log('Hay 2 o mas restricciones');
+        aux = ordencomprahospital_servicio_count + 1;
+        for (let i = 0; i < ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count; i++) {
+            var idAppend = "81no" + aux;
+            var value = $("#" + idAppend).val();
+            formData.append(idAppend, 'r-' + value);
+            aux++;
+        }
+    }
+
+    if (ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count == 1) {
+        // console.log('Hay solo 1 restriccion');
+        for (let i = ordencomprahospital_servicio_count + 1; i <= ordencomprahospital_restricciones_count; i++) {
+            var idAppend = "81no" + i;
+            var value = $("#" + idAppend).val();
+            formData.append(idAppend, 'r-' + value);
+        }
+    }
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (ordencomprahospital_servicio_count > 9) {
+                        aux_count = 0;
+                        for (let i = 10; i <= ordencomprahospital_servicio_count; i++) {
+                            $("#81no" + i).parent('div').remove();
+                            aux_count++;
+                        }
+                
+                        wrapperRestriccion = $('#wrapper_ordenrestriccion');
+                        inputs = wrapperRestriccion.find('.form-control');
+                        
+                        var aux = 10;
+                        var auxId = '81no';
+                        $.each(inputs, function() {
+                            var aux_id = this.id;
+                
+                            $("#"+ aux_id +"").prop('id', auxId + aux);
+                
+                            aux++;
+                            // console.log(this);
+                        });
+                        // console.log(inputs);
+                
+                        ordencomprahospital_servicio_count = 9;
+                        ordencomprahospital_restricciones_count = ordencomprahospital_restricciones_count - aux_count;
+                    }
+                    if (ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count > 1) {
+                        aux = ordencomprahospital_servicio_count + 2;
+                        for (let i = 1; i < ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count; i++) {
+                            $("#81no" + aux).parent('div').remove();
+                            aux++;
+                        }
+                        ordencomprahospital_restricciones_count = ordencomprahospital_servicio_count + 1;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    };
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (ordencomprahospital_servicio_count > 9) {
+                        aux_count = 0;
+                        for (let i = 10; i <= ordencomprahospital_servicio_count; i++) {
+                            $("#81no" + i).parent('div').remove();
+                            aux_count++;
+                        }
+                
+                        wrapperRestriccion = $('#wrapper_ordenrestriccion');
+                        inputs = wrapperRestriccion.find('.form-control');
+                        
+                        var aux = 10;
+                        var auxId = '81no';
+                        $.each(inputs, function() {
+                            var aux_id = this.id;
+                
+                            $("#"+ aux_id +"").prop('id', auxId + aux);
+                
+                            aux++;
+                            // console.log(this);
+                        });
+                        // console.log(inputs);
+                
+                        ordencomprahospital_servicio_count = 9;
+                        ordencomprahospital_restricciones_count = ordencomprahospital_restricciones_count - aux_count;
+                    }
+                    if (ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count > 1) {
+                        aux = ordencomprahospital_servicio_count + 2;
+                        for (let i = 1; i < ordencomprahospital_restricciones_count - ordencomprahospital_servicio_count; i++) {
+                            $("#81no" + aux).parent('div').remove();
+                            aux++;
+                        }
+                        ordencomprahospital_restricciones_count = ordencomprahospital_servicio_count + 1;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Orden de compra hospital
