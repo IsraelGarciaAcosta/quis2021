@@ -2615,6 +2615,146 @@
                 </div>
                 {{-- END Aviso SUSAR --}}
 
+                {{-- Somete desviación --}}
+                <div style="display: none" id="body-sometedesviacion">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_someteDesviacion']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('84no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('84no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {{-- {!! Form::select('84no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('84no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('84no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('84no3', '3. Código UIS', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('84no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('84no4', '4. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('84no4', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div5">
+                            {!! Form::label('84no5', '5. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('84no5', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('84no6', '6. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('84no6', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div7">
+                            {!! Form::label('84no7', '7. Investigador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('84no7', null, ['class' => 'form-control', 'placeholder' => 'Investigador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('84no', '8. SOMETO a ese comité las siguientes desviaciones', ['class' => 'form-label']) !!}
+
+                            <div id="wrapper_sometedesviacion">
+
+                                <div class="sometedesviacioninpust p-2 rounded border">
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('84no8', '# Sujeto', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                            {!! Form::text('84no8', null, ['class' => 'form-control', 'placeholder' => '# Sujeto', 'required']) !!}
+                                            </div>
+                                        </div>
+
+                                        <div class="col form-group">
+                                            {!! Form::label('84no9', '# Visita', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                            {!! Form::text('84no9', null, ['class' => 'form-control', 'placeholder' => '# Visita', 'required']) !!}
+                                            </div>
+                                        </div>
+    
+                                        <div class="col form-group">
+                                            {!! Form::label('84no10', 'Fecha', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            {!! Form::date('84no10', null, ['class' => 'form-control', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+    
+                                        <div class="col form-group">
+                                            {!! Form::label('84no11', 'Descripción', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::textarea('84no11', null, ['class' => 'form-control', 'placeholder' => 'Descripción', 'rows' => '2','required']) !!}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col form-group">
+                                            {!! Form::label('84no12', 'Acciones tomadas', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::textarea('84no12', null, ['class' => 'form-control', 'placeholder' => 'Acciones tomadas', 'rows' => '2','required']) !!}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="button" id="add_somete_desviacion" class="btn btn-block btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCsometedesviacion" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGsometedesviacion" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Somete desviación --}}
+
         </div>
         <!-- END Modal -->
 

@@ -579,6 +579,79 @@ function edit_formatos(formato_id) {
                         }
                     };
                 };
+                if (documento_formato_id == 84) {
+                    var doc = (datos_json.length - 12)/5;
+                    if (doc != 0) {
+                        for (let i = 0; i < doc; i++) {
+                            somete_desviacion_count++;
+                            var id_no_sujeto = 'id="84no' + somete_desviacion_count + '"';
+                            somete_desviacion_count++;
+                            var id_no_visita = 'id="84no' + somete_desviacion_count + '"';
+                            somete_desviacion_count++;
+                            var id_fecha = 'id="84no' + somete_desviacion_count + '"';
+                            somete_desviacion_count++;
+                            var id_descripcion = 'id="84no' + somete_desviacion_count + '"';
+                            somete_desviacion_count++;
+                            var id_acciones_tomadas = 'id="84no' + somete_desviacion_count + '"';
+
+                            var fieldHTML = '<div class="sometedesviacioninpust p-2 rounded border">' +
+                            '<div class="row">' +
+
+                            '<div class="col form-group">' +
+                            '<label># Sujeto</label>' +
+                            '<div class="input-group-prepend">' +
+                            '<span class="input-group-text"><i class="fas fa-hashtag"></i></span>' +
+                            '<input class="sometedesviacion form-control" type="text" placeholder="# Sujeto" ' + id_no_sujeto + ' value="" required/>' +
+                            '</div></div>' +
+                            
+                            '<div class="col form-group">' +
+                            '<label># Visita</label>' +
+                            '<div class="input-group-prepend">' +
+                            '<span class="input-group-text"><i class="fas fa-hashtag"></i></span>' +
+                            '<input class="sometedesviacion form-control" type="text" placeholder="# Visita" ' + id_no_visita + ' value="" required/>' +
+                            '</div></div>' +
+
+                            '<div class="col form-group">' +
+                            '<label>Fecha reporte</label>' +
+                            '<div class="input-group-prepend">' +
+                            '<span class="input-group-text"><i class="fas fa-calendar"></i></span>' +
+                            '<input class="sometedesviacion form-control" type="date" ' + id_fecha + ' value="" required/>' +
+                            '</div></div>' +
+
+                            '</div>' +
+
+
+                            '<div class="row">' +
+
+                            '<div class="col form-group">' +
+                            '<label>Descripción</label>' +
+                            '<div class="input-group-prepend">' +
+                            '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+                            '<textarea class="sometedesviacion form-control" rows="2" placeholder="Descripción" ' + id_descripcion + ' required></textarea>' +
+                            '</div></div>' +
+
+                            '</div>' +
+
+                            '<div class="row">' +
+
+                            '<div class="col form-group">' +
+                            '<label>Acciones tomadas</label>' +
+                            '<div class="input-group-prepend">' +
+                            '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+                            '<textarea class="sometedesviacion form-control" rows="2" placeholder="Acciones tomadas" ' + id_acciones_tomadas + ' required></textarea>' +
+                            '</div></div>' +
+
+                            '</div>' +
+
+                            '<div class="row"><div class="col">' +
+                            '<button type="button" class="remove_button btn btn-block btn-danger" title="Eliminar campos"><i class="fas fa-minus-square"></i></button>' +
+                            '</div></div>' +
+
+                            '</div>';
+                            $("#wrapper_sometedesviacion").append(fieldHTML);
+                        }
+                    };
+                };
                 
                 $('#documentoformato_id').val(formato.documento_formato_id);
                 $('#empresa_id').val(formato.empresa_id);
@@ -788,6 +861,14 @@ $('#no0').change(
                 $("#83no5").val(proyect[0]['no25']);//Patrocinador
                 $("#83no6").val(proyect[0]['investigador']);//Investigador
 
+                // TODO Cambiar por la ciudad correcta
+                $("#84no1").val(proyect[0]['razon_social']);//Sitio clinico 
+                $("#84no3").val(proyect[0]['no18']);//codigo UIS 
+                $("#84no4").val(proyect[0]['no20']);//Código
+                $("#84no5").val(proyect[0]['no19']);//Título
+                $("#84no6").val(proyect[0]['no25']);//Patrocinador
+                $("#84no7").val(proyect[0]['investigador']);//Investigador
+
             }
         });
 
@@ -831,6 +912,7 @@ function borrar_campos() {
     $("#formcreate_ordenCompraHospital")[0].reset();
     $("#formcreate_avisoEAS")[0].reset();
     $("#formcreate_avisoSUSAR")[0].reset();
+    $("#formcreate_someteDesviacion")[0].reset();
 
     if (publicidad_req_count > 3) {
         for (let i = 4; i <= publicidad_req_count; i++) {
@@ -918,6 +1000,12 @@ function borrar_campos() {
             $("#83no" + i).parents('.avisosusarinpust').remove();
         }
         aviso_susar_count = 12;
+    }
+    if (somete_desviacion_count > 12) {
+        for (let i = 13; i <= somete_desviacion_count; i++) {
+            $("#84no" + i).parents('.sometedesviacioninpust').remove();
+        }
+        somete_desviacion_count = 12;
     }
 }
 // END borrar campos --- reset form
@@ -1023,6 +1111,10 @@ $('#btnCavisosusar').click(function(){
     borrar_campos();
     list_formatos();
 })
+$('#btnCsometedesviacion').click(function(){
+    borrar_campos();
+    list_formatos();
+})
 // END Limpiar campos - botones cancelar -
 
 // Metodo para seleccionar el form del modal
@@ -1054,6 +1146,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 2) {
         $("#createModalLabel").text('Nuevo Formato Constancia Anual');
@@ -1082,6 +1175,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 3) {
         $("#createModalLabel").text('Nuevo Formato Publicidad');
@@ -1110,6 +1204,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 4) {
         $("#createModalLabel").text('Nuevo Formato Códigos y Títulos');
@@ -1138,6 +1233,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 7) {
         $("#createModalLabel").text('Nuevo Formato Sometimiento');
@@ -1166,6 +1262,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 8) {
         $("#createModalLabel").text('Nuevo Formato Compromisos');
@@ -1194,6 +1291,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 9) {
         $("#createModalLabel").text('Nuevo Formato Responsabilidades');
@@ -1222,6 +1320,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 10) {
         $("#createModalLabel").text('Nuevo Formato Autorización');
@@ -1250,6 +1349,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 11) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -1278,6 +1378,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 12) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -1306,6 +1407,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 27) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de materiales');
@@ -1334,6 +1436,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 28) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de productos');
@@ -1362,6 +1465,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 55) {
         $("#createModalLabel").text('Nuevo Formato Tarjeta de bolsillo');
@@ -1390,6 +1494,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 56) {
         $("#createModalLabel").text('Nuevo Formato Documento fuente');
@@ -1418,6 +1523,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 57) {
         $("#createModalLabel").text('Nuevo Formato Hoja inicial');
@@ -1446,6 +1552,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 58) {
         $("#createModalLabel").text('Nuevo Formato contacto');
@@ -1474,6 +1581,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 63) {
         $("#createModalLabel").text('Nuevo Formato Señalador de visita');
@@ -1502,6 +1610,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 72) {
         $("#createModalLabel").text('Nuevo Formato Recibo ICF');
@@ -1530,6 +1639,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 77) {
         $("#createModalLabel").text('Nuevo Formato Privacidad de sujetos');
@@ -1558,6 +1668,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 78) {
         $("#createModalLabel").text('Nuevo Formato Privacidad y datos');
@@ -1586,6 +1697,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 79) {
         $("#createModalLabel").text('Nuevo Formato Orden de compra');
@@ -1614,6 +1726,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 80) {
         $("#createModalLabel").text('Nuevo Formato Envío de muestras');
@@ -1642,6 +1755,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 81) {
         $("#createModalLabel").text('Nuevo Formato Orden de compra hospital');
@@ -1670,6 +1784,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").show();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 82) {
         $("#createModalLabel").text('Nuevo Formato Aviso EAS');
@@ -1698,6 +1813,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").show();
         $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
     }
     if (documento_formato_id == 83) {
         $("#createModalLabel").text('Nuevo Formato Aviso SUSAR');
@@ -1726,6 +1842,36 @@ function select_content_modal(documento_formato_id) {
         $("#body-ordencomprahospital").hide();
         $("#body-avisoeas").hide();
         $("#body-avisosusar").show();
+        $("#body-sometedesviacion").hide();
+    }
+    if (documento_formato_id == 84) {
+        $("#createModalLabel").text('Nuevo Formato Somete desviación');
+        $("#body-presentacion").hide();
+        $("#body-constanciaAnual").hide();
+        $("#body-publicidad").hide();
+        $("#body-codigoTitulo").hide();
+        $("#body-sometimiento").hide();
+        $("#body-compromisos").hide();
+        $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
+        $("#body-anticorrupcion").hide();
+        $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
+        $("#body-tarjetabolsillo").hide();
+        $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
+        $("#body-contacto").hide();
+        $("#body-señaladorvisita").hide();
+        $("#body-reciboicf").hide();
+        $("#body-privicidadsujetos").hide();
+        $("#body-privacidaddatos").hide();
+        $("#body-ordencompra").hide();
+        $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
+        $("#body-avisoeas").hide();
+        $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").show();
     }
 }
 // END Metodo para seleccionar form del modal
@@ -2417,6 +2563,103 @@ $("#wrapper_avisosusar").on('click', '.remove_button', function(e) {
     // console.log(aviso_susar_count);
 })
 // END Agregar y eliminar campos del modal Aviso SUSAR
+
+// Metodo para agregar y eliminar campos del modal de Somete Desviacion
+var somete_desviacion_count = 12;
+$("#add_somete_desviacion").click(
+    function() {
+        somete_desviacion_count++;
+        var id_no_sujeto = 'id="84no' + somete_desviacion_count + '"';
+        somete_desviacion_count++;
+        var id_no_visita = 'id="84no' + somete_desviacion_count + '"';
+        somete_desviacion_count++;
+        var id_fecha = 'id="84no' + somete_desviacion_count + '"';
+        somete_desviacion_count++;
+        var id_descripcion = 'id="84no' + somete_desviacion_count + '"';
+        somete_desviacion_count++;
+        var id_acciones_tomadas = 'id="84no' + somete_desviacion_count + '"';
+
+        var fieldHTML = '<div class="sometedesviacioninpust p-2 rounded border">' +
+        '<div class="row">' +
+
+        '<div class="col form-group">' +
+        '<label># Sujeto</label>' +
+        '<div class="input-group-prepend">' +
+        '<span class="input-group-text"><i class="fas fa-hashtag"></i></span>' +
+        '<input class="sometedesviacion form-control" type="text" placeholder="# Sujeto" ' + id_no_sujeto + ' value="" required/>' +
+        '</div></div>' +
+        
+        '<div class="col form-group">' +
+        '<label># Visita</label>' +
+        '<div class="input-group-prepend">' +
+        '<span class="input-group-text"><i class="fas fa-hashtag"></i></span>' +
+        '<input class="sometedesviacion form-control" type="text" placeholder="# Visita" ' + id_no_visita + ' value="" required/>' +
+        '</div></div>' +
+
+        '<div class="col form-group">' +
+        '<label>Fecha reporte</label>' +
+        '<div class="input-group-prepend">' +
+        '<span class="input-group-text"><i class="fas fa-calendar"></i></span>' +
+        '<input class="sometedesviacion form-control" type="date" ' + id_fecha + ' value="" required/>' +
+        '</div></div>' +
+
+        '</div>' +
+
+
+        '<div class="row">' +
+
+        '<div class="col form-group">' +
+        '<label>Descripción</label>' +
+        '<div class="input-group-prepend">' +
+        '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+        '<textarea class="sometedesviacion form-control" rows="2" placeholder="Descripción" ' + id_descripcion + ' required></textarea>' +
+        '</div></div>' +
+
+        '</div>' +
+
+        '<div class="row">' +
+
+        '<div class="col form-group">' +
+        '<label>Acciones tomadas</label>' +
+        '<div class="input-group-prepend">' +
+        '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
+        '<textarea class="sometedesviacion form-control" rows="2" placeholder="Acciones tomadas" ' + id_acciones_tomadas + ' required></textarea>' +
+        '</div></div>' +
+
+        '</div>' +
+
+        '<div class="row"><div class="col">' +
+        '<button type="button" class="remove_button btn btn-block btn-danger" title="Eliminar campos"><i class="fas fa-minus-square"></i></button>' +
+        '</div></div>' +
+
+        '</div>';
+        $("#wrapper_sometedesviacion").append(fieldHTML);
+    }
+)
+$("#wrapper_sometedesviacion").on('click', '.remove_button', function(e) {
+    e.preventDefault();
+
+    var div = $(this).parents('#body-sometedesviacion');
+
+    $(this).parents('.sometedesviacioninpust').remove();
+
+    var aux = 13;
+    var auxId = '84no';
+    var hijos = div.find(".sometedesviacion");
+    // console.log(hijos[0].id)
+    $.each(hijos, function() {
+        var aux_id = this.id;
+
+        $("#"+ aux_id +"").prop('id', auxId + aux);
+
+        aux++;
+        // console.log(this);
+    });
+
+    somete_desviacion_count -= 5;
+    // console.log(somete_desviacion_count);
+})
+// END Agregar y eliminar campos del modal Somete Desviacion
 
 
 // Metodos submit de los forms 
@@ -5213,3 +5456,124 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
     
 });
 // END Submit Aviso SUSAR
+
+
+// Submit Somete Desviación
+$('#formcreate_someteDesviacion').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    // console.log(somete_desviacion_count);
+    if (somete_desviacion_count > 12) {
+        for (let i = 13; i <= somete_desviacion_count; i++) {
+            var idAppend = "84no" + i;
+            var value = $("#" + idAppend).val();
+            formData.append(idAppend, value);
+        }
+    }
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (somete_desviacion_count > 12) {
+                        for (let i = 13; i <= somete_desviacion_count; i++) {
+                            $("#84no" + i).parents('.sometedesviacioninpust').remove();
+                        }
+                        somete_desviacion_count = 12;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos()
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    };
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+
+                    if (somete_desviacion_count > 12) {
+                        for (let i = 13; i <= somete_desviacion_count; i++) {
+                            $("#84no" + i).parents('.sometedesviacioninpust').remove();
+                        }
+                        somete_desviacion_count = 12;
+                    }
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Somete Desviación
