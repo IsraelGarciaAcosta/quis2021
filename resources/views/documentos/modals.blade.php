@@ -2961,7 +2961,7 @@
                             {!! Form::label('87no6', '6. Sitio clínico', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-clinic-medical"></i></span>
-                                {!! Form::text('87no6', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {!! Form::text('87no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly','required']) !!}
                                 {{-- {!! Form::select('87no6', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un sitio clínico', 'required']) !!} --}}
                             </div>
                         </div>
@@ -3098,72 +3098,212 @@
                 </div>
                 {{-- END Renovación anual --}}
 
+                {{-- Informte técnico --}}
+                <div style="display: none" id="body-informetecnico">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_informeTecnico']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('88no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('88no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {{-- {!! Form::select('88no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('88no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('88no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('88no3', '3. Nombre del Presidente del Comité', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('88no3', null, ['class' => 'form-control', 'placeholder' => 'Nombre del Presidente del Comité', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('88no4', '4. Asunto: informe técnico', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::select('88no4', [ 'Mensual' => 'Mensual', 'Trimestral' => 'Trimestral', 'Semestral' => 'Semestral', 'Anual' => 'Anual', 'Final' => 'Final' ], null, ['class' => 'form-control', 'placeholder' => 'Selecciona un periodo', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div5">
+                            {!! Form::label('88no5', '5. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('88no5', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div6">
+                            {!! Form::label('88no6', '6. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('88no6', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div7">
+                            {!! Form::label('88no7', '7. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('88no7', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('88no8', '8. Sitio clínico', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-clinic-medical"></i></span>
+                                {!! Form::text('88no8', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly','required']) !!}
+                                {{-- {!! Form::select('88no8', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un sitio clínico', 'required']) !!} --}}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div9">
+                            {!! Form::label('88no', '9. Fechas de aprobación', ['class' => 'form-label']) !!}
+
+                            <div id="wrapper_renovacionanual">
+
+                                <div class="renovacionanualinpust p-2 rounded border">
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no9', 'Comité de Ética en Investigación', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            <!-- TODO: ver de donde se toma la fecha o si el usuario ingresara la fecha -->
+                                            {!! Form::date('88no9', null, ['class' => 'form-control', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no10', 'Comité de Investigación', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            {!! Form::date('88no10', null, ['class' => 'form-control', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no11', 'COFEPRIS', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            <!-- TODO: ver si se queda como date o como caja de texto -->
+                                            {{-- {!! Form::date('88no11', null, ['class' => 'form-control', 'required']) !!} --}}
+                                            {!! Form::text('88no11', null, ['class' => 'form-control', 'placeholder' => 'Pendiente o fecha, ejemplo: 24-Mayo-2022 (Año-Mes-Día)', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div12">
+                            {!! Form::label('88no', '12. Informe correspondiente', ['class' => 'form-label']) !!}
+
+                            <div id="wrapper_renovacionanual">
+
+                                <div class="renovacionanualinpust p-2 rounded border">
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no12', 'Estado del proyecto', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            {!! Form::select('88no12', [ 'Espera visita de inicio' => 'Espera visita de inicio', 'En conducción' => 'En conducción', 'Cerrado' => 'Cerrado' ], null, ['class' => 'form-control', 'placeholder' => 'Seleccione estado del proyecto', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no13', 'Fecha de visita de inicio', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-folder"></i></span>
+                                            {!! Form::date('88no13', null, ['class' => 'form-control', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no14', 'Sujetos que firmaron ICF', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                            {!! Form::text('88no14', null, ['class' => 'form-control', 'placeholder' => '# Sujetos', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no15', 'Sujetos activos o en seguimiento', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                            {!! Form::text('88no15', null, ['class' => 'form-control', 'placeholder' => '# Sujetos', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no16', 'Total de informes iniciales de EAS en el sitio', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::text('88no16', null, ['class' => 'form-control', 'placeholder' => '# EAS', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('88no17', 'Total de desviaciones o violaciones en el sitio', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::text('88no17', null, ['class' => 'form-control', 'placeholder' => '# Desviaciones', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div18">
+                            {!! Form::label('88no18', '18. Investigador principal', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('88no18', null, ['class' => 'form-control', 'placeholder' => 'Investigador', 'readonly']) !!}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCinformetecnico" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGinformetecnico" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Informe técnico --}}
+
 
         </div>
         <!-- END Modal -->
-
-
-        <!-- content CONSTANCIA ANUAL -->
-        {{-- <div class="modal-content" id="content_constancia_anual" style="display: none;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createConstanciaAnualModalLabel">Nuevo Formato Constancia Anual</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cancelar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div> --}}
-            
-            {{-- <div class="modal-body" style="display: none" id="body-constanciaanual">
-                {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_constanciaAnual']) !!}
-                <!-- Datos ID -->
-                {!! Form::hidden('documentoformato_id', null, ['id' => 'documentoformato_id']) !!} --}}
-                {{-- {!! Form::hidden('empresaid_constanciaAnual', $globalempresa_id, ['id' => 'empresaid_constanciaAnual']) !!} --}}
-                {{-- {!! Form::hidden('empresa_id', null, ['id' => 'empresa_id']) !!}
-                {!! Form::hidden('menu_id', null, ['id' => 'menu_id']) !!}
-                {!! Form::hidden('proyecto_id', null, ['id' => 'proyecto_id']) !!}
-                {!! Form::hidden('user_id', null, ['id' => 'user_id']) !!}
-                {!! Form::hidden('formato_id', null, ['id' => 'formato_id']) !!}
-                
-                <div class="form-group" id="div0">
-                    {!! Form::label('no0', 'Proyecto (Código UIS)', ['class' => 'form-label']) !!}
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-folder"></i></span>
-                        {!! Form::select('no0', ['' => ''],null, ['class' => 'form-control', 'id' => 'no0', 'placeholder' => 'Seleccione un proyecto...', 'required']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group" id="div1">
-                    {!! Form::label('no1', '1. Título. Nombre completo', ['class' => 'form-label']) !!}
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-map"></i></span>
-                        {!! Form::text('no1', null, ['class' => 'form-control', 'id' => 'no1', 'placeholder' => 'Título. Nombre completo', 'required']) !!}
-                    </div>
-                </div>
-
-                <!--TODO: La constancia se genera sola o no?-->
-                <div class="form-group" id="div7">
-                    {!! Form::label('no7', '7. Constancia No.', ['class' => 'form-label']) !!}
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        {!! Form::text('no7', null, ['class' => 'form-control', 'id' => 'no7', 'placeholder' => 'Constancia No.', 'required']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group" id="div8">
-                    {!! Form::label('no8', '8. Fecha', ['class' => 'form-label']) !!}
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        {!! Form::date('no8', null, ['class' => 'form-control', 'id' => 'no8', 'required']) !!}
-                    </div>
-                </div>
-        
-            </div>
-            <div class="modal-footer">
-                <button type="button" id="btnCconstanciaAnual" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" id="btnGconstanciaAnual" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
-            </div>
-            {!! Form::close() !!}
-        </div> --}}
-        <!-- END CONSTANCIA ANUAL -->
 
 
     </div>

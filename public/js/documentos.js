@@ -913,6 +913,14 @@ $('#no0').change(
                 $("#87no6").val(proyect[0]['razon_social']);//sitio clinico direccion
                 $("#87no16").val(proyect[0]['investigador']);//Investigador
 
+                // TODO Cambiar por la ciudad correcta
+                $("#88no1").val(proyect[0]['razon_social']);//ciudad
+                $("#88no5").val(proyect[0]['no20']);//Código
+                $("#88no6").val(proyect[0]['no19']);//Título
+                $("#88no7").val(proyect[0]['no25']);//Patrocinador
+                $("#88no8").val(proyect[0]['razon_social']);//sitio clinico direccion
+                $("#88no18").val(proyect[0]['investigador']);//Investigador
+
             }
         });
 
@@ -960,6 +968,7 @@ function borrar_campos() {
     $("#formcreate_avisoCE")[0].reset();
     $("#formcreate_feDeErratas")[0].reset();
     $("#formcreate_renovacionAnual")[0].reset();
+    $("#formcreate_informeTecnico")[0].reset();
 
     if (publicidad_req_count > 3) {
         for (let i = 4; i <= publicidad_req_count; i++) {
@@ -1186,6 +1195,10 @@ $('#btnCrenovacionanual').click(function(){
     borrar_campos();
     list_formatos();
 })
+$('#btnCinformetecnico').click(function(){
+    borrar_campos();
+    list_formatos();
+})
 // END Limpiar campos - botones cancelar -
 
 // Metodo para seleccionar el form del modal
@@ -1221,6 +1234,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 2) {
         $("#createModalLabel").text('Nuevo Formato Constancia Anual');
@@ -1253,6 +1267,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 3) {
         $("#createModalLabel").text('Nuevo Formato Publicidad');
@@ -1285,6 +1300,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 4) {
         $("#createModalLabel").text('Nuevo Formato Códigos y Títulos');
@@ -1317,6 +1333,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 7) {
         $("#createModalLabel").text('Nuevo Formato Sometimiento');
@@ -1349,6 +1366,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 8) {
         $("#createModalLabel").text('Nuevo Formato Compromisos');
@@ -1381,6 +1399,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 9) {
         $("#createModalLabel").text('Nuevo Formato Responsabilidades');
@@ -1413,6 +1432,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 10) {
         $("#createModalLabel").text('Nuevo Formato Autorización');
@@ -1445,6 +1465,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 11) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -1477,6 +1498,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 12) {
         $("#createModalLabel").text('Nuevo Formato Instalaciones');
@@ -1509,6 +1531,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 27) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de materiales');
@@ -1541,6 +1564,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 28) {
         $("#createModalLabel").text('Nuevo Formato Destrucción de productos');
@@ -1573,6 +1597,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 55) {
         $("#createModalLabel").text('Nuevo Formato Tarjeta de bolsillo');
@@ -1605,6 +1630,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 56) {
         $("#createModalLabel").text('Nuevo Formato Documento fuente');
@@ -1637,6 +1663,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 57) {
         $("#createModalLabel").text('Nuevo Formato Hoja inicial');
@@ -1669,6 +1696,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 58) {
         $("#createModalLabel").text('Nuevo Formato contacto');
@@ -1701,6 +1729,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 63) {
         $("#createModalLabel").text('Nuevo Formato Señalador de visita');
@@ -1733,6 +1762,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 72) {
         $("#createModalLabel").text('Nuevo Formato Recibo ICF');
@@ -1765,6 +1795,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 77) {
         $("#createModalLabel").text('Nuevo Formato Privacidad de sujetos');
@@ -1797,6 +1828,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 78) {
         $("#createModalLabel").text('Nuevo Formato Privacidad y datos');
@@ -1829,6 +1861,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 79) {
         $("#createModalLabel").text('Nuevo Formato Orden de compra');
@@ -1861,6 +1894,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 80) {
         $("#createModalLabel").text('Nuevo Formato Envío de muestras');
@@ -1893,6 +1927,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 81) {
         $("#createModalLabel").text('Nuevo Formato Orden de compra hospital');
@@ -1925,6 +1960,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 82) {
         $("#createModalLabel").text('Nuevo Formato Aviso EAS');
@@ -1957,6 +1993,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 83) {
         $("#createModalLabel").text('Nuevo Formato Aviso SUSAR');
@@ -1989,6 +2026,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 84) {
         $("#createModalLabel").text('Nuevo Formato Somete desviación');
@@ -2021,6 +2059,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 85) {
         $("#createModalLabel").text('Nuevo Formato Aviso al CE');
@@ -2053,6 +2092,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").show();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 86) {
         $("#createModalLabel").text('Nuevo Formato Fe de erratas');
@@ -2085,6 +2125,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").show();
         $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
     }
     if (documento_formato_id == 87) {
         $("#createModalLabel").text('Nuevo Formato Renovación anual');
@@ -2117,6 +2158,40 @@ function select_content_modal(documento_formato_id) {
         $("#body-avisoce").hide();
         $("#body-fedeerratas").hide();
         $("#body-renovacionanual").show();
+        $("#body-informetecnico").hide();
+    }
+    if (documento_formato_id == 88) {
+        $("#createModalLabel").text('Nuevo Formato Informe técnico');
+        $("#body-presentacion").hide();
+        $("#body-constanciaAnual").hide();
+        $("#body-publicidad").hide();
+        $("#body-codigoTitulo").hide();
+        $("#body-sometimiento").hide();
+        $("#body-compromisos").hide();
+        $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
+        $("#body-anticorrupcion").hide();
+        $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
+        $("#body-tarjetabolsillo").hide();
+        $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
+        $("#body-contacto").hide();
+        $("#body-señaladorvisita").hide();
+        $("#body-reciboicf").hide();
+        $("#body-privicidadsujetos").hide();
+        $("#body-privacidaddatos").hide();
+        $("#body-ordencompra").hide();
+        $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
+        $("#body-avisoeas").hide();
+        $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
+        $("#body-avisoce").hide();
+        $("#body-fedeerratas").hide();
+        $("#body-renovacionanual").hide();
+        $("#body-informetecnico").show();
     }
 }
 // END Metodo para seleccionar form del modal
@@ -6236,3 +6311,102 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
     
 });
 // END Submit Renovacion anual
+
+
+// Submit Informe técnico
+$('#formcreate_informeTecnico').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Informe técnico
