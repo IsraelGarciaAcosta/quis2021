@@ -3485,6 +3485,125 @@
                 </div>
                 {{-- END Aviso de cierre --}}
 
+                {{-- Cambio de domicilio --}}
+                <div style="display: none" id="body-cambiodomicilio">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_cambioDomicilio']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('91no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('91no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {{-- {!! Form::select('91no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('91no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('91no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('91no3', '3. Nombre del destinatario', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('91no3', null, ['class' => 'form-control', 'placeholder' => 'Nombre del destinatario', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('91no4', '4. Puesto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('91no4', null, ['class' => 'form-control', 'placeholder' => 'Puesto', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div5">
+                            {!! Form::label('91no5', '5. Empresa', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('91no5', null, ['class' => 'form-control', 'placeholder' => 'Empresa', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div6">
+                            {!! Form::label('91no6', '6. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('91no6', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div7">
+                            {!! Form::label('91no7', '7. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('91no7', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('91no8', '8. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('91no8', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div9">
+                            {!! Form::label('91no9', '9. Título del destinatario', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('91no9', null, ['class' => 'form-control', 'placeholder' => 'Título abreviado del destinatario', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div10">
+                            {!! Form::label('91no10', '10. Apellido del destinatario', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('91no10', null, ['class' => 'form-control', 'placeholder' => 'Primer apellido del destinatario', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div11">
+                            {!! Form::label('91no11', '11. Nuevo domicilio', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::textarea('91no11', null, ['class' => 'form-control', 'rows' => '4','placeholder' => 'Escribir nuevo domicilio', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div12">
+                            {!! Form::label('91no12', '12. Nombre de quien notifica', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('91no12', null, ['class' => 'form-control', 'placeholder' => 'Dr/Dra Nombre completo de quien notifica', 'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div13">
+                            {!! Form::label('91no13', '13. Puesto', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('91no13', null, ['class' => 'form-control', 'placeholder' => 'Puesto de quien notifica', 'required']) !!}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCcambiodomicilio" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGcambiodomicilio" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Cambio de domicilio --}}
+
 
         </div>
         <!-- END Modal -->
