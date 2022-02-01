@@ -3301,6 +3301,190 @@
                 </div>
                 {{-- END Informe técnico --}}
 
+                {{-- Aviso de cierre --}}
+                <div style="display: none" id="body-avisocierre">
+                    <div class="modal-body">
+                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_avisoCierre']) !!}
+        
+                        <div class="form-group" id="div1">
+                            {!! Form::label('89no1', '1. Ciudad', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                {!! Form::text('89no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {{-- {!! Form::select('89no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div2">
+                            {!! Form::label('89no2', '2. Fecha', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                {!! Form::date('89no2', null, ['class' => 'form-control', 'required']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div3">
+                            {!! Form::label('89no3', '3. Código', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('89no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
+                            </div>
+                        </div>
+        
+                        <div class="form-group" id="div4">
+                            {!! Form::label('89no4', '4. Título', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('89no4', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div5">
+                            {!! Form::label('89no5', '5. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('89no5', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div6">
+                            {!! Form::label('89no', '6. Resumen final de las actividades realizadas', ['class' => 'form-label']) !!}
+
+                            <div id="wrapper_avisocierre">
+
+                                <div class="avisocierreinpust p-2 rounded border">
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no6', 'Fecha de visita de inicio', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            {!! Form::date('89no6', null, ['class' => 'form-control', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no7', 'Fecha de reclutamiento del 1er sujeto', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            {!! Form::date('89no7', null, ['class' => 'form-control', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no8', 'Sujetos que firmaron ICF', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                            {!! Form::text('89no8', null, ['class' => 'form-control', 'placeholder' => '# Sujetos', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no9', 'Sujetos aleatorizados', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                            {!! Form::text('89no9', null, ['class' => 'form-control', 'placeholder' => '# Sujetos', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no10', 'Fallas de selección', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::text('89no10', null, ['class' => 'form-control', 'placeholder' => '# Fallas', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no11', 'Retiros', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::text('89no11', null, ['class' => 'form-control', 'placeholder' => '# Retiros', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no12', 'Sujetos que finalizaron tratamiento', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                            {!! Form::text('89no12', null, ['class' => 'form-control', 'placeholder' => '# Sujetos', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no13', 'Sujetos activos o en seguimiento', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                            {!! Form::text('89no13', null, ['class' => 'form-control', 'placeholder' => '# Sujetos', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no14', 'Eventos adversos serios en el Sitio', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::text('89no14', null, ['class' => 'form-control', 'placeholder' => '# EAS', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no15', 'Desviaciones o violaciones', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                            {!! Form::text('89no15', null, ['class' => 'form-control', 'placeholder' => '# Desviaciones', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            {!! Form::label('89no16', 'Fecha de visita de cierre', ['class' => 'form-label']) !!}
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            {!! Form::date('89no16', null, ['class' => 'form-control', 'required']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div17">
+                            {!! Form::label('89no17', '17. Investigador principal', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('89no17', null, ['class' => 'form-control', 'placeholder' => 'Nombre del Investigador principal', 'readonly']) !!}
+                            </div>
+                        </div>
+                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCavisocierre" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnGavisocierre" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+                {{-- END Aviso de cierre --}}
+
 
         </div>
         <!-- END Modal -->
