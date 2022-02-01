@@ -284,6 +284,7 @@
                             {!! Form::select('doc_formatos', $documentos_formatos, null, ['class' => 'form-control select2 select2-selection', 'id' =>'doc_formatos', 'style' => 'width: 100%',  'placeholder' => 'Selecciona un formato']) !!}
                         </div>
 
+
                         <div id="table-formato" style="display: none" class="table-responsive">
 
                             <div align="right">
@@ -313,6 +314,13 @@
                                 </tbody>
                             </table>
                         </div>  
+
+
+                        <div id="download-formato" style="display: none">
+                            
+                        </div>
+
+
                     </div>
                     {{-- FORMATOS END --}}
                 </div>

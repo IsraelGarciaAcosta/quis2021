@@ -80,6 +80,7 @@ function cambiarInstructivos(dir) {
 // Onchange del select de los formatos. para cargar los farmatos y obtener el valor para saber en que formato se encuentra
 $("#doc_formatos").change(
     function(){
+        alert(this.value);
         list_formatos();
         select_content_modal(this.value);
     }
@@ -841,6 +842,12 @@ $('#no0').change(
                 $("#72no4").val(proyect[0]['no19']);//Título
                 $("#72no5").val(proyect[0]['no25']);//Patrocinador
 
+                // TODO Cambiar por la ciudad correcta
+                $("#76no1").val(proyect[0]['razon_social']);//Sitio clinico 
+                $("#76no3").val(proyect[0]['no20']);//Código
+                $("#76no4").val(proyect[0]['no19']);//Título
+                $("#76no5").val(proyect[0]['no25']);//Patrocinador
+
                 $("#77no1").val(proyect[0]['no20']);//Código
                 $("#77no2").val(proyect[0]['no19']);//Título
                 $("#77no3").val(proyect[0]['investigador']);//Investigador
@@ -971,6 +978,7 @@ function borrar_campos() {
     $("#formcreate_contacto")[0].reset();
     $("#formcreate_señaladorVisita")[0].reset();
     $("#formcreate_reciboICF")[0].reset();
+    $("#formcreate_solicitudResumen")[0].reset();
     $("#formcreate_privacidadSujetos")[0].reset();
     $("#formcreate_privacidadDatos")[0].reset();
     $("#formcreate_ordenCompra")[0].reset();
@@ -1167,6 +1175,10 @@ $('#btnCreciboicf').click(function(){
     borrar_campos();
     list_formatos();
 })
+$('#btnCsolicitudresumen').click(function(){
+    borrar_campos();
+    list_formatos();
+})
 $('#btnCprivacidadsujetos').click(function(){
     borrar_campos();
     list_formatos();
@@ -1246,6 +1258,7 @@ function select_content_modal(documento_formato_id) {
     $("#body-contacto").hide();
     $("#body-señaladorvisita").hide();
     $("#body-reciboicf").hide();
+    $("#body-solicitudresumen").hide();
     $("#body-privicidadsujetos").hide();
     $("#body-privacidaddatos").hide();
     $("#body-ordencompra").hide();
@@ -1281,6 +1294,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1316,6 +1330,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1351,6 +1366,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1386,6 +1402,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1421,6 +1438,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1456,6 +1474,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1491,6 +1510,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1526,6 +1546,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1561,6 +1582,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1596,6 +1618,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1631,6 +1654,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1666,6 +1690,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1701,6 +1726,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1736,6 +1762,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1771,6 +1798,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1806,6 +1834,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").show();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1841,6 +1870,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").show();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1876,6 +1906,43 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").show();
+        $("#body-solicitudresumen").hide();
+        $("#body-privicidadsujetos").hide();
+        $("#body-privacidaddatos").hide();
+        $("#body-ordencompra").hide();
+        $("#body-enviomuestras").hide();
+        $("#body-ordencomprahospital").hide();
+        $("#body-avisoeas").hide();
+        $("#body-avisosusar").hide();
+        $("#body-sometedesviacion").hide();
+        $("#body-avisoce").hide();
+        $("#body-fedeerratas").hide();
+        $("#body-renovacionanual").hide();
+        $("#body-informetecnico").hide();
+        $("#body-avisocierre").hide();
+        $("#body-cambiodomicilio").hide();
+    }
+    if (documento_formato_id == 76) {
+        $("#createModalLabel").text('Nuevo Formato Solicitud de resumen');
+        $("#body-presentacion").hide();
+        $("#body-constanciaAnual").hide();
+        $("#body-publicidad").hide();
+        $("#body-codigoTitulo").hide();
+        $("#body-sometimiento").hide();
+        $("#body-compromisos").hide();
+        $("#body-responsabilidades").hide();
+        $("#body-autorizacion").hide();
+        $("#body-instalaciones").hide();
+        $("#body-anticorrupcion").hide();
+        $("#body-destruccionmateriales").hide();
+        $("#body-destruccionproductos").hide();
+        $("#body-tarjetabolsillo").hide();
+        $("#body-documentofuente").hide();
+        $("#body-hojainicial").hide();
+        $("#body-contacto").hide();
+        $("#body-señaladorvisita").hide();
+        $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").show();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1911,6 +1978,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").show();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -1946,6 +2014,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").show();
         $("#body-ordencompra").hide();
@@ -1981,6 +2050,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").show();
@@ -2016,6 +2086,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2051,6 +2122,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2086,6 +2158,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2121,6 +2194,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2156,6 +2230,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2191,6 +2266,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2226,6 +2302,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2261,6 +2338,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2296,6 +2374,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2331,6 +2410,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -2366,6 +2446,7 @@ function select_content_modal(documento_formato_id) {
         $("#body-contacto").hide();
         $("#body-señaladorvisita").hide();
         $("#body-reciboicf").hide();
+        $("#body-solicitudresumen").hide();
         $("#body-privicidadsujetos").hide();
         $("#body-privacidaddatos").hide();
         $("#body-ordencompra").hide();
@@ -5163,6 +5244,105 @@ $('#formcreate_reciboICF').on('submit', function(e) {
     
 });
 // END Submit Recibo ICF
+
+
+// Submit Solicitud de Resumen
+$('#formcreate_solicitudResumen').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    formato_id = $('#formato_id').val();
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#no0').val();
+    empresa_id = $('#empresa_id').val();
+    menu_id = $('#menu_id').val();
+    user_id = $('#user_id').val();
+    
+    
+    formData.append('formato_id', formato_id);
+    formData.append('documentoformato_id', documentoformato_id);
+    formData.append('proyecto_id', proyecto_id);
+    // TODO: En el controller usar el empresa_id de los providers
+    formData.append('empresa_id', empresa_id);
+    formData.append('menu_id', menu_id);
+    formData.append('user_id', user_id);
+    // formData.append('_token', $('input[name=_token]').val()); 
+
+    if (!formato_id) {
+        if(documentoformato_id!="" && proyecto_id ){
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                // dataType: 'json',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato ya se encuentra dado de alta', 'Guardar formato', {timeOut:3000});
+                    }
+    
+                }
+            });
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    } else {
+        if(documentoformato_id!="" && proyecto_id ){
+
+            $.ajax({
+                url: "/documentos/create_formato",
+                type:'post',
+                data:formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend:function(){
+                    $('#btnGpresentacion').hide();
+                },
+                success:function(resp){
+    
+                    // console.log(resp);
+    
+                    if(resp){
+                        $('#createFormatoModal').modal('hide');
+                        toastr.success('El formato fue actualizado correctamente', 'Editar formato', {timeOut:3000});
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        list_formatos(documentoformato_id);
+                    }else{
+                        $('#createFormatoModal').modal('hide');
+                        $('#btnGpresentacion').show();
+                        borrar_campos();
+                        toastr.warning('El formato no se actualizo correctamente', 'Editar formato', {timeOut:3000});
+                    }
+                    $('#formato_id').val(null);
+                }
+            });
+
+        }else{
+            alert("Seleccione un proyecto");
+        }
+    }
+    
+});
+// END Submit Solicitud de Resumen
 
 
 // Submit Privacidad de sujetos
