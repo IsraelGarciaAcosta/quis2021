@@ -63,21 +63,9 @@ class MenuController extends Controller
         //id usuario loggeado
         $id_user = auth()->id();
 
-        //GUARDAR REGISTROS
-        $menus = new Menu();
-        $menus->name = $request->name;
-	    $menus->description = $request->description;
-        $menus->position = $request->position;
-        $menus->tiene_submenu = $request->tiene_submenu;
-        $menus->icon = $request->icon;
-        $menus->id_user = $id_user;
-        $menus -> save();
+        $submenu=$request->tiene_submenu;
 
-        if($request->users){
-            $menus->users()->attach($request->users);//GUARDAR LAS RELACIONES
-        }
-		
-        if($request->tiene_submenu == "No"){
+        if($submenu == "No"){
             //QUITAR ACENTOS Y DEJAR EL NOMBRE EN MINUSCULAS PARA LOS PERMISOS
             $cadena=$request->name;
             $name_acento = strtr(utf8_decode($cadena), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
@@ -118,6 +106,20 @@ class MenuController extends Controller
 	        $permisos->description = $description_destroy;
             $permisos->guard_name = "web";
             $permisos -> save();
+        }
+
+        //GUARDAR REGISTROS
+        $menus = new Menu();
+        $menus->name = $request->name;
+	    $menus->description = $request->description;
+        $menus->position = $request->position;
+        $menus->tiene_submenu = $request->tiene_submenu;
+        $menus->icon = $request->icon;
+        $menus->id_user = $id_user;
+        $menus -> save();
+
+        if($request->users){
+            $menus->users()->attach($request->users);//GUARDAR LAS RELACIONES
         }
 
 		return redirect()->route('menus.edit', $menus)->with('info', 'El menú se guardó correctamente');
@@ -169,25 +171,12 @@ class MenuController extends Controller
 		//id usuario loggeado
         $id_user = auth()->id();
 
-		$menu = Menu::find($menu->id);
-	    $menu->name = $request->name;
-	    $menu->description = $request->description;
-        $menu->position = $request->position;
-        $menu->tiene_submenu = $request->tiene_submenu;
-        $menu->icon = $request->icon;
-        $menu->id_user = $id_user;
-        $menu->save();
-
-        if($request->users){
-            $menu->users()->sync($request->users);//CAMBIOS EN TABLA RELACION
-        }
-
         if($request->tiene_submenu == "No"){
-            //NORMBRE ORIGINAL Y NUEVO
+            //NOMBRE ORIGINAL Y NUEVO
             $name_menu = $menu->name;
             $name_new = $request->name;
 
-            if($name_new != $name_submenu){
+            if($name_new != $name_menu){
             //QUITAR ACENTOS, QUITAR ESPACIO EN BLANCO Y DEJAR EL NOMBRE EN MINUSCULAS PARA LOS PERMISOS
             $name_acento = strtr(utf8_decode($name_menu), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 		    $name_orig = strtolower($name_acento);
@@ -210,7 +199,7 @@ class MenuController extends Controller
             $description_edit = "Editar ".$name_new;
             $permission_destroy = $name_esp.".destroy";
             $description_destroy = "Eliminar ".$name_new;
-
+                
             //CONSULTA INDEX
             $permiso_index = Permission::where('name', '=', $name_index)->get()->first();
             $id_index = $permiso_index->id;
@@ -243,6 +232,19 @@ class MenuController extends Controller
             $cons_destroy->description = $description_destroy;
             $cons_destroy->save();
             }
+        }
+
+		$menu = Menu::find($menu->id);
+	    $menu->name = $request->name;
+	    $menu->description = $request->description;
+        $menu->position = $request->position;
+        $menu->tiene_submenu = $request->tiene_submenu;
+        $menu->icon = $request->icon;
+        $menu->id_user = $id_user;
+        $menu->save();
+
+        if($request->users){
+            $menu->users()->sync($request->users);//CAMBIOS EN TABLA RELACION
         }
 		
         return redirect()->route('menus.edit',$menu)->with('info', 'El menú se modificó correctamente');

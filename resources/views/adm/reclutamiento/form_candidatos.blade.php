@@ -40,7 +40,7 @@
                         {!! Form::hidden('user_id', $user_id, ['class' => 'form-control', 'id'=>'user_id']) !!}
                         {!! Form::hidden('id', null, ['class' => 'form-control', 'id'=>'candidato_id']) !!}
                         {!! Form::hidden('tipo', $recl, ['class' => 'form-control', 'id'=>'tipo']) !!}
-                        {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control', 'id'=>'empresa_id']) !!}
+                        {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control', 'id'=>'empresa_id']) !!}
 
                         {!! Form::label('no62', '62. Nombre del candidato', ['class' => 'form-label']) !!}
                         {!! Form::text('no62', null, ['class' => 'form-control', 'placeholder' => 'Ingrese nombre']) !!}

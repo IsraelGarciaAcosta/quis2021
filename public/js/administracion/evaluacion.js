@@ -47,7 +47,7 @@ function Salir(){
  }
 
 $('#btnCancelar').click(function(){
-    window.location.href = "/evaluacion";
+    window.location.href = "/empleados_evaluacion";
 });
 
 function Guardar(){
@@ -74,7 +74,7 @@ function CreateVerificacion(){
     if(id==""){
         form=$('#formcreate_evaluacion').serialize();
         $.ajax({
-            url: "/evaluacion/guardar_evaluacion",
+            url: "/empleados_evaluacion/guardar_evaluacion",
             type:'post',
             data:form,
             success:function(resp){
@@ -103,7 +103,7 @@ function CreateCapacitacion(){
     if(id==""){
         form=$('#formcreate_evaluacion').serialize();
         $.ajax({
-            url: "/evaluacion/guardar_evaluacion",
+            url: "/empleados_evaluacion/guardar_evaluacion",
             type:'post',
             data:form,
             success:function(resp){
@@ -132,7 +132,7 @@ function list_verificacion(){
         destroy: true,
         "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "Todos"]],
         "ajax":{
-            "url": "/evaluacion/list_verificacion",
+            "url": "/empleados_evaluacion/list_verificacion",
             "method": "POST",
             "data": {
                 empresa_id:empresa_id,
@@ -161,7 +161,7 @@ $('#formcreate_verificacion').on('submit', function(e) {
     candidato_id=$('#candidatoid_verificacion').val();
     if(no1!=""){
         $.ajax({
-            url: "/evaluacion/create_verificacion",
+            url: "/empleados_evaluacion/create_verificacion",
             type:'post',
             data:formData,
             cache:false,
@@ -193,7 +193,7 @@ $('#formcreate_verificacion').on('submit', function(e) {
 
 function edit_verificacion(id_verificacion){
     $.ajax({
-        url: "/evaluacion/edit_verificacion",
+        url: "/empleados_evaluacion/edit_verificacion",
         method:'POST',
         dataType: 'json',
         data:{id_verificacion:id_verificacion, _token:$('input[name="_token"]').val()},
@@ -216,7 +216,7 @@ function delete_verificacion(id_verificacion){
     $('#deleteModal').modal('show');
     $('#btnEliminarRegistro').click(function(){
         $.ajax({
-            url: "/evaluacion/delete_verificacion",
+            url: "/empleados_evaluacion/delete_verificacion",
             method:'POST',
             type: 'post',
             data:{id_verificacion:id_verificacion, _token:$('input[name="_token"]').val()},
@@ -248,7 +248,7 @@ function list_capacitacion(){
         destroy: true,
         "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "Todos"]],
         "ajax":{
-            "url": "/evaluacion/list_capacitacion",
+            "url": "/empleados_evaluacion/list_capacitacion",
             "method": "POST",
             "data": {
                 empresa_id:empresa_id,
@@ -277,7 +277,7 @@ $('#formcreate_capacitacion').on('submit', function(e) {
     candidato_id=$('#candidatoid_capacitacion').val();
     if(no3!=""){
         $.ajax({
-            url: "/evaluacion/create_capacitacion",
+            url: "/empleados_evaluacion/create_capacitacion",
             type:'post',
             data:formData,
             cache:false,
@@ -309,7 +309,7 @@ $('#formcreate_capacitacion').on('submit', function(e) {
 
 function edit_capacitacion(id_capacitacion){
     $.ajax({
-        url: "/evaluacion/edit_capacitacion",
+        url: "/empleados_evaluacion/edit_capacitacion",
         method:'POST',
         dataType: 'json',
         data:{id_capacitacion:id_capacitacion, _token:$('input[name="_token"]').val()},
@@ -333,7 +333,7 @@ function delete_capacitacion(id_capacitacion){
     $('#deleteModal').modal('show');
     $('#btnEliminarRegistro').click(function(){
         $.ajax({
-            url: "/evaluacion/delete_capacitacion",
+            url: "/empleados_evaluacion/delete_capacitacion",
             method:'POST',
             type: 'post',
             data:{id_capacitacion:id_capacitacion, _token:$('input[name="_token"]').val()},

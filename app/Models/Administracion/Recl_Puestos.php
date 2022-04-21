@@ -4,6 +4,7 @@ namespace App\Models\Administracion;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Administracion\Recl_Puestos_Puesto;
 
 class Recl_Puestos extends Model
 {
@@ -22,5 +23,9 @@ class Recl_Puestos extends Model
     //HABILITAR ASIGNACION MASIVA
     protected $guarded = ['id', 'created_at', 'update_at'];
 
+    //RELACION DE UNO A MUCHOS NORMAL
+    public function puesto(){
+        return $this->hasMany(Recl_Puestos_Puesto::class);
+    }
     
 }

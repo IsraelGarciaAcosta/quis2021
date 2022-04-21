@@ -38,7 +38,7 @@
                     {!! Form::hidden('user_id', $user_id, ['class' => 'form-control', 'id'=>'user_id']) !!}
                     {!! Form::hidden('id', null, ['class' => 'form-control', 'id'=>'induccion_id']) !!}
                     {!! Form::hidden('candidato_id', $candidato->id, ['class' => 'form-control', 'id'=>'candidato_id']) !!}
-                    {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control', 'id'=>'empresa_id']) !!}
+                    {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control', 'id'=>'empresa_id']) !!}
 
                         {!! Form::label('no1', '1. Fecha de firma de primer contrato', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">

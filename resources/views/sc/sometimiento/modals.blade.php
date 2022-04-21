@@ -361,7 +361,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::label('no24', '24. Rol', ['class' => 'form-label']) !!}
+            {!! Form::label('no24', '24. Respuesta del CE', ['class' => 'form-label']) !!}
             {!! Form::select('no24', ['Rechazado' => 'Rechazado', 'Aprobado - Requiere modificaciones' => 'Aprobado - Requiere modificaciones', 'Aprobado - No requiere modificaciones' => 'Aprobado - No requiere modificaciones'], null, ['class' => 'form-control', 'id' => 'no24', 'placeholder' => 'Seleccione...']) !!}
         </div>
 

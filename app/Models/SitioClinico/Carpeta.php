@@ -8,6 +8,7 @@ use App\Models\SitioClinico\Carp_Farmacista;
 use App\Models\SitioClinico\Carp_Control;
 use App\Models\SitioClinico\Carp_Tramite;
 use App\Models\SitioClinico\Carp_Verificacion;
+use App\Models\SitioClinico\Carp_Atencion;
 
 class Carpeta extends Model
 {
@@ -38,6 +39,9 @@ class Carpeta extends Model
     }
     public function verificacion(){
         return $this->hasMany(Carp_Verificacion::class);
+    }
+    public function atencion(){
+        return $this->hasMany(Carp_Atencion::class);
     }
     
 }

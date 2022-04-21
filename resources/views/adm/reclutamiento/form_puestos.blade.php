@@ -40,7 +40,7 @@
                         {!! Form::hidden('user_id', $user_id, ['class' => 'form-control', 'id'=>'user_id']) !!}
                         {!! Form::hidden('id', null, ['class' => 'form-control', 'id'=>'puesto_id']) !!}
                         {!! Form::hidden('tipo', $recl, ['class' => 'form-control', 'id'=>'tipo']) !!}
-                        {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control', 'id'=>'empresa_id']) !!}
+                        {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control', 'id'=>'empresa_id']) !!}
 
                         {!! Form::label('no1', '1. Área', ['class' => 'form-label']) !!}
                         {!! Form::select('no1', ['Administración' => 'Administración', 'Comité de Ética' => 'Comité de Ética', 'Sitio Clínico' => 'Sitio Clínico', 'Unidad Clínica' => 'Unidad Clínica', 'I&D' => 'I&D'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione...']) !!}
@@ -97,11 +97,6 @@
                                 No
                             </label>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('no19', '19. Número de personas con contrato abierto en el puesto', ['class' => 'form-label']) !!}
-                        {!! Form::number('no19', null, ['class' => 'form-control', 'placeholder' => 'Ingrese número', 'step' => '0']) !!}
                     </div>
                     </div>
 
@@ -165,16 +160,29 @@
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('no18', '18. Nombre de los puestos a su cargo', ['class' => 'form-label']) !!}
-                        {!! Form::textarea('no18', null, ['class' => 'form-control', 'placeholder' => 'Ingrese puestos']) !!}
-                    </div>
-
-                    <div class="form-group">
                         {!! Form::label('no20', '20. Número de personas a su cargo', ['class' => 'form-label']) !!}
                         {!! Form::number('no20', null, ['class' => 'form-control', 'placeholder' => 'Ingrese número', 'step' => '0']) !!}
                     </div>
                     </div>
 
+                    </div>
+                    <br/>
+                    <div class="table-responsive">
+                        <div align="left">
+                            <button type="button" class="btn btn-info" onclick="CreatePuesto();">
+                                <i class="fas fa-file"> Agregar puesto a su cargo</i>
+                            </button>  
+                        </div><br/>
+                        <table id="tbl_pto" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%;">
+                            <thead class="bg-mexg2 text-white">
+                            <tr>
+                                <th scope="col">Nombre del puesto</th>
+                                <th scope="col">Personas con contrato abierto</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                        </table>
                     </div>
                   </div>
 

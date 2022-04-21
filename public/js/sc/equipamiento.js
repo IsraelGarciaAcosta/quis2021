@@ -135,6 +135,96 @@ $("input[name='no12']").click(function()
     }
 });
 
+$("input[name='no13']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div13").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div13").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no14']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div14").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div14").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no15']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div15").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div15").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no16']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div16").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div16").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no17']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div17").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div17").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no18']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div18").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div18").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no19']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div19").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div19").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no20']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div20").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div20").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no21']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div21").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div21").style.backgroundColor="#FFF";
+    }
+});
+
+$("input[name='no22']").click(function()
+{     
+    if($(this).val() == "No"){
+        document.getElementById("div22").style.backgroundColor="#FF4040";
+    }else{
+        document.getElementById("div22").style.backgroundColor="#FFF";
+    }
+});
+
 
 function Salir(){
     window.location.href = "/equipamiento";
@@ -164,29 +254,10 @@ function CreateEquipamiento(){
     $('#proyectoid_equipamiento').val(proyecto_id);
     $('#id_equipamiento').val("");
     $('#no1').val("");
-    $('#no2_si').attr('checked', false);
-    $('#no2_no').attr('checked', false);
-    $('#no3_si').attr('checked', false);
-    $('#no3_no').attr('checked', false);
-    $('#no4_si').attr('checked', false);
-    $('#no4_no').attr('checked', false);
-    $('#no5_si').attr('checked', false);
-    $('#no5_no').attr('checked', false);
-    $('#no6_si').attr('checked', false);
-    $('#no6_no').attr('checked', false);
-    $('#no7_si').attr('checked', false);
-    $('#no7_no').attr('checked', false);
-    $('#no8_si').attr('checked', false);
-    $('#no8_no').attr('checked', false);
-    $('#no9_si').attr('checked', false);
-    $('#no9_no').attr('checked', false);
-    $('#no10_si').attr('checked', false);
-    $('#no10_no').attr('checked', false);
-    $('#no11_si').attr('checked', false);
-    $('#no11_no').attr('checked', false);
-    $('#no12_si').attr('checked', false);
-    $('#no12_no').attr('checked', false);
-    
+    for(a=2; a<=22; a++){
+        $('#no'+a+'_si').attr('checked', false);
+        $('#no'+a+'_no').attr('checked', false);
+    }
     $('#createEquipamientoModal').modal('toggle');
 }
 
@@ -272,7 +343,7 @@ function edit_equipamiento(id_equipamiento){
                 $('#no1').val(this.no1);
                 if(this.no2 == "Si"){
                     $('#no2_si').attr('checked', true);
-                }else if(this.no11 == "No"){
+                }else if(this.no2 == "No"){
                     $('#no2_no').attr('checked', true);
                 }else{
                     $('#no2_si').attr('checked', false);
@@ -357,6 +428,86 @@ function edit_equipamiento(id_equipamiento){
                 }else{
                     $('#no12_si').attr('checked', false);
                     $('#no12_no').attr('checked', false);
+                }
+                if(this.no13 == "Si"){
+                    $('#no13_si').attr('checked', true);
+                }else if(this.no13 == "No"){
+                    $('#no13_no').attr('checked', true);
+                }else{
+                    $('#no13_si').attr('checked', false);
+                    $('#no13_no').attr('checked', false);
+                }
+                if(this.no14 == "Si"){
+                    $('#no14_si').attr('checked', true);
+                }else if(this.no14 == "No"){
+                    $('#no14_no').attr('checked', true);
+                }else{
+                    $('#no14_si').attr('checked', false);
+                    $('#no14_no').attr('checked', false);
+                }
+                if(this.no15 == "Si"){
+                    $('#no15_si').attr('checked', true);
+                }else if(this.no15 == "No"){
+                    $('#no15_no').attr('checked', true);
+                }else{
+                    $('#no15_si').attr('checked', false);
+                    $('#no15_no').attr('checked', false);
+                }
+                if(this.no16 == "Si"){
+                    $('#no16_si').attr('checked', true);
+                }else if(this.no16 == "No"){
+                    $('#no16_no').attr('checked', true);
+                }else{
+                    $('#no16_si').attr('checked', false);
+                    $('#no16_no').attr('checked', false);
+                }
+                if(this.no17 == "Si"){
+                    $('#no17_si').attr('checked', true);
+                }else if(this.no17 == "No"){
+                    $('#no17_no').attr('checked', true);
+                }else{
+                    $('#no17_si').attr('checked', false);
+                    $('#no17_no').attr('checked', false);
+                }
+                if(this.no18 == "Si"){
+                    $('#no18_si').attr('checked', true);
+                }else if(this.no18 == "No"){
+                    $('#no18_no').attr('checked', true);
+                }else{
+                    $('#no18_si').attr('checked', false);
+                    $('#no18_no').attr('checked', false);
+                }
+                if(this.no19 == "Si"){
+                    $('#no19_si').attr('checked', true);
+                }else if(this.no19 == "No"){
+                    $('#no19_no').attr('checked', true);
+                }else{
+                    $('#no19_si').attr('checked', false);
+                    $('#no19_no').attr('checked', false);
+                }
+                if(this.no20 == "Si"){
+                    $('#no20_si').attr('checked', true);
+                }else if(this.no20 == "No"){
+                    $('#no20_no').attr('checked', true);
+                }else{
+                    $('#no20_si').attr('checked', false);
+                    $('#no20_no').attr('checked', false);
+                }
+                if(this.no21 == "Si"){
+                    $('#no21_si').attr('checked', true);
+                }else if(this.no21 == "No"){
+                    $('#no21_no').attr('checked', true);
+                }else{
+                    $('#no21_si').attr('checked', false);
+                    $('#no21_no').attr('checked', false);
+                }
+                if(this.no22 == "Si"){
+                    $('#no22_si').attr('checked', true);
+                }else if(this.no22 == "No"){
+                    $('#no22_no').attr('checked', true);
+                }else{
+                    $('#no22_si').attr('checked', false);
+                    $('#no22_no').attr('checked', false);
                 }
                 
                 $('#createEquipamientoModal').modal('toggle');

@@ -3,7 +3,7 @@
 @section('title', 'Mejora')
 
 @section('content_header')
-<h4 class="m-0">Mejora</h4>
+<h4 class="m-0">Mejora - Lista de reportes</h4>
 @stop
 
 @section('content')

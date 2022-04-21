@@ -42,7 +42,7 @@
                     <div class="form-group">
                         {!! Form::hidden('user_id', $user_id, ['class' => 'form-control', 'id'=>'user_id']) !!}
                         {!! Form::hidden('id', null, ['class' => 'form-control', 'id'=>'mejora_id']) !!}
-                        {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control', 'id'=>'empresa_id']) !!}
+                        {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control', 'id'=>'empresa_id']) !!}
 
                         {!! Form::label('no1', '1. Fecha de reporte de no conformidad', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">

@@ -38,7 +38,7 @@
                                 <a href="{{route('reclutamiento.create', ['recl'=>'puestos'])}}" class="btn btn-primary"><span class="fas fa-file"></span> 
                                 &nbsp; Agregar puesto</a>   
                             </div><br/>
-                            <table id="tbl_puestos" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%;">
+                            <table id="tbl_puestos" class="table table-striped table-hover table-bordered shadow-lg mt-4" style="width:100%">
                                 <thead class="bg-mexg2 text-white">
                                 <tr>
                                     <th scope="col">Área</th>
@@ -73,7 +73,7 @@
                                 <a href="{{route('reclutamiento.create', ['recl'=>'candidatos'])}}" class="btn btn-primary"><span class="fas fa-file"></span> 
                                 &nbsp; Agregar candidato</a>
                             </div><br/>
-                            <table id="tbl_candidatos" class="table table-striped table-bordered shadow-lg mt-4" style="width:100%;">
+                            <table id="tbl_candidatos" class="table table-striped table-hover table-bordered shadow-lg mt-4" style="width:100%">
                                 <thead class="bg-mexg2 text-white">
                                 <tr>
                                     <th scope="col">Candidato</th>

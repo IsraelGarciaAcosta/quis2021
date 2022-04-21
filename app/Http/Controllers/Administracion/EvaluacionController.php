@@ -18,7 +18,7 @@ class EvaluacionController extends Controller
     //CONSTRUCTOR PARA PROTEGER FILES SOLO PARA LOGEADOS
     public function __construct(){
         //PROTEGRE LAS RUTAS POR EL CONTROLADOR DEPENDIENDO DE ROLES Y PERMISOS
-        $this->middleware('can:evaluacion.index');//PROTEGE TODAS LAS RUTAS
+        $this->middleware('can:empleados_evaluacion.index');//PROTEGE TODAS LAS RUTAS
         //$this->middleware('can:users.index')->only('index');//SOLO PROTEGE LO QUE ESPECIFIQUEMOS
     }
 
@@ -31,7 +31,7 @@ class EvaluacionController extends Controller
     {
         $candidatos = Reclutamiento::where('empresa_id', '=', session('id_empresa'))
         ->where('no94', '=', 'Si')->get();
-		return view('adm/evaluacion.index', compact('candidatos'));
+		return view('adm/empleados_evaluacion.index', compact('candidatos'));
     }
 
     /**
@@ -73,7 +73,7 @@ class EvaluacionController extends Controller
         $evaluacion->id_user = $id_user;
         $evaluacion -> save();
 
-		return redirect()->route('evaluacion.edit', $request->candidato_id)->with('info', 'La evaluación se guardó correctamente');
+		return redirect()->route('empleados_evaluacion.edit', $request->candidato_id)->with('info', 'La evaluación se guardó correctamente');
         
     }
 
@@ -100,9 +100,9 @@ class EvaluacionController extends Controller
         $evaluacion = Evaluacion::where('candidato_id', '=', $id)->get()->first();
 
         if($evaluacion==""){
-            return view('adm/evaluacion.create', compact('candidato'));
+            return view('adm/empleados_evaluacion.create', compact('candidato'));
         }else{
-            return view('adm/evaluacion.edit', compact('candidato', 'evaluacion'));
+            return view('adm/empleados_evaluacion.edit', compact('candidato', 'evaluacion'));
         }
         //return response($id);
     }
@@ -130,7 +130,7 @@ class EvaluacionController extends Controller
         $evaluacion->id_user = $id_user;
         $evaluacion -> save();
 		
-        return redirect()->route('evaluacion.edit', $request->candidato_id)->with('info', 'La evaluación se modificó correctamente');
+        return redirect()->route('empleados_evaluacion.edit', $request->candidato_id)->with('info', 'La evaluación se modificó correctamente');
     }
 
     /**
@@ -145,7 +145,7 @@ class EvaluacionController extends Controller
         $verificacion = Ev_Verificacion::where('candidato_id', $id)->delete();
         $capacitacion = Ev_Capacitacion::where('candidato_id', $id)->delete();
         $evaluacion = Evaluacion::where('candidato_id', $id)->delete();
-        return redirect()->route('evaluacion.index')->with('info', 'La evaluación se eliminó correctamente');
+        return redirect()->route('empleados_evaluacion.index')->with('info', 'La evaluación se eliminó correctamente');
     }
 
 

@@ -131,11 +131,6 @@ class AuditoriaController extends Controller
         //id usuario loggeado
         $id_user = auth()->id();
 
-        $array="";
-        foreach($request->candidatos as $selected){
-            $array.=$selected."|";
-        }
-
 		$auditoria = Auditoria::find($request->id);
         $auditoria->no1 = $request->no1;
         $auditoria->no2 = $request->no2;

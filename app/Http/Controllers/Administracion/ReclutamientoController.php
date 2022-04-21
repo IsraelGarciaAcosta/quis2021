@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Administracion\Reclutamiento;
 use App\Models\Administracion\Recl_Puestos;
+use App\Models\Administracion\Recl_Puestos_Puesto;
 
 // Start of uses
 
@@ -415,6 +416,187 @@ class ReclutamientoController extends Controller
             return redirect()->route('reclutamiento.index')->with('info', 'El candidato se eliminó correctamente');
         }
         
+    }
+
+
+
+
+
+    public function guardar_reclutamiento(Request $request)
+    {
+
+        if($request->ajax()){
+            $user_id = auth()->id();
+            $id = $request->id;
+            
+            //GUARDAR
+            if($id==""){
+                $puestos = new Recl_Puestos();
+		        //GUARDAR REGISTROS
+                $puestos->no1 = $request->no1;
+                $puestos->no2 = $request->no2;
+                $puestos->no3 = $request->no3;
+                $puestos->no4 = $request->no4;
+                $puestos->no5 = $request->no5;
+                $puestos->no6 = $request->no6;
+                $puestos->no7 = $request->no7;
+                $puestos->no8 = $request->no8;
+                $puestos->no9 = $request->no9;
+                $puestos->no10 = $request->no10;
+                $puestos->no11 = $request->no11;
+                $puestos->no12 = $request->no12;
+                $puestos->no13 = $request->no13;
+                $puestos->no14 = $request->no14;
+                $puestos->no15 = $request->no15;
+                $puestos->no16 = $request->no16;
+                $puestos->no17 = $request->no17;
+                $puestos->no20 = $request->no20;
+                $puestos->no21 = $request->no21;
+                $puestos->no22 = $request->no22;
+                $puestos->no23 = $request->no23;
+                $puestos->no24 = $request->no24;
+                $puestos->no25 = $request->no25;
+                $puestos->no26 = $request->no26;
+                $puestos->no27 = $request->no27;
+                $puestos->no28 = $request->no28;
+                $puestos->no29 = $request->no29;
+                $puestos->no30 = $request->no30;
+                $puestos->no31 = $request->no31;
+                $puestos->no32 = $request->no32;
+                $puestos->no33 = $request->no33;
+                $puestos->no34 = $request->no34;
+                $puestos->no35 = $request->no35;
+                $puestos->no36 = $request->no36;
+                $puestos->no37 = $request->no37;
+                $puestos->no38 = $request->no38;
+                $puestos->no39 = $request->no39;
+                $puestos->no40 = $request->no40;
+                $puestos->no41 = $request->no41;
+                $puestos->no42 = $request->no42;
+                $puestos->no43 = $request->no43;
+                $puestos->no44 = $request->no44;
+                $puestos->no45 = $request->no45;
+                $puestos->no46 = $request->no46;
+                $puestos->no47 = $request->no47;
+                $puestos->no48 = $request->no48;
+                $puestos->no49 = $request->no49;
+                $puestos->no50 = $request->no50;
+                $puestos->no51 = $request->no51;
+                $puestos->no52 = $request->no52;
+                $puestos->no53 = $request->no53;
+                $puestos->no54 = $request->no54;
+                $puestos->no55 = $request->no55;
+                $puestos->no56 = $request->no56;
+                $puestos->no57 = $request->no57;
+                $puestos->no58 = $request->no58;
+                $puestos->no59 = $request->no59;
+                $puestos->no60 = $request->no60;
+                $puestos->no61 = $request->no61;
+                $puestos->is_active = 1;
+                $puestos->empresa_id = $request->empresa_id;
+                $puestos->id_user = $id_user;
+                $puestos -> save();
+                //SACAR EL ID
+                $id = $puestos->id;
+            }
+            
+            return response($id);
+        }
+    }
+
+
+
+    public function list_puesto(Request $request)
+    {
+        $user_id = auth()->id();
+        $empresa_id = $request->empresa_id;
+        $puesto_id = $request->puesto_id;
+        $pto = Recl_Puestos_Puesto::where('puesto_id', $puesto_id)
+        ->where('empresa_id', $empresa_id)->orderBy('no18')->get();
+        
+        return datatables()->of($pto)
+        ->addColumn('nombre', function ($pto) {
+            $html3 = $pto->no18;
+            return $html3;
+        })
+        ->addColumn('puestos', function ($pto) {
+            $html4 = $pto->no19;
+            return $html4;
+        })
+        ->addColumn('edit', function ($pto) {
+            $html5 = '<a class="btn btn-info btn-sm" title="Editar" href="javascript:void(0)" onclick="edit_puesto('.$pto->id.')"><span class="fas fa-edit"></span></a>';
+            return $html5;
+        })
+        ->addColumn('delete', function ($pto) {
+            $html6 = '<button type="button" name="delete" id="'.$pto->id.'" onclick="delete_puesto('.$pto->id.');" title="Eliminar" class="delete btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span></button>';
+            return $html6;
+        })
+        ->rawColumns(['nombre', 'puestos', 'edit', 'delete'])
+        ->make(true);
+    }
+
+
+
+    public function create_puesto(Request $request)
+    {
+        if($request->ajax()){
+            $user_id = auth()->id();
+            $id_puesto = $request->id_puesto;
+            $no18 = $request->no18;
+            $empresa_id = $request->empresaid_puesto;
+            $puesto_id = $request->puestoid_puesto;
+
+            if($id_puesto==""){
+                $puesto = Recl_Puestos_Puesto::where('no18', '=', $no18)
+                ->where('empresa_id', '=', $empresa_id)
+                ->where('puesto_id', '=', $puesto_id)->get()->first();
+                //GUARDAR REGISTRO
+                if($puesto==""){
+                    $cons = new Recl_Puestos_Puesto();
+                    $cons -> no18 = $request->no18;
+                    $cons -> no19 = $request->no19;
+                    $cons -> puesto_id = $puesto_id;
+                    $cons -> empresa_id = $empresa_id;
+                    $cons -> id_user = $user_id;
+                    $cons -> save();
+                    return response("guardado");
+                }else{
+                    return response("singuardar");
+                }
+            }else{
+                $cons = Recl_Puestos_Puesto::find($id_puesto);
+                $cons -> no18 = $request->no18;
+                $cons -> no19 = $request->no19;
+                $cons -> puesto_id = $puesto_id;
+                $cons -> empresa_id = $empresa_id;
+                $cons -> id_user = $user_id;
+                $cons -> save();
+                return response("guardado");
+            }
+        }
+    }
+
+
+
+    public function edit_puesto(Request $request)
+    {
+        if($request->ajax()){
+            $id_puesto = $request->id_puesto;
+            $puesto = Recl_Puestos_Puesto::where('id', '=', $id_puesto)
+            ->get()->toJson();
+            return json_encode($puesto);
+        }
+    }
+
+
+
+    public function delete_puesto(Request $request)
+    {
+        if($request->ajax()){
+            $id_puesto = $request->id_puesto;
+            $puesto = Recl_Puestos_Puesto::where('id', $id_puesto)->delete();
+            return response("eliminado");
+        }
     }
 
 

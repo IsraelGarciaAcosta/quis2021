@@ -31,7 +31,7 @@
                         $user_id=auth()->id(); 
                     ?>  
                   
-                    {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control']) !!}
+                    {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control']) !!}
 
                     <div class="row">
 

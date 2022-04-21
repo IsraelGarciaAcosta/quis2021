@@ -44,7 +44,7 @@
                         $user_id=auth()->id(); 
                     ?>
                     {!! Form::hidden('user_id', $user_id, ['class' => 'form-control', 'id'=>'user_id']) !!}
-                    {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control', 'id'=>'empresa_id']) !!}
+                    {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control', 'id'=>'empresa_id']) !!}
                     <div class="table-responsive">
                         <div align="left">
                             <button type="button" class="btn btn-info" onclick="CreateMensaje();">

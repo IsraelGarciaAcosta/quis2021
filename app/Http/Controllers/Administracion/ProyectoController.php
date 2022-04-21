@@ -55,13 +55,13 @@ class ProyectoController extends Controller
         $request->validate([
             'no18' => 'required|unique:proyectos',
             'no20' => 'required|unique:proyectos',
-            'investigador' => 'required|unique:investigadores',
         ]);
 
         //id usuario loggeado
         $id_user = auth()->id();
         
         if($request->investigador_id == ""){
+            if($request->investigador != ""){
             //GUARDAR REGISTROS INVESTIGADOR
             $investigadores = new Investigador();
             $investigadores->investigador = $request->investigador;
@@ -78,6 +78,10 @@ class ProyectoController extends Controller
             $investigadores->empresa_id = $request->empresa_id;
             $investigadores->id_user = $id_user;
             $investigadores -> save();
+            $id_inv=$investigadores->id;
+            }else{
+                $id_inv=NULL;
+            }
         }else{
             //GUARDAR REGISTROS INVESTIGADOR
             $investigadores = Investigador::find($request->investigador_id);
@@ -95,6 +99,8 @@ class ProyectoController extends Controller
             $investigadores->empresa_id = $request->empresa_id;
             $investigadores->id_user = $id_user;
             $investigadores -> save();
+
+            $id_inv=$investigadores->id;
         }
         
 		//GUARDAR REGISTROS PROYECTOS
@@ -127,7 +133,7 @@ class ProyectoController extends Controller
         $proyectos->no26 = $request->no26;
         $proyectos->no27 = $request->no27;
         $proyectos->no28 = $request->no28;
-        $proyectos->investigador_id = $investigadores->id;
+        $proyectos->investigador_id = $id_inv;
         $proyectos->empresa_id = $request->empresa_id;
         $proyectos->id_user = $id_user;
         $proyectos -> save();
@@ -174,7 +180,6 @@ class ProyectoController extends Controller
         $request->validate([
             'no18' => 'required|unique:proyectos',
             'no20' => 'required|unique:proyectos',
-            'investigador' => 'required|unique:investigadores',
         ]);
 		
         //id usuario loggeado
@@ -182,6 +187,7 @@ class ProyectoController extends Controller
 
         //GUARDAR REGISTROS INVESTIGADOR
         if($request->investigador_id == ""){
+            if($request->investigador != ""){
             //GUARDAR REGISTROS INVESTIGADOR
             $investigador = new Investigador();
             $investigador->investigador = $request->investigador;
@@ -198,6 +204,10 @@ class ProyectoController extends Controller
             $investigador->empresa_id = $request->empresa_id;
             $investigador->id_user = $id_user;
             $investigador -> save();
+            $id_inv=$investigadores->id;
+            }else{
+                $id_inv=NULL;
+            }
         }else{
             //GUARDAR REGISTROS INVESTIGADOR
             $investigador = Investigador::find($investigador->id);
@@ -215,6 +225,7 @@ class ProyectoController extends Controller
             $investigador->empresa_id = $request->empresa_id;
             $investigador->id_user = $id_user;
             $investigador -> save();
+            $id_inv=$investigadores->id;
         }
 
 		$proyecto = Proyecto::find($proyecto->id);
@@ -246,7 +257,7 @@ class ProyectoController extends Controller
         $proyecto->no26 = $request->no26;
         $proyecto->no27 = $request->no27;
         $proyecto->no28 = $request->no28;
-        $proyecto->investigador_id = $investigador->id;
+        $proyecto->investigador_id = $id_inv;
         $proyecto->empresa_id = $request->empresa_id;
         $proyecto->id_user = $id_user;
         $proyecto -> save();

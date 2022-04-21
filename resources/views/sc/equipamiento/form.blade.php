@@ -15,7 +15,7 @@
                     <div class="card-body p-0">
                         <ul class="nav flex-column nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" id="vert-tabs-1-tab" data-toggle="pill" href="#vert-tabs-1" role="tab" aria-controls="vert-tabs-1" aria-selected="false"><i class="far fa-edit"></i> Equipamiento</a>
+                                <a class="nav-link active" id="vert-tabs-1-tab" data-toggle="pill" href="#vert-tabs-1" role="tab" aria-controls="vert-tabs-1" aria-selected="false"><i class="far fa-edit"></i> Materiales y equipamiento</a>
                             </li>
                             
                         </ul>
@@ -34,7 +34,7 @@
                         {!! Form::hidden('user_id', $user_id, ['class' => 'form-control', 'id'=>'user_id']) !!}
                         {!! Form::hidden('id', null, ['class' => 'form-control', 'id'=>'equipamiento_id']) !!}
                         {!! Form::hidden('proyecto_id', $proyecto->id, ['class' => 'form-control', 'id'=>'proyecto_id']) !!}
-                        {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control', 'id'=>'empresa_id']) !!}
+                        {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control', 'id'=>'empresa_id']) !!}
                     <div class="table-responsive">
                         <div align="left">
                             <button type="button" class="btn btn-info" onclick="CreateEquipamiento();">

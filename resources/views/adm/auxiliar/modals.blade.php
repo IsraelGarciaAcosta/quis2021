@@ -55,7 +55,7 @@
       </div>
       {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_auxiliar']) !!}
       <div class="modal-body">
-        {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control', 'id'=>'empresa_id']) !!}
+        {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control', 'id'=>'empresa_id']) !!}
         {!! Form::hidden('id_auxiliar', null, ['id' => 'id_auxiliar']) !!}
         {!! Form::hidden('id_cuenta', null, ['id' => 'id_cuenta']) !!}
         

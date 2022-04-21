@@ -372,7 +372,7 @@
                   <!--INVESTIGADOR PRINCIPAL-->
                   <div class="tab-pane fade" id="vert-tabs-3" role="tabpanel" aria-labelledby="vert-tabs-3-tab">
                     
-                    {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control']) !!}
+                    {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control']) !!}
 
                     <div class="form-group">
                         {!! Form::label('investigador_id', 'Investigador Principal', ['class' => 'form-label']) !!}

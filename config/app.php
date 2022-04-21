@@ -177,7 +177,6 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -231,7 +230,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

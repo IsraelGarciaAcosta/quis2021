@@ -19,7 +19,7 @@
                     data-accordion="false"
                 @endif>
 
-                {{-- <li class="nav-item">
+               <!-- <li class="nav-item">
                     <a class="nav-link submenu" href="{{ url('/dashboard') }}">
                         <i class="fas fa-fw fa-home"> </i>
                         <p>Inicio</p>
@@ -31,9 +31,9 @@
                         <i class="fas fa-fw fa-chart-bar"> </i>
                         <p>Estadísiticas</p>
                     </a>
-                </li> --}}
+                </li>-->
 
-                {{-- @if(isset($menus_sidebar))
+                @if(isset($menus_sidebar))
                 @foreach ($menus_sidebar as $menu)
                     @if($menu->tiene_submenu == "No")
                         <!-- SIN SUBMENU -->
@@ -71,7 +71,7 @@
                         </li> 
                     @endif 
                 @endforeach 
-                @endif --}}
+                @endif
 
                 {{-- Configured sidebar links --}}
                 @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item') 

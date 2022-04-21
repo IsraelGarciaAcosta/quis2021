@@ -58,7 +58,7 @@
                         {!! Form::hidden('user_id', $user_id, ['class' => 'form-control', 'id'=>'user_id']) !!}
                         {!! Form::hidden('id', null, ['class' => 'form-control', 'id'=>'sometimiento_id']) !!}
                         {!! Form::hidden('proyecto_id', $proyecto->id, ['class' => 'form-control', 'id'=>'proyecto_id']) !!}
-                        {!! Form::hidden('empresa_id', $globalempresa_id, ['class' => 'form-control', 'id'=>'empresa_id']) !!}
+                        {!! Form::hidden('empresa_id', session('id_empresa'), ['class' => 'form-control', 'id'=>'empresa_id']) !!}
 
                         {!! Form::label('no1', '1. Fecha de aprobación por el patrocinador', ['class' => 'form-label']) !!}
                         <div class="input-group-prepend">

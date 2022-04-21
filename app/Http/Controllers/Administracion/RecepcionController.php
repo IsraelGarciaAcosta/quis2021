@@ -236,7 +236,7 @@ class RecepcionController extends Controller
             $html6 = '<button type="button" name="delete" id="'.$paqueteria->id.'" onclick="delete_paqueteria('.$paqueteria->id.');" title="Eliminar" class="delete btn btn-danger btn-sm"><span class="fas fa-trash-alt"></span></button>';
             return $html6;
         })
-        ->rawColumns(['fecha_revision', 'edit', 'delete'])
+        ->rawColumns(['salida', 'nombre', 'entrega', 'edit', 'delete'])
         ->make(true);
     }
 
