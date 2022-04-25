@@ -68,7 +68,7 @@
                 {!! Form::label('no0', 'Proyecto (Código UIS)', ['class' => 'form-label']) !!}
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-folder"></i></span>
-                    {!! Form::select('no0', ['' => ''],null, ['class' => 'form-control', 'id' => 'no0', 'placeholder' => 'Seleccione un proyecto...', 'required']) !!}
+                    {!! Form::text('no0', null, ['class' => 'form-control', 'id' => 'no0', 'placeholder' => 'Protocolo', 'readonly']) !!}
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
                     {!! Form::label('1no1', '1. Lugar', ['class' => 'form-label']) !!}
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-map"></i></span>
-                        {!! Form::select('1no1', ['Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione el lugar...', 'required']) !!}
+                        {!! Form::text('1no1', null, ['class' => 'form-control', 'placeholder' => 'Lugar', 'readonly']) !!}
                     </div>
                 </div>
 
@@ -94,45 +94,53 @@
                 </div>
 
                 <div class="form-group" id="div3">
-                    {!! Form::label('1no3', '3. Nombre completo', ['class' => 'form-label']) !!}
+                    {!! Form::label('1no3', '3. Título', ['class' => 'form-label']) !!}
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user-md"></i></span>
-                        {!! Form::text('1no3', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                        {!! Form::select('1no3', ['Dr.' => 'Dr.', 'Dra.' => 'Dra.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione el título...', 'required']) !!}
                     </div>
                 </div>
 
                 <div class="form-group" id="div4">
-                    {!! Form::label('1no4', '4. Especialidad', ['class' => 'form-label']) !!}
+                    {!! Form::label('1no4', '4. Nombre completo', ['class' => 'form-label']) !!}
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user-md"></i></span>
-                        {!! Form::text('1no4', null, ['class' => 'form-control', 'placeholder' => 'Especialidad', 'required']) !!}
+                        {!! Form::text('1no4', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group" id="div5">
+                    {!! Form::label('1no5', '5. Especialidad', ['class' => 'form-label']) !!}
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                        {!! Form::text('1no5', null, ['class' => 'form-control', 'placeholder' => 'Especialidad', 'required']) !!}
                     </div>
                 </div>
 
                 <!--TODO: hacer que se seleccione automaticamente el ESTIMADO o ESTIMADA-->
 
-                <div class="form-group" id="div5">
-                    {!! Form::label('1no5', '5. Patología', ['class' => 'form-label']) !!}
+                <div class="form-group" id="div6">
+                    {!! Form::label('1no6', '6. Patología', ['class' => 'form-label']) !!}
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-briefcase-medical"></i></span>
-                        {!! Form::text('1no5', null, ['class' => 'form-control', 'placeholder' => 'Patología', 'readonly']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group" id="div6">
-                    {!! Form::label('1no6', '6. Tipo de colaboración', ['class' => 'form-label']) !!}
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        {!! Form::select('1no6', ['Investigador Principal' => 'Investigador Principal', 'Sub Investigador' => 'Sub Investigador', 'Coordinador de estudios' => 'Coordinador de estudios'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione tipo de colabora...', 'required']) !!}
+                        {!! Form::text('1no6', null, ['class' => 'form-control', 'placeholder' => 'Patología', 'readonly']) !!}
                     </div>
                 </div>
 
                 <div class="form-group" id="div7">
-                    {!! Form::label('1no7', '7. A cargo de ', ['class' => 'form-label']) !!}
+                    {!! Form::label('1no7', '7. Tipo de colaboración', ['class' => 'form-label']) !!}
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        {!! Form::select('1no7', ['Investigador Principal' => 'Investigador Principal', 'Sub Investigador' => 'Sub Investigador', 'Coordinador de estudios' => 'Coordinador de estudios'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione tipo de colaborador...', 'required']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group" id="div8">
+                    {!! Form::label('1no8', '8. Persona a cargo', ['class' => 'form-label']) !!}
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                         {{-- {!! Form::text('a_cargo', null, ['class' => 'form-control'rgo', 'placeholder' => 'Seleccione tipo de colabora...', 'disabled']) !!} --}}
-                        {!! Form::select('1no7', ['Lic. Luz Eighty García, Coordinadora de Investigación Clínica' => 'Lic. Luz Eighty García, Coordinadora de Investigación Clínica', 'Química Ruth Zafra, Coordinadora de Investigación Clínica' => 'Química Ruth Zafra, Coordinadora de Investigación Clínica', 'Dra. Brenda Rábago, Coordinadora de Investigación Clínica' => 'Dra. Brenda Rábago, Coordinadora de Investigación Clínica'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione la persona a cargo...', 'required']) !!}
+                        {!! Form::select('1no8', ['Lic. Luz Eighty García, Coordinadora de Investigación Clínica' => 'Lic. Luz Eighty García, Coordinadora de Investigación Clínica', 'Química Ruth Zafra, Coordinadora de Investigación Clínica' => 'Química Ruth Zafra, Coordinadora de Investigación Clínica', 'Dra. Brenda Rábago, Coordinadora de Investigación Clínica' => 'Dra. Brenda Rábago, Coordinadora de Investigación Clínica'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione la persona a cargo...', 'required']) !!}
                     </div>
                 </div>
         
@@ -151,7 +159,7 @@
             {{-- END Presentacion --}}
 
             {{-- Constancia anual --}}
-            <div style="display: none" id="body-0" name="body-constanciaAnual">
+            {{-- <div style="display: none" id="body-0" name="body-constanciaAnual">
             <div class="modal-body">
                 {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_constanciaAnual']) !!}
 
@@ -226,7 +234,7 @@
                 <button type="submit" id="btnGconstanciaAnual" class="btn btn-success"><i class="fas fa-save"> Guardar</i></button>
             </div>
             {!! Form::close() !!}
-            </div>
+            </div> --}}
             {{-- END constancia anual --}}
 
             {{-- Publicidad --}}
@@ -280,7 +288,7 @@
                             {!! Form::label('4no1', '1. Código', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
-                                {!! Form::text('4no1', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                                {!! Form::text('4no1', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
                             </div>
                         </div>
                         
@@ -288,7 +296,7 @@
                             {!! Form::label('4no2', '2. Código UIS', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
-                                {!! Form::text('4no2', null, ['class' => 'form-control', 'placeholder' => 'Código UIS', 'readonly','required']) !!}
+                                {!! Form::text('4no2', null, ['class' => 'form-control', 'placeholder' => 'Código UIS', 'readonly']) !!}
                             </div>
                         </div>
                         
@@ -323,7 +331,7 @@
                                     {!! Form::label('4no5', '5. Nickname 1', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no5', null, ['class' => 'form-control', 'placeholder' => 'Nickname 1', 'required']) !!}
+                                    {!! Form::text('4no5', null, ['class' => 'form-control', 'placeholder' => 'Nickname 1']) !!}
                                     </div>
                                 </div>
 
@@ -331,7 +339,7 @@
                                     {!! Form::label('4no6', '6. Nickname 2', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no6', null, ['class' => 'form-control', 'placeholder' => 'Nickname 2', 'required']) !!}
+                                    {!! Form::text('4no6', null, ['class' => 'form-control', 'placeholder' => 'Nickname 2']) !!}
                                     </div>
                                 </div>
 
@@ -339,7 +347,7 @@
                                     {!! Form::label('4no7', '7. Nickname 3', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no7', null, ['class' => 'form-control', 'placeholder' => 'Nickname 3', 'required']) !!}
+                                    {!! Form::text('4no7', null, ['class' => 'form-control', 'placeholder' => 'Nickname 3']) !!}
                                     </div>
                                 </div>
                                 
@@ -354,7 +362,7 @@
                                     {!! Form::label('4no8', '8. Patrocinador', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-building"></i></span>
-                                    {!! Form::text('4no8', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'required']) !!}
+                                    {!! Form::text('4no8', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador']) !!}
                                     </div>
                                 </div>
 
@@ -362,7 +370,7 @@
                                     {!! Form::label('4no9', '9. CRO', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-building"></i></span>
-                                    {!! Form::text('4no9', null, ['class' => 'form-control', 'placeholder' => 'CRO', 'required']) !!}
+                                    {!! Form::text('4no9', null, ['class' => 'form-control', 'placeholder' => 'CRO']) !!}
                                     </div>
                                 </div>
                                 
@@ -377,7 +385,7 @@
                                     {!! Form::label('4no10', '10. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no10', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no10', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
 
@@ -385,7 +393,7 @@
                                     {!! Form::label('4no11', '11. Teléfono', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    {!! Form::text('4no11', null, ['class' => 'form-control', 'placeholder' => 'Teléfono', 'required']) !!}
+                                    {!! Form::text('4no11', null, ['class' => 'form-control', 'placeholder' => 'Teléfono']) !!}
                                     </div>
                                 </div>
 
@@ -393,7 +401,7 @@
                                     {!! Form::label('4no12', '12. Móvil', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-mobile"></i></span>
-                                    {!! Form::text('4no12', null, ['class' => 'form-control', 'placeholder' => 'Móvil', 'required']) !!}
+                                    {!! Form::text('4no12', null, ['class' => 'form-control', 'placeholder' => 'Móvil']) !!}
                                     </div>
                                 </div>
 
@@ -401,7 +409,7 @@
                                     {!! Form::label('4no13', '13. e-mail', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    {!! Form::text('4no13', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'required']) !!}
+                                    {!! Form::text('4no13', null, ['class' => 'form-control', 'placeholder' => 'e-mail']) !!}
                                     </div>
                                 </div>
                                 
@@ -416,7 +424,7 @@
                                     {!! Form::label('4no14', '14. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no14', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no14', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
 
@@ -424,7 +432,7 @@
                                     {!! Form::label('4no15', '15. Teléfono', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    {!! Form::text('4no15', null, ['class' => 'form-control', 'placeholder' => 'Teléfono', 'required']) !!}
+                                    {!! Form::text('4no15', null, ['class' => 'form-control', 'placeholder' => 'Teléfono']) !!}
                                     </div>
                                 </div>
 
@@ -432,7 +440,7 @@
                                     {!! Form::label('4no16', '16. Móvil', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-mobile"></i></span>
-                                    {!! Form::text('4no16', null, ['class' => 'form-control', 'placeholder' => 'Móvil', 'required']) !!}
+                                    {!! Form::text('4no16', null, ['class' => 'form-control', 'placeholder' => 'Móvil']) !!}
                                     </div>
                                 </div>
 
@@ -440,7 +448,7 @@
                                     {!! Form::label('4no17', '17. e-mail', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    {!! Form::text('4no17', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'required']) !!}
+                                    {!! Form::text('4no17', null, ['class' => 'form-control', 'placeholder' => 'e-mail']) !!}
                                     </div>
                                 </div>
                                 
@@ -455,7 +463,7 @@
                                     {!! Form::label('4no18', '18. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no18', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no18', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
                                 
@@ -470,7 +478,7 @@
                                     {!! Form::label('4no19', '19. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no19', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no19', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
 
@@ -478,7 +486,7 @@
                                     {!! Form::label('4no20', '20. Teléfono', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    {!! Form::text('4no20', null, ['class' => 'form-control', 'placeholder' => 'Teléfono', 'required']) !!}
+                                    {!! Form::text('4no20', null, ['class' => 'form-control', 'placeholder' => 'Teléfono']) !!}
                                     </div>
                                 </div>
 
@@ -486,7 +494,7 @@
                                     {!! Form::label('4no21', '21. Móvil', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-mobile"></i></span>
-                                    {!! Form::text('4no21', null, ['class' => 'form-control', 'placeholder' => 'Móvil', 'required']) !!}
+                                    {!! Form::text('4no21', null, ['class' => 'form-control', 'placeholder' => 'Móvil']) !!}
                                     </div>
                                 </div>
 
@@ -494,7 +502,7 @@
                                     {!! Form::label('4no22', '22. e-mail', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    {!! Form::text('4no22', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'required']) !!}
+                                    {!! Form::text('4no22', null, ['class' => 'form-control', 'placeholder' => 'e-mail']) !!}
                                     </div>
                                 </div>
                                 
@@ -509,7 +517,7 @@
                                     {!! Form::label('4no23', '23. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no23', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no23', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
                                 
@@ -517,7 +525,7 @@
                                     {!! Form::label('4no24', '24. Contacto', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    {!! Form::text('4no24', null, ['class' => 'form-control', 'placeholder' => 'Contacto', 'required']) !!}
+                                    {!! Form::text('4no24', null, ['class' => 'form-control', 'placeholder' => 'Contacto']) !!}
                                     </div>
                                 </div>
 
@@ -525,7 +533,7 @@
                                     {!! Form::label('4no25', '25. Teléfono', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    {!! Form::text('4no25', null, ['class' => 'form-control', 'placeholder' => 'Teléfono', 'required']) !!}
+                                    {!! Form::text('4no25', null, ['class' => 'form-control', 'placeholder' => 'Teléfono']) !!}
                                     </div>
                                 </div>
 
@@ -533,7 +541,7 @@
                                     {!! Form::label('4no26', '26. Fax', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-fax"></i></span>
-                                    {!! Form::text('4no26', null, ['class' => 'form-control', 'placeholder' => 'Fax', 'required']) !!}
+                                    {!! Form::text('4no26', null, ['class' => 'form-control', 'placeholder' => 'Fax']) !!}
                                     </div>
                                 </div>
 
@@ -541,7 +549,7 @@
                                     {!! Form::label('4no27', '27. e-mail', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    {!! Form::text('4no27', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'required']) !!}
+                                    {!! Form::text('4no27', null, ['class' => 'form-control', 'placeholder' => 'e-mail']) !!}
                                     </div>
                                 </div>
                                 
@@ -556,7 +564,7 @@
                                     {!! Form::label('4no28', '28. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no28', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no28', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
                                 
@@ -564,7 +572,7 @@
                                     {!! Form::label('4no29', '29. Contacto', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                    {!! Form::text('4no29', null, ['class' => 'form-control', 'placeholder' => 'Contacto', 'required']) !!}
+                                    {!! Form::text('4no29', null, ['class' => 'form-control', 'placeholder' => 'Contacto']) !!}
                                     </div>
                                 </div>
 
@@ -572,7 +580,7 @@
                                     {!! Form::label('4no30', '30. Teléfono', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                    {!! Form::text('4no30', null, ['class' => 'form-control', 'placeholder' => 'Teléfono', 'required']) !!}
+                                    {!! Form::text('4no30', null, ['class' => 'form-control', 'placeholder' => 'Teléfono']) !!}
                                     </div>
                                 </div>
 
@@ -580,7 +588,7 @@
                                     {!! Form::label('4no31', '31. Fax', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-fax"></i></span>
-                                    {!! Form::text('4no31', null, ['class' => 'form-control', 'placeholder' => 'Fax', 'required']) !!}
+                                    {!! Form::text('4no31', null, ['class' => 'form-control', 'placeholder' => 'Fax']) !!}
                                     </div>
                                 </div>
 
@@ -588,7 +596,7 @@
                                     {!! Form::label('4no32', '32. e-mail', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                    {!! Form::text('4no32', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'required']) !!}
+                                    {!! Form::text('4no32', null, ['class' => 'form-control', 'placeholder' => 'e-mail']) !!}
                                     </div>
                                 </div>
                                 
@@ -603,7 +611,7 @@
                                     {!! Form::label('4no33', '33. Plataforma', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-desktop"></i></span>
-                                    {!! Form::text('4no33', null, ['class' => 'form-control', 'placeholder' => 'Plataforma', 'required']) !!}
+                                    {!! Form::text('4no33', null, ['class' => 'form-control', 'placeholder' => 'Plataforma']) !!}
                                     </div>
                                 </div>
                                 
@@ -611,7 +619,7 @@
                                     {!! Form::label('4no34', '34. Liga', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-link"></i></span>
-                                    {!! Form::text('4no34', null, ['class' => 'form-control', 'placeholder' => 'Liga', 'required']) !!}
+                                    {!! Form::text('4no34', null, ['class' => 'form-control', 'placeholder' => 'Liga']) !!}
                                     </div>
                                 </div>
 
@@ -619,7 +627,7 @@
                                     {!! Form::label('4no35', '35. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no35', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no35', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
 
@@ -627,7 +635,7 @@
                                     {!! Form::label('4no36', '36. Usuario', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
-                                    {!! Form::text('4no36', null, ['class' => 'form-control', 'placeholder' => 'Usuario', 'required']) !!}
+                                    {!! Form::text('4no36', null, ['class' => 'form-control', 'placeholder' => 'Usuario']) !!}
                                     </div>
                                 </div>
 
@@ -635,7 +643,7 @@
                                     {!! Form::label('4no37', '37. Password', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    {!! Form::text('4no37', null, ['class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
+                                    {!! Form::text('4no37', null, ['class' => 'form-control', 'placeholder' => 'Password']) !!}
                                     </div>
                                 </div>
                                 
@@ -643,7 +651,7 @@
                                     {!! Form::label('4no38', '38. ID usuario', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
-                                    {!! Form::text('4no38', null, ['class' => 'form-control', 'placeholder' => 'ID usuario', 'required']) !!}
+                                    {!! Form::text('4no38', null, ['class' => 'form-control', 'placeholder' => 'ID usuario']) !!}
                                     </div>
                                 </div>
                                 
@@ -658,7 +666,7 @@
                                     {!! Form::label('4no39', '39. Plataforma', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-desktop"></i></span>
-                                    {!! Form::text('4no39', null, ['class' => 'form-control', 'placeholder' => 'Plataforma', 'required']) !!}
+                                    {!! Form::text('4no39', null, ['class' => 'form-control', 'placeholder' => 'Plataforma']) !!}
                                     </div>
                                 </div>
                                 
@@ -666,7 +674,7 @@
                                     {!! Form::label('4no40', '40. Liga', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-link"></i></span>
-                                    {!! Form::text('4no40', null, ['class' => 'form-control', 'placeholder' => 'Liga', 'required']) !!}
+                                    {!! Form::text('4no40', null, ['class' => 'form-control', 'placeholder' => 'Liga']) !!}
                                     </div>
                                 </div>
 
@@ -674,7 +682,7 @@
                                     {!! Form::label('4no41', '41. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no41', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no41', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
 
@@ -682,7 +690,7 @@
                                     {!! Form::label('4no42', '42. Usuario', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
-                                    {!! Form::text('4no42', null, ['class' => 'form-control', 'placeholder' => 'Usuario', 'required']) !!}
+                                    {!! Form::text('4no42', null, ['class' => 'form-control', 'placeholder' => 'Usuario']) !!}
                                     </div>
                                 </div>
 
@@ -690,7 +698,7 @@
                                     {!! Form::label('4no43', '43. Password', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    {!! Form::text('4no43', null, ['class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
+                                    {!! Form::text('4no43', null, ['class' => 'form-control', 'placeholder' => 'Password']) !!}
                                     </div>
                                 </div>
                                 
@@ -705,7 +713,7 @@
                                     {!! Form::label('4no44', '44. Plataforma', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-desktop"></i></span>
-                                    {!! Form::text('4no44', null, ['class' => 'form-control', 'placeholder' => 'Plataforma', 'required']) !!}
+                                    {!! Form::text('4no44', null, ['class' => 'form-control', 'placeholder' => 'Plataforma']) !!}
                                     </div>
                                 </div>
                                 
@@ -713,7 +721,7 @@
                                     {!! Form::label('4no45', '45. Liga', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-link"></i></span>
-                                    {!! Form::text('4no45', null, ['class' => 'form-control', 'placeholder' => 'Liga', 'required']) !!}
+                                    {!! Form::text('4no45', null, ['class' => 'form-control', 'placeholder' => 'Liga']) !!}
                                     </div>
                                 </div>
 
@@ -721,7 +729,7 @@
                                     {!! Form::label('4no46', '46. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-                                    {!! Form::text('4no46', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                    {!! Form::text('4no46', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
 
@@ -729,7 +737,7 @@
                                     {!! Form::label('4no47', '47. Usuario', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
-                                    {!! Form::text('4no47', null, ['class' => 'form-control', 'placeholder' => 'Usuario', 'required']) !!}
+                                    {!! Form::text('4no47', null, ['class' => 'form-control', 'placeholder' => 'Usuario']) !!}
                                     </div>
                                 </div>
 
@@ -737,7 +745,7 @@
                                     {!! Form::label('4no48', '48. Password', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    {!! Form::text('4no48', null, ['class' => 'form-control', 'placeholder' => 'Password', 'required']) !!}
+                                    {!! Form::text('4no48', null, ['class' => 'form-control', 'placeholder' => 'Password']) !!}
                                     </div>
                                 </div>
                                 
@@ -762,7 +770,7 @@
                             {!! Form::label('7no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {!! Form::text('7no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {!! Form::text('7no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly']) !!}
                             </div>
                         </div>
         
@@ -773,45 +781,53 @@
                                 {!! Form::date('7no2', null, ['class' => 'form-control', 'required']) !!}
                             </div>
                         </div>
-        
+
                         <div class="form-group" id="div3">
-                            {!! Form::label('7no3', '3. Código', ['class' => 'form-label']) !!}
+                            {!! Form::label('7no3', '3. Código UIS', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
-                                {!! Form::text('7no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                                {!! Form::text('7no3', null, ['class' => 'form-control', 'placeholder' => 'Código UIS', 'readonly']) !!}
                             </div>
                         </div>
         
                         <div class="form-group" id="div4">
-                            {!! Form::label('7no4', '4. Título', ['class' => 'form-label']) !!}
+                            {!! Form::label('7no4', '4. Código', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
-                                {!! Form::text('7no4', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
-                            </div>
-                        </div>
-
-                        <div class="form-group" id="div5">
-                            {!! Form::label('7no5', '5. Patrocinador', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('7no5', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                                <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
+                                {!! Form::text('7no4', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
                             </div>
                         </div>
         
-                        <div class="form-group" id="div6">
-                            {!! Form::label('7no6', '6. Nombre del Investigador principal', ['class' => 'form-label']) !!}
+                        <div class="form-group" id="div5">
+                            {!! Form::label('7no5', '5. Título', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('7no6', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly', 'required']) !!}
+                                <span class="input-group-text"><i class="fas fa-pen-square"></i></span>
+                                {!! Form::text('7no5', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!}
                             </div>
                         </div>
 
+                        <div class="form-group" id="div6">
+                            {!! Form::label('7no6', '6. Patrocinador', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('7no6', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                            </div>
+                        </div>
+        
                         <div class="form-group" id="div7">
-                            {!! Form::label('7no7', '7. Documentos', ['class' => 'form-label']) !!}
+                            {!! Form::label('7no7', '7. Nombre del Investigador principal', ['class' => 'form-label']) !!}
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                {!! Form::text('7no7', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="div8">
+                            {!! Form::label('7no8', '8. Documentos', ['class' => 'form-label']) !!}
                             <div id="wrapper_sometimiento">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-                                {!! Form::text('7no7', null, ['class' => 'form-control', 'placeholder' => 'Nombre, version y Fecha del documento', 'required']) !!}
+                                {!! Form::text('7no8', null, ['class' => 'form-control', 'placeholder' => 'Nombre, version y Fecha del documento', 'required']) !!}
                                 <button type="button" id="add_documento" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
                             </div>
                             </div>
@@ -835,7 +851,8 @@
                             {!! Form::label('8no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {!! Form::select('8no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                                {{-- {!! Form::select('8no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                                {!! Form::text('8no1', null, ['class' => 'form-control', 'placeholder' => 'Lugar', 'readonly']) !!}
                             </div>
                         </div>
         
@@ -859,7 +876,7 @@
                             {!! Form::label('8no4', '4. Código', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
-                                {!! Form::text('8no4', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                                {!! Form::text('8no4', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
                             </div>
                         </div>
         
@@ -879,13 +896,23 @@
                             </div>
                         </div>
         
-                        <div class="form-group" id="div7">
-                            {!! Form::label('8no7', '7. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                {!! Form::text('8no7', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div7">
+                                {!! Form::label('8no7', '7. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::select('8no7', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="form-group" id="div7">
+                                {!! Form::label('8no7', '7. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::text('8no7', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly']) !!}
+                                </div>
+                            </div>
+                        @endif
         
                         <div class="form-group" id="div8">
                             {!! Form::label('8no8', '8. Acepto participar como', ['class' => 'form-label']) !!}
@@ -896,10 +923,11 @@
                         </div>
 
                         <div class="form-group" id="div9">
-                            {!! Form::label('8no9', '9. Título', ['class' => 'form-label']) !!}
+                            {!! Form::label('8no9', '9. Título del investigador', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
-                                {!! Form::text('8no9', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly', 'required']) !!}
+                                {{-- {!! Form::text('8no9', null, ['class' => 'form-control', 'placeholder' => 'Título', 'readonly']) !!} --}}
+                                {!! Form::select('8no9', [ 'Dr' => 'Dr', 'Dra' => 'Dra' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione el título', 'required']) !!}
                             </div>
                         </div>
 
@@ -907,7 +935,7 @@
                             {!! Form::label('8no10', '10. Nombre del Investigador', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('8no10', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'readonly', 'required']) !!}
+                                {!! Form::text('8no10', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'required']) !!}
                             </div>
                         </div>
 
@@ -915,7 +943,7 @@
                             {!! Form::label('8no11', '11. Cédula', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-address-card"></i></span>
-                                {!! Form::text('8no11', null, ['class' => 'form-control', 'placeholder' => 'Cédula', 'readonly', 'required']) !!}
+                                {!! Form::text('8no11', null, ['class' => 'form-control', 'placeholder' => 'Cédula', 'required']) !!}
                             </div>
                         </div>
 
@@ -945,7 +973,8 @@
                             {!! Form::label('9no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {!! Form::select('9no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                                {{-- {!! Form::select('9no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                                {!! Form::text('9no1', null, ['class' => 'form-control', 'placeholder' => 'Lugar', 'readonly']) !!}
                             </div>
                         </div>
         
@@ -961,7 +990,7 @@
                             {!! Form::label('9no3', '3. Código', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
-                                {!! Form::text('9no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                                {!! Form::text('9no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
                             </div>
                         </div>
         
@@ -981,19 +1010,29 @@
                             </div>
                         </div>
         
-                        <div class="form-group" id="div6">
-                            {!! Form::label('9no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                {!! Form::text('9no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div6">
+                                {!! Form::label('9no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::select('9no6', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                </div>
+                            </div>                            
+                        @else
+                            <div class="form-group" id="div6">
+                                {!! Form::label('9no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::text('9no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly']) !!}
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="form-group" id="div7">
                             {!! Form::label('9no7', '7. Nombre del Investigador', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('9no7', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'readonly', 'required']) !!}
+                                {!! Form::text('9no7', null, ['class' => 'form-control', 'placeholder' => 'Nombre completo', 'readonly']) !!}
                             </div>
                         </div>
 
@@ -1253,7 +1292,8 @@
                             {!! Form::label('10no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {!! Form::select('10no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                                {{-- {!! Form::select('10no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
+                                {!! Form::text('10no1', null, ['class' => 'form-control', 'placeholder' => 'Lugar', 'readonly']) !!}
                             </div>
                         </div>
         
@@ -1269,7 +1309,7 @@
                             {!! Form::label('10no3', '3. Código', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-folder-open"></i></span>
-                                {!! Form::text('10no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly','required']) !!}
+                                {!! Form::text('10no3', null, ['class' => 'form-control', 'placeholder' => 'Código', 'readonly']) !!}
                             </div>
                         </div>
         
@@ -1289,19 +1329,29 @@
                             </div>
                         </div>
         
-                        <div class="form-group" id="div6">
-                            {!! Form::label('10no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                {!! Form::text('10no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div6">
+                                {!! Form::label('10no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::select('10no6', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                </div>
+                            </div>                          
+                        @else
+                            <div class="form-group" id="div6">
+                                {!! Form::label('10no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::text('10no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly']) !!}
+                                </div>
                             </div>
-                        </div>
+                        @endif
         
                         <div class="form-group" id="div7">
                             {!! Form::label('10no7', '7. Nombre del Investigador principal', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('10no7', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly', 'required']) !!}
+                                {!! Form::text('10no7', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
                             </div>
                         </div>
 
@@ -1331,8 +1381,8 @@
                             {!! Form::label('11no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {{-- {!! Form::text('11no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
-                                {!! Form::select('11no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                                {!! Form::text('11no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly']) !!}
+                                {{-- {!! Form::select('11no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
                             </div>
                         </div>
         
@@ -1360,13 +1410,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div5">
-                            {!! Form::label('11no5', '5. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                {!! Form::text('11no5', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div5">
+                                {!! Form::label('11no5', '5. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::select('11no5', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                </div>
+                            </div>                         
+                        @else
+                            <div class="form-group" id="div5">
+                                {!! Form::label('11no5', '5. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::text('11no5', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="form-group" id="div6">
                             {!! Form::label('11no6', '6. Título Investigador', ['class' => 'form-label']) !!}
@@ -1423,8 +1483,8 @@
                             {!! Form::label('12no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {{-- {!! Form::text('12no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
-                                {!! Form::select('12no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                                {!! Form::text('12no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly']) !!}
+                                {{-- {!! Form::select('12no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
                             </div>
                         </div>
         
@@ -1462,8 +1522,8 @@
                             {!! Form::label('27no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {{-- {!! Form::text('12no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
-                                {!! Form::select('27no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                                {!! Form::text('27no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly']) !!}
+                                {{-- {!! Form::select('27no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
                             </div>
                         </div>
         
@@ -1502,13 +1562,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div6">
-                            {!! Form::label('27no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                {!! Form::text('27no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div6">
+                                {!! Form::label('27no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::select('27no6', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                </div>
+                            </div>                       
+                        @else
+                            <div class="form-group" id="div6">
+                                {!! Form::label('27no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::text('27no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                                </div>
                             </div>
-                        </div>
+                        @endif
         
                         <div class="form-group" id="div7">
                             {!! Form::label('27no7', '7. Código', ['class' => 'form-label']) !!}
@@ -1582,8 +1652,8 @@
                             {!! Form::label('28no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {{-- {!! Form::text('12no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!} --}}
-                                {!! Form::select('28no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!}
+                                {!! Form::text('28no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly']) !!}
+                                {{-- {!! Form::select('28no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
                             </div>
                         </div>
         
@@ -1622,13 +1692,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div6">
-                            {!! Form::label('28no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                {!! Form::text('28no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div6">
+                                {!! Form::label('28no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::select('28no6', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                </div>
+                            </div>                    
+                        @else
+                            <div class="form-group" id="div6">
+                                {!! Form::label('28no6', '6. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                                    {!! Form::text('28no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly','required']) !!}
+                                </div>
                             </div>
-                        </div>
+                        @endif
         
                         <div class="form-group" id="div7">
                             {!! Form::label('28no7', '7. Código', ['class' => 'form-label']) !!}
@@ -1697,18 +1777,18 @@
                 {{-- END Destruccion de Productos --}}
 
                 {{-- Nota al archivo --}}
-                <div style="display: none" id="body-54" name="body-notaarchivo">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_notaArchivo']) !!}
-                
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCnotaarchivo" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGnotaarchivo" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                {{-- <div style="display: none" id="body-54" name="body-notaarchivo"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_notaArchivo']) !!} --}}
+                {{--  --}}
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCnotaarchivo" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGnotaarchivo" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Nota al archivo --}}
 
                 {{-- Tarjeta de Bolsillo --}}
@@ -1796,14 +1876,25 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div5">
-                            {!! Form::label('56no5', '5. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map"></i></span>
-                                {!! Form::text('56no5', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
-                                {{-- {!! Form::select('56no5', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div5">
+                                {!! Form::label('56no5', '5. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                    {!! Form::select('56no5', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                    {{-- {!! Form::select('56no5', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                </div>
+                            </div>                  
+                        @else
+                            <div class="form-group" id="div5">
+                                {!! Form::label('56no5', '5. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                    {!! Form::text('56no5', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
+                                    {{-- {!! Form::select('56no5', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                </div>
                             </div>
-                        </div>
+                        @endif
                 
                     </div>
                     <div class="modal-footer">
@@ -1831,7 +1922,7 @@
                             {!! Form::label('57no2', '2. Investigador principal', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('57no2', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                                {!! Form::text('57no2', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'required']) !!}
                             </div>
                         </div>
 
@@ -1839,7 +1930,7 @@
                             {!! Form::label('57no3', '3. Sub Investigador', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('57no3', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                                {!! Form::text('57no3', null, ['class' => 'form-control', 'placeholder' => 'Sub Investigador', 'required']) !!}
                             </div>
                         </div>
                         
@@ -1847,7 +1938,7 @@
                             {!! Form::label('57no4', '4. Coordinador de estudios', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('57no4', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                                {!! Form::text('57no4', null, ['class' => 'form-control', 'placeholder' => 'Coordinador de estudios', 'required']) !!}
                             </div>
                         </div>
 
@@ -1883,14 +1974,25 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div9">
-                            {!! Form::label('57no9', '9. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map"></i></span>
-                                {!! Form::text('57no9', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
-                                {{-- {!! Form::select('57no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div9">
+                                {!! Form::label('57no9', '9. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                    {!! Form::select('57no9', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                    {{-- {!! Form::select('57no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                </div>
+                            </div>         
+                        @else
+                            <div class="form-group" id="div9">
+                                {!! Form::label('57no9', '9. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                    {!! Form::text('57no9', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
+                                    {{-- {!! Form::select('57no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                </div>
                             </div>
-                        </div>
+                        @endif
                 
                     </div>
                     <div class="modal-footer">
@@ -1968,7 +2070,6 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-road"></i></span>
                                                 {!! Form::text('58no7', null, ['class' => 'form-control', 'placeholder' => 'Calle y número', 'required']) !!}
-                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                             </div>
                                         </div>
                 
@@ -1977,7 +2078,6 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-house-user"></i></span>
                                                 {!! Form::text('58no8', null, ['class' => 'form-control', 'placeholder' => 'Colonia', 'required']) !!}
-                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                             </div>
                                         </div>
                 
@@ -1986,7 +2086,6 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
                                                 {!! Form::text('58no9', null, ['class' => 'form-control', 'placeholder' => 'Ciudad y estado', 'required']) !!}
-                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                             </div>
                                         </div>
                 
@@ -1994,8 +2093,7 @@
                                             {!! Form::label('58no10', '10. Código postal', ['class' => 'form-label']) !!}
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-mail-bulk"></i></span>
-                                                {!! Form::text('58no10', null, ['class' => 'form-control', 'placeholder' => 'Código postal', 'required']) !!}
-                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                                {!! Form::text('58no10', null, ['class' => 'form-control', 'placeholder' => 'Código postal']) !!}
                                             </div>
                                         </div>
                 
@@ -2004,7 +2102,6 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                                 {!! Form::text('58no11', null, ['class' => 'form-control', 'placeholder' => 'Tel casa']) !!}
-                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                             </div>
                                         </div>
                 
@@ -2013,7 +2110,6 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                                                 {!! Form::text('58no12', null, ['class' => 'form-control', 'placeholder' => 'Tel móvil']) !!}
-                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                             </div>
                                         </div>
                 
@@ -2022,7 +2118,6 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                                 {!! Form::text('58no13', null, ['class' => 'form-control', 'placeholder' => 'Tel trabajo']) !!}
-                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                             </div>
                                         </div>
                 
@@ -2030,8 +2125,7 @@
                                             {!! Form::label('58no14', '14. Correo electrónico', ['class' => 'form-label']) !!}
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                                {!! Form::email('58no14', null, ['class' => 'form-control', 'placeholder' => 'Correo electrónico', 'required']) !!}
-                                                {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                                {!! Form::email('58no14', null, ['class' => 'form-control', 'placeholder' => 'Correo electrónico',]) !!}
                                             </div>
                                         </div>
 
@@ -2049,7 +2143,7 @@
                                     {!! Form::label('58no15', '15. Nombre', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        {!! Form::text('58no15', null, ['class' => 'form-control', 'placeholder' => 'Nombre', 'required']) !!}
+                                        {!! Form::text('58no15', null, ['class' => 'form-control', 'placeholder' => 'Nombre']) !!}
                                     </div>
                                 </div>
 
@@ -2057,8 +2151,7 @@
                                     {!! Form::label('58no16', '16. Domicilio', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-home"></i></span>
-                                        {!! Form::text('58no16', null, ['class' => 'form-control', 'placeholder' => 'Domicilio', 'required']) !!}
-                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                        {!! Form::text('58no16', null, ['class' => 'form-control', 'placeholder' => 'Domicilio']) !!}
                                     </div>
                                 </div>
 
@@ -2066,7 +2159,7 @@
                                     {!! Form::label('58no17', '17. Parentesco', ['class' => 'form-label']) !!}
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
-                                        {!! Form::text('58no17', null, ['class' => 'form-control', 'placeholder' => 'Parentesco', 'required']) !!}
+                                        {!! Form::text('58no17', null, ['class' => 'form-control', 'placeholder' => 'Parentesco']) !!}
                                     </div>
                                 </div>
 
@@ -2075,7 +2168,6 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         {!! Form::text('58no18', null, ['class' => 'form-control', 'placeholder' => 'Tel casa']) !!}
-                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                     </div>
                                 </div>
         
@@ -2084,7 +2176,6 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                                         {!! Form::text('58no19', null, ['class' => 'form-control', 'placeholder' => 'Tel móvil']) !!}
-                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                     </div>
                                 </div>
         
@@ -2093,7 +2184,6 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         {!! Form::text('58no20', null, ['class' => 'form-control', 'placeholder' => 'Tel trabajo']) !!}
-                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                     </div>
                                 </div>
 
@@ -2117,7 +2207,6 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-home"></i></span>
                                         {!! Form::text('58no22', null, ['class' => 'form-control', 'placeholder' => 'Domicilio']) !!}
-                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                     </div>
                                 </div>
 
@@ -2134,7 +2223,6 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         {!! Form::text('58no24', null, ['class' => 'form-control', 'placeholder' => 'Tel casa']) !!}
-                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                     </div>
                                 </div>
         
@@ -2143,7 +2231,6 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
                                         {!! Form::text('58no25', null, ['class' => 'form-control', 'placeholder' => 'Tel móvil']) !!}
-                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                     </div>
                                 </div>
         
@@ -2152,7 +2239,6 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                         {!! Form::text('58no26', null, ['class' => 'form-control', 'placeholder' => 'Tel trabajo']) !!}
-                                        {{-- {!! Form::select('58no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
                                     </div>
                                 </div>
 
@@ -2169,63 +2255,63 @@
                 {{-- END Contacto --}}
 
                 {{-- Eventos adversos --}}
-                <div style="display: none" id="body-59" name="body-eventosadversos">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_eventosAdversos']) !!}
+                {{-- <div style="display: none" id="body-59" name="body-eventosadversos"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_eventosAdversos']) !!} --}}
                 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCeventoadverso" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGeventoadverso" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCeventoadverso" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGeventoadverso" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Eventos adversos --}}
 
                 {{-- Medicamentos contaminantes --}}
-                <div style="display: none" id="body-60" name="body-medicamentoscontaminantes">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_medicamentosContaminantes']) !!}
-                
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCmedicamentosconta" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGmedicamentosconta" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                {{-- <div style="display: none" id="body-60" name="body-medicamentoscontaminantes"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_medicamentosContaminantes']) !!} --}}
+                {{--  --}}
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCmedicamentosconta" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGmedicamentosconta" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Medicamentos contaminantes --}}
 
                 {{-- Medicamento de estudio --}}
-                <div style="display: none" id="body-61" name="body-medicamentoestudio">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_medicamentoEstudio']) !!}
-                
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCmedicamentoestudio" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGmedicamentoestudio" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                {{-- <div style="display: none" id="body-61" name="body-medicamentoestudio"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_medicamentoEstudio']) !!} --}}
+                {{--  --}}
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCmedicamentoestudio" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGmedicamentoestudio" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Medicamentos de estudio --}}
 
                 {{-- Historia clinica --}}
-                <div style="display: none" id="body-62" name="body-historiaclinica">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_historiaClinica']) !!}
-                
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnChitoriaclinica" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGhitoriaclinica" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                {{-- <div style="display: none" id="body-62" name="body-historiaclinica"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_historiaClinica']) !!} --}}
+                {{--  --}}
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnChitoriaclinica" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGhitoriaclinica" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Historia clinica --}}
 
                 {{-- Señalador de visita --}}
@@ -2261,7 +2347,7 @@
                             {!! Form::label('63no4', '4. Investigador principal', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('63no4', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                                {!! Form::text('63no4', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal']) !!}
                             </div>
                         </div>
 
@@ -2269,7 +2355,7 @@
                             {!! Form::label('63no5', '5. Sub Investigador', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('63no5', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                                {!! Form::text('63no5', null, ['class' => 'form-control', 'placeholder' => 'Sub Investigador']) !!}
                             </div>
                         </div>
                         
@@ -2277,7 +2363,7 @@
                             {!! Form::label('63no6', '6. Coordinador de estudios', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('63no6', null, ['class' => 'form-control', 'placeholder' => 'Investigador principal', 'readonly']) !!}
+                                {!! Form::text('63no6', null, ['class' => 'form-control', 'placeholder' => 'Coordinador de estudios']) !!}
                             </div>
                         </div>
 
@@ -2297,14 +2383,25 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div9">
-                            {!! Form::label('63no9', '9. Dirección sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-map"></i></span>
-                                {!! Form::text('63no9', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
-                                {{-- {!! Form::select('63no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div9">
+                                {!! Form::label('63no9', '9. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                    {!! Form::select('63no9', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                    {{-- {!! Form::select('63no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                </div>
+                            </div>       
+                        @else
+                            <div class="form-group" id="div9">
+                                {!! Form::label('63no9', '9. Dirección sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                    {!! Form::text('63no9', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
+                                    {{-- {!! Form::select('63no9', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!} --}}
+                                </div>
                             </div>
-                        </div>
+                        @endif
                 
                     </div>
                     <div class="modal-footer">
@@ -2316,78 +2413,78 @@
                 {{-- END Señalador de visita --}}
 
                 {{-- Visita SD --}}
-                <div style="display: none" id="body-64" name="body-visitasd">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_visitaSD']) !!}
+                {{-- <div style="display: none" id="body-64" name="body-visitasd"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_visitaSD']) !!} --}}
                 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCvisitasd" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGvisitasd" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCvisitasd" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGvisitasd" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
+                    {{-- </div> --}}
                     {!! Form::close() !!}
-                </div>
+                {{-- </div> --}}
                 {{-- END Visita SD --}}
                 
                 {{-- Nota medica --}}
-                <div style="display: none" id="body-65" name="body-notamedica">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_notaMedica']) !!}
+                {{-- <div style="display: none" id="body-65" name="body-notamedica"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_notaMedica']) !!} --}}
                 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCnotamedica" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGnotamedica" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCnotamedica" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGnotamedica" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Nota medica --}}
                 
                 {{-- Pre-seleccion --}}
-                <div style="display: none" id="body-66" name="body-preseleccion">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_preSeleccion']) !!}
-                
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCnpreseleccion" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGnpreseleccion" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                {{-- <div style="display: none" id="body-66" name="body-preseleccion"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_preSeleccion']) !!} --}}
+                {{--  --}}
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCnpreseleccion" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGnpreseleccion" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Pre-seleccion --}}
                 
                 {{-- Seleccion --}}
-                <div style="display: none" id="body-67" name="body-seleccion">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_seleccion']) !!}
-                
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCseleccion" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGseleccion" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                {{-- <div style="display: none" id="body-67" name="body-seleccion"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_seleccion']) !!} --}}
+                {{--  --}}
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCseleccion" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGseleccion" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Seleccion --}}
                 
                 {{-- Documentacion consentimiento --}}
-                <div style="display: none" id="body-71" name="body-docconsentimiento">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_docConsentimiento']) !!}
-                
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCdocconsentimiento" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGdocconsentimiento" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                {{-- <div style="display: none" id="body-71" name="body-docconsentimiento"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_docConsentimiento']) !!} --}}
+                {{--  --}}
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCdocconsentimiento" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGdocconsentimiento" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Documentacion consentimiento --}}
 
                 {{-- Recibo ICF --}}
@@ -2478,18 +2575,18 @@
                 {{-- END Recibo ICF --}}
 
                 {{-- Carnet de viaticos --}}
-                <div style="display: none" id="body-75" name="body-carnetviaticos">
-                    <div class="modal-body">
-                        {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_carnetViaticos']) !!}
+                {{-- <div style="display: none" id="body-75" name="body-carnetviaticos"> --}}
+                    {{-- <div class="modal-body"> --}}
+                        {{-- {!! Form::open(['autocomplete' => 'off', 'method'=>'POST', 'id'=>'formcreate_carnetViaticos']) !!} --}}
                 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="btnCcarnetviaticos" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGcarnetviaticos" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button>
+                    {{-- </div> --}}
+                    {{-- <div class="modal-footer"> --}}
+                        {{-- <button type="button" id="btnCcarnetviaticos" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button> --}}
+                        {{-- <button type="submit" id="btnGcarnetviaticos" class="btn btn-primary"><i class="fas fa-file-download"></i> Descargar</i></button> --}}
                         {{-- <a class="btn btn-primary" title="Descargar" href="sc/documentos/pdf/notaArchivo" target="_blank" rel="noreferrer noopener"><span><i class="fas fa-file-download"></i> Descargar</i></span></a> --}}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
+                    {{-- </div> --}}
+                    {{-- {!! Form::close() !!} --}}
+                {{-- </div> --}}
                 {{-- END Carnet de viaticos --}}
 
                 {{-- Solicitud de resumen --}}
@@ -2572,7 +2669,7 @@
                             {!! Form::label('77no3', '3. Investigador', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('77no3', null, ['class' => 'form-control', 'placeholder' => 'Investigador', 'readonly']) !!}
+                                {!! Form::text('77no3', null, ['class' => 'form-control', 'placeholder' => 'Investigador']) !!}
                             </div>
                         </div>
 
@@ -2580,7 +2677,7 @@
                             {!! Form::label('77no4', '4. Patrocinador', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('77no4', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador', 'readonly']) !!}
+                                {!! Form::text('77no4', null, ['class' => 'form-control', 'placeholder' => 'Patrocinador']) !!}
                             </div>
                         </div>
 
@@ -2592,13 +2689,23 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div6">
-                            {!! Form::label('77no6', '6. Dirección', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                {!! Form::text('77no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly']) !!}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div6">
+                                {!! Form::label('77no6', '6. Dirección', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    {!! Form::select('77no6', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                </div>
+                            </div>      
+                        @else
+                            <div class="form-group" id="div6">
+                                {!! Form::label('77no6', '6. Dirección', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    {!! Form::text('77no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección', 'readonly']) !!}
+                                </div>
                             </div>
-                        </div>
+                        @endif
                 
                     </div>
                     <div class="modal-footer">
@@ -2864,7 +2971,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div15">
+                        {{-- <div class="form-group" id="div15">
                             {!! Form::label('80no15', '15. Nombre de quien elabora la nota', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -2878,7 +2985,7 @@
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 {!! Form::text('80no16', null, ['class' => 'form-control', 'placeholder' => 'Iniciales', 'required']) !!}
                             </div>
-                        </div>
+                        </div> --}}
                 
                     </div>
                     <div class="modal-footer">
@@ -3007,7 +3114,7 @@
                             {!! Form::label('82no1', '1. Ciudad', ['class' => 'form-label']) !!}
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                {!! Form::text('82no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly','required']) !!}
+                                {!! Form::text('82no1', null, ['class' => 'form-control', 'placeholder' => 'Ciudad', 'readonly']) !!}
                                 {{-- {!! Form::select('82no1', [ 'Chihuahua, Chih.' => 'Chihuahua, Chih.', 'Ciudad de México' => 'Ciudad de México', 'Zapopan, Jal.' => 'Zapopan, Jal.' ],null, ['class' => 'form-control', 'placeholder' => 'Seleccione una ciudad', 'required']) !!} --}}
                             </div>
                         </div>
@@ -3443,7 +3550,7 @@
                             <div id="wrapper_avisoce">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-file"></i></span>
-                                {!! Form::text('85no7', null, ['class' => 'form-control','placeholder' => 'Asunto', 'required']) !!}
+                                {!! Form::text('85no7', null, ['class' => 'form-control','placeholder' => 'Describir los asuntos que se notifican', 'required']) !!}
                                 <button type="button" id="add_asunto_aviso" class="btn btn-primary" title="Agregar campo"><i class="fas fa-plus-square"></i></button>
                             </div>
                             </div>
@@ -3586,14 +3693,25 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div6">
-                            {!! Form::label('87no6', '6. Sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-clinic-medical"></i></span>
-                                {!! Form::text('87no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly','required']) !!}
-                                {{-- {!! Form::select('87no6', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un sitio clínico', 'required']) !!} --}}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div6">
+                                {!! Form::label('87no6', '6. Sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-clinic-medical"></i></span>
+                                    {!! Form::select('87no6', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                    {{-- {!! Form::select('87no6', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un sitio clínico', 'required']) !!} --}}
+                                </div>
+                            </div>   
+                        @else
+                            <div class="form-group" id="div6">
+                                {!! Form::label('87no6', '6. Sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-clinic-medical"></i></span>
+                                    {!! Form::text('87no6', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
+                                    {{-- {!! Form::select('87no6', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un sitio clínico', 'required']) !!} --}}
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="form-group" id="div7">
                             {!! Form::label('87no', '7. Fechas de aprobación', ['class' => 'form-label']) !!}
@@ -3789,14 +3907,25 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="div8">
-                            {!! Form::label('88no8', '8. Sitio clínico', ['class' => 'form-label']) !!}
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-clinic-medical"></i></span>
-                                {!! Form::text('88no8', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly','required']) !!}
-                                {{-- {!! Form::select('88no8', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un sitio clínico', 'required']) !!} --}}
+                        @if (session('id_empresa') == 2)
+                            <div class="form-group" id="div8">
+                                {!! Form::label('88no8', '8. Sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-clinic-medical"></i></span>
+                                    {{-- {!! Form::select('88no8', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un sitio clínico', 'required']) !!} --}}
+                                    {!! Form::select('88no8', ['Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.'], null, ['class' => 'form-control', 'placeholder' => 'Seleccione una dirección', 'required']) !!}
+                                </div>
+                            </div> 
+                        @else
+                            <div class="form-group" id="div8">
+                                {!! Form::label('88no8', '8. Sitio clínico', ['class' => 'form-label']) !!}
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-clinic-medical"></i></span>
+                                    {!! Form::text('88no8', null, ['class' => 'form-control', 'placeholder' => 'Dirección sitio clínico', 'readonly']) !!}
+                                    {{-- {!! Form::select('88no8', [ 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.' => 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.', 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.' => 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.', 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.' => 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México.'],null, ['class' => 'form-control', 'placeholder' => 'Seleccione un sitio clínico', 'required']) !!} --}}
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="form-group" id="div9">
                             {!! Form::label('88no', '9. Fechas de aprobación', ['class' => 'form-label']) !!}

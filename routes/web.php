@@ -199,13 +199,14 @@ Route::post('/documentos_sc/list_formatos', 'App\Http\Controllers\DocumentosCont
 Route::post('/documentos_sc/create_formato', 'App\Http\Controllers\DocumentosController@create_formato')->name('documentos_sc.create_formato');
 Route::post('/documentos_sc/delete_formato', 'App\Http\Controllers\DocumentosController@delete_formato')->name('documentos_sc.delete_formato');
 Route::post('/documentos_sc/edit_formato', 'App\Http\Controllers\DocumentosController@edit_formato')->name('documentos_sc.edit_formato');
+Route::post('/documentos_sc/datos_protocolo', 'App\Http\Controllers\DocumentosController@datos_protocolo')->name('documentos.datos_protocolo');
 Route::post('/documentos_sc/codigos_nombre', 'App\Http\Controllers\DocumentosController@codigos_nombre')->name('documentos_sc.codigos_nombre');
 Route::post('/documentos_sc/has_form', 'App\Http\Controllers\DocumentosController@has_form')->name('documentos_sc.has_form');
 // Geenerar pdf (word)
-Route::get('/documentos_sc/pdf/{id}', [DocumentosController::class,'pdf'])->name('documentos_sc.pdf');
+Route::get('/documentos_sc/word/{id}', [DocumentosController::class,'word'])->name('documentos_sc.word');
 // Descargar documento
-Route::get('/documentos_sc/download_formato/{ruta}', 'app\http\controllers\Documentoscontroller@download_formato')->name('documentos_sc.download_formato');
-Route::get('/documentos_sc/descargar/pdf/{ruta}', [DocumentosController::class, 'download'])->name('documentos_sc.download');
+Route::get('/documentos_sc/download_formato/{ruta}', 'App\Http\Controllers\DocumentosController@download_formato')->name('documentos_sc.download_formato');
+Route::get('/documentos_sc/descargar/word/{ruta}', [DocumentosController::class, 'download'])->name('documentos_sc.download');
 
 
 

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    $('#doc_formatos').select2();
+    empresa_id = $('#empresa_id').val();
     $('#tbl_codigos').DataTable({
         "lengthMenu": [[5, 10, 50, -1], [5, 10, 50, "Todos"]],
         "language": espanol,
@@ -75,6 +77,8 @@ function list_codigos(proyecto_id){
         success:function(resp){
             $("#nombre_codigo").html(resp);
             $("#protocolo_id").val(proyecto_id);
+            $("#no0").val(resp);
+            list_formatos();
             $("#buscador").show();
         }
     });
@@ -106,8 +110,8 @@ $("#doc_formatos").change(
                         $("#tabla_buscador").show();
                         select_content_modal(formato_id, selectValue);
                     }
-                    if (data['has_form'] == 2) {
-                        list_proyectos();
+                    if (data['has_form'] == 2) {// Se descarga pero con datos
+                        download_formatos_datos();
                     }
                     if (data['has_form'] == 3) {
                         // TODO: archivos que todavia no se que onda 
@@ -128,7 +132,7 @@ $("#doc_formatos").change(
 function list_formatos(){
     formato_id = $("#doc_formatos").val();
     codigo_id = $("#protocolo_id").val();
-    var list = $('#formatos_table').DataTable({
+    var list = $('#table-formato').DataTable({
             dom: 'T<"clear">lfrtip',
             "processing": true,
             "serverSide": true,
@@ -155,12 +159,6 @@ function list_formatos(){
     });
 
 }
-
-// $("#new_format").click(
-//     function(){
-//         alert($("#new_format").val());
-//     }
-// )
 
 // MODAL mostrar el modal
 function CreateFormato(){
@@ -197,9 +195,38 @@ function delete_formatos(formato_id) {
 // Metodo Descargar
 function download_formatos(directorio) {
     // alert(directorio);
-    window.open('/documentos/download_formato/' + directorio, '_blank');
+    window.open('/documentos_sc/download_formato/' + directorio, '_blank');
 }
 // END Metodo Descargar
+
+
+// Metodo Descargar sustituyendo datos
+function download_formatos_datos() {
+
+    documentoformato_id = $("#doc_formatos").val();
+    proyecto_id = $('#protocolo_id').val();
+
+    $.ajax({
+        url: "/documentos_sc/create_formato",
+        method:'POST',
+        type: 'post',
+        data:{proyecto_id:proyecto_id, documentoformato_id:documentoformato_id, _token:$('input[name="_token"]').val()},
+        success:function(resp){
+
+            if(resp){
+                borrar_campos();
+                list_formatos();
+                window.open('/documentos_sc/descargar/word/' + resp, '_blank');
+            }else{
+                borrar_campos();
+                toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
+            }
+
+        }
+    });
+        
+}
+// END Metodo Descargar sustituyendo datos
 
 
 // Metodo Editar 
@@ -611,7 +638,7 @@ function edit_formatos(formato_id) {
                             '</div></div>' +
 
                             '<div class="col form-group">' +
-                            '<label>Reporte</label>' +
+                            '<label>Tipo reporte</label>' +
                             '<div class="input-group-prepend">' +
                             '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
                             '<input class="avisosusar form-control" type="text" placeholder="Reporte" ' + id_reporte + ' value="" required/>' +
@@ -714,7 +741,7 @@ function edit_formatos(formato_id) {
                         for (let i = 0; i < req; i++) {
                             aviso_ce_count++;
                             var id_asunto = 'id="85no' + aviso_ce_count + '"';
-                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span><input class="avisoce form-control" type="text" placeholder="Asunto" ' + id_asunto + ' value="" required/><button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>'
+                            var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span><input class="avisoce form-control" type="text" placeholder="Describir los asuntos que se notifican" ' + id_asunto + ' value="" required/><button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>'
                             $("#wrapper_avisoce").append(fieldHTML);
                         }
                     };
@@ -777,235 +804,322 @@ function edit_formatos(formato_id) {
 
 
 // Cargar los campos del modal que esten en la tabla proyectos.
-$('#no0').change(
-    function(){
+// TODO: cambiar para que se carguen los datos pero con la seleccion de la tabla, el select ya no va a existir
+function cargarDatosProtocolo() {
+    proyecto_id = $("#protocolo_id").val();
 
-        proyecto_id = $('#no0').val();
-        $.ajax({
-            url: "/documentos_sc/list_proyectos",
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                proyecto_id:proyecto_id,
-                _token:$('input[name="_token"]').val()
-            },
-            success: function(data){
-                var proyect = JSON.parse(data);
+    empresa_id;
 
-                // TODO: Averiguar donde esta guardado el lugar en la base de datos
-                // Es por la empresa, si es la de chihuahua chihuahua, en mexico méxico etc.
-                // Saber en que ciudad esta cada empresa para poner la ciudad 
-                // TODO: Averiguar el nombre que se va a generar y donde se guarda para saber el genero
-                //Lo va a escribir el usuario
-                // $("#name").val('Hola');
-                //TODO: Averiguar cual campo es el nombre del colaborador 
-                // $("#")
-                $("#1no5").val(proyect[0]['no24']);
+    chihuahua = 'Chihuahua, Chih.';
+    mexico = 'Ciudad de México';
+    guadalajara = 'Zapopan, Jal.';
+    
+    chihuahuaSitio = 'Unidad de Investigación en Salud de Chihuahua S.C.';
+    mexicoSitio = 'UIS Charcot';
+    guadalajaraSitio = 'UIS Guadalajara';
+    
 
+    direccionEmpresa1 = 'Trasviña y Retes 1317, Colonia San Felipe, Chihuahua, Chih., CP 31203, México.';
+    // TODO: que elija la direccion cuando este en mexico
+    direccionEmpresa2 = 'Puente de piedra 150, Torre 2, Planta baja, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.';
+    direccionEmpresa3 = 'Renato Leduc 151-4, Colonia Toriello Guerra, Tlalpan, Ciudad de México, CP 14050, México.';
 
-                $("#2no6").val(proyect[0]['no20']);
+    direccionEmpresa4 = 'Unidad Nacional 1299, Conjunto Patria, Zapopan, Jal. CP 45150, México';
 
+    telefono1 = '614 437 2837 y 614 129 4020';
+    telefono2 = '55 1451 1757 y 55 2127 1039';
+    telefono3 = '33 3687 8045';
+    
+    telefono = '';
+    lugar = '';
+    direccion = '';
+    sitioClinico = '';
 
-                $("#3no1").val(proyect[0]['no24']);
-                // TODO: ver para poner el telefono de la empresa que corresponda $("#3no3").val();
-
-                $("#4no1").val(proyect[0]['no20']);//Codigo
-                $("#4no2").val(proyect[0]['no18']);//codigo UIS 
-                // TODO Hacer metodo para obtener el numero de sitio
-                // $("#4no3").val(proyect[0]['no18']);//codigo UIS 
-                $('#4no4').val(proyect[0]['no19']);//Titulo
-                $('#4no8').val(proyect[0]['no25']);//Patrocinador
-                $('#4no10').val(proyect[0]['investigador']);//investigador
-                // TODO: falta subInvestigador, coordinadores
-
-                // TODO: ver una manera para que se coloque la ciudad en lugar de el nombre de la empresa
-                $("#7no3").val(proyect[0]['no20']);
-                $("#7no1").val(proyect[0]['razon_social']);
-                $("#7no4").val(proyect[0]['no19']);
-                $("#7no5").val(proyect[0]['no25']);
-                $("#7no6").val(proyect[0]['investigador']);
-
-                $('#8no4').val(proyect[0]['no20']);//Codigo
-                $('#8no5').val(proyect[0]['no19']);//Titulo
-                $('#8no6').val(proyect[0]['no25']);//Patrocinador
-                $('#8no7').val(proyect[0]['razon_social']);//Direccion
-                $('#8no9').val(proyect[0]['titulo']);//Titulo investigador
-                $('#8no10').val(proyect[0]['investigador']);//investigador
-                $('#8no11').val(proyect[0]['cedula']);//cedula
-
-                $("#9no3").val(proyect[0]['no20']);//codigo
-                $("#9no4").val(proyect[0]['no19']);//titulo
-                $("#9no5").val(proyect[0]['no25']);//patrocinador
-                $("#9no6").val(proyect[0]['razon_social']);//Direccion
-                $("#9no7").val(proyect[0]['investigador']);//Investigador
-
-                $("#10no3").val(proyect[0]['no20']);//Codigo
-                $("#10no4").val(proyect[0]['no19']);//titulo
-                $("#10no5").val(proyect[0]['no25']);//patrocinador
-                // TODO Hacer metodo para obtener la direccion dependiendo de la empresa
-                $("#10no6").val(proyect[0]['razon_social']);//Direcciona sitio clinico
-                $("#10no7").val(proyect[0]['investigador']);//investigador
-
-                $('#11no3').val(proyect[0]['no20']);//Codigo
-                $('#11no4').val(proyect[0]['no19']);//Titulo
-                $('#11no5').val(proyect[0]['razon_social']);//Direccion
-                $('#11no6').val(proyect[0]['titulo']);//Titulo investigador
-                $('#11no7').val(proyect[0]['investigador']);//investigador
-
-                // TODO: cambiar o quitar segun sea el caso
-                $('#12no111').val(proyect[0]['Nombre de la empresa'])//Nombre de la empresa
-
-                $('#27no6').val(proyect[0]['razon_social']);//Direccion sitio clinico
-                $('#27no7').val(proyect[0]['no20']);//Codigo
-                $('#27no8').val(proyect[0]['no19']);//Titulo
-
-                $('#28no6').val(proyect[0]['razon_social']);//Direccion sitio clinico
-                $('#28no7').val(proyect[0]['no20']);//Codigo
-                $('#28no8').val(proyect[0]['no19']);//Titulo
-
-                $('#55no1').val(proyect[0]['no20']);//Codigo
-                $('#55no2').val(proyect[0]['no24']);//Patología
-                // TODO: Ver donde esta el mobil o como se va a llenar
-                // $('#55no4').val(proyect[0]['']);//Móbil
-
-                $('#56no1').val(proyect[0]['no20']);//Codigo
-                $('#56no2').val(proyect[0]['investigador']);//Investigador
-                // TODO: Ver donde esta la dirreccion, y checar si va a llevar la ciudad y la fecha en el formato.
-                $('#56no5').val(proyect[0]['razon_social']);//Direccion sisitio clinico
-
-                $('#57no1').val(proyect[0]['no20']);//Codigo
-                $('#57no2').val(proyect[0]['investigador']);//Investigador
-                // TODO Ver donde esta el sub investigador
-                // $('#57no3').val(proyect[0]['subinvestigador']);//sub investigador
-                // TODO ver donde esta el coordinador de estudios
-                // $('#57no4').val(proyect[0]['coordinadorestudios']);//sub investigador
-                // TODO: Ver donde esta la dirreccion, y checar si va a llevar la ciudad y la fecha en el formato.
-                $('#57no9').val(proyect[0]['razon_social']);//Direccion sisitio clinico
-
-                $('#58no3').val(proyect[0]['no20']);//Codigo
-
-                $('#63no3').val(proyect[0]['no20']);//Codigo
-                $('#63no4').val(proyect[0]['investigador']);//Investigador
-                // TODO Ver donde esta el sub investigador
-                // $('#63no3').val(proyect[0]['subinvestigador']);//sub investigador
-                // TODO ver donde esta el coordinador de estudios
-                // $('#63no4').val(proyect[0]['coordinadorestudios']);//sub investigador
-                // TODO: Ver donde esta la dirreccion, y checar si va a llevar la ciudad y la fecha en el formato.
-                $('#63no9').val(proyect[0]['razon_social']);//Direccion sisitio clinico
-
-                // TODO: ver una manera para que se coloque la ciudad en lugar de el nombre de la empresa
-                $("#72no1").val(proyect[0]['razon_social']);//Dirreccón Ciudad 
-                $("#72no3").val(proyect[0]['no20']);//Código
-                $("#72no4").val(proyect[0]['no19']);//Título
-                $("#72no5").val(proyect[0]['no25']);//Patrocinador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#76no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#76no3").val(proyect[0]['no20']);//Código
-                $("#76no4").val(proyect[0]['no19']);//Título
-                $("#76no5").val(proyect[0]['no25']);//Patrocinador
-
-                $("#77no1").val(proyect[0]['no20']);//Código
-                $("#77no2").val(proyect[0]['no19']);//Título
-                $("#77no3").val(proyect[0]['investigador']);//Investigador
-                $("#77no4").val(proyect[0]['no25']);//Patrocinador
-                $("#77no5").val(proyect[0]['razon_social']);//Sitio clinico 
-                //TODO: cambiar para que sea la dirrecion correcta
-                $("#77no6").val(proyect[0]['razon_social']);//Dirreccón Ciudad 
-
-                // TODO Cambiar por la ciudad correcta
-                $("#78no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#78no3").val(proyect[0]['no20']);//Código
-                $("#78no4").val(proyect[0]['no19']);//Título
-                $("#78no5").val(proyect[0]['no25']);//Patrocinador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#79no1").val(proyect[0]['razon_social']);//Sitio clinico 
-
-                // TODO Cambiar por la ciudad correcta
-                $("#80no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#80no2").val(proyect[0]['no20']);//Código
-                $("#80no3").val(proyect[0]['no19']);//Título
-                $("#80no4").val(proyect[0]['no25']);//Patrocinador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#81no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#81no4").val(proyect[0]['no20']);//Código
-                $("#81no5").val(proyect[0]['no19']);//Título
-
-                // TODO Cambiar por la ciudad correcta
-                $("#82no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#82no3").val(proyect[0]['no20']);//Código
-                $("#82no4").val(proyect[0]['no19']);//Título
-                $("#82no5").val(proyect[0]['no25']);//Patrocinador
-                $("#82no6").val(proyect[0]['investigador']);//Investigador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#83no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#83no3").val(proyect[0]['no20']);//Código
-                $("#83no4").val(proyect[0]['no19']);//Título
-                $("#83no5").val(proyect[0]['no25']);//Patrocinador
-                $("#83no6").val(proyect[0]['investigador']);//Investigador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#84no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#84no3").val(proyect[0]['no18']);//codigo UIS 
-                $("#84no4").val(proyect[0]['no20']);//Código
-                $("#84no5").val(proyect[0]['no19']);//Título
-                $("#84no6").val(proyect[0]['no25']);//Patrocinador
-                $("#84no7").val(proyect[0]['investigador']);//Investigador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#85no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#85no3").val(proyect[0]['no20']);//Código
-                $("#85no4").val(proyect[0]['no19']);//Título
-                $("#85no5").val(proyect[0]['no25']);//Patrocinador
-                $("#85no6").val(proyect[0]['investigador']);//Investigador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#86no1").val(proyect[0]['razon_social']);//Sitio clinico 
-                $("#86no3").val(proyect[0]['no20']);//Código
-                $("#86no4").val(proyect[0]['no19']);//Título
-                $("#86no5").val(proyect[0]['no25']);//Patrocinador
-                $("#86no6").val(proyect[0]['investigador']);//Investigador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#87no1").val(proyect[0]['razon_social']);//ciudad
-                $("#87no3").val(proyect[0]['no20']);//Código
-                $("#87no4").val(proyect[0]['no19']);//Título
-                $("#87no5").val(proyect[0]['no25']);//Patrocinador
-                $("#87no6").val(proyect[0]['razon_social']);//sitio clinico direccion
-                $("#87no16").val(proyect[0]['investigador']);//Investigador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#88no1").val(proyect[0]['razon_social']);//ciudad
-                $("#88no5").val(proyect[0]['no20']);//Código
-                $("#88no6").val(proyect[0]['no19']);//Título
-                $("#88no7").val(proyect[0]['no25']);//Patrocinador
-                $("#88no8").val(proyect[0]['razon_social']);//sitio clinico direccion
-                $("#88no18").val(proyect[0]['investigador']);//Investigador
-
-                // TODO Cambiar por la ciudad correcta
-                $("#89no1").val(proyect[0]['razon_social']);//ciudad
-                $("#89no3").val(proyect[0]['no20']);//Código
-                $("#89no4").val(proyect[0]['no19']);//Título
-                $("#89no5").val(proyect[0]['no25']);//Patrocinador
-                $("#89no6").val(proyect[0]['razon_social']);//sitio clinico direccion
-                $("#89no17").val(proyect[0]['investigador']);//Investigador
-
-                $("#90no1").val(proyect[0]['no18']);//codigo UIS 
-
-                // TODO Cambiar por la ciudad correcta
-                $("#91no1").val(proyect[0]['razon_social']);//ciudad
-                $("#91no6").val(proyect[0]['no20']);//Código
-                $("#91no7").val(proyect[0]['no19']);//Título
-                $("#91no8").val(proyect[0]['no25']);//Patrocinador
-
-            }
-        });
-
+    // chihuahua
+    if (empresa_id == 1) {
+        lugar = chihuahua;
+        direccion = direccionEmpresa1;
+        telefono = telefono1;
+        sitioClinico = chihuahuaSitio;
     }
-)
+    // mexico
+    if (empresa_id == 2) {
+        lugar = mexico;
+        telefono = telefono2;
+        sitioClinico = mexicoSitio;
+    }
+    // guadalajara
+    if (empresa_id == 4) {
+        lugar = guadalajara;
+        direccion = direccionEmpresa4;
+        telefono = telefono3;
+        sitioClinico = guadalajaraSitio;
+    }
+    
+    $.ajax({
+        url: "/documentos_sc/datos_protocolo",
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            proyecto_id:proyecto_id,
+            _token:$('input[name="_token"]').val()
+        },
+        success: function(data){
+            // alert(data);
+            var proyect = JSON.parse(data);
+
+            // TODO: Averiguar donde esta guardado el lugar en la base de datos
+            // Es por la empresa, si es la de chihuahua chihuahua, en mexico méxico etc.
+            // Saber en que ciudad esta cada empresa para poner la ciudad 
+            // TODO: Averiguar el nombre que se va a generar y donde se guarda para saber el genero
+            //Lo va a escribir el usuario
+            // $("#name").val('Hola');
+            //TODO: Averiguar cual campo es el nombre del colaborador 
+            // $("#")
+
+            // Presentacion
+            $("#1no1").val(lugar);
+            $("#1no6").val(proyect[0]['no24']);// Patologia
+
+            // Inactivo, constancia anual
+            // $("#2no6").val(proyect[0]['no20']);
+
+            // Publicidad
+            $("#3no1").val(proyect[0]['no24']);// Patologia
+            $("#3no2").val(telefono);
+
+            // Codigos y titulos
+            $("#4no1").val(proyect[0]['no20']);//Codigo
+            $("#4no2").val(proyect[0]['no18']);//codigo UIS 
+            $('#4no4').val(proyect[0]['no19']);//Titulo
+            $('#4no8').val(proyect[0]['no25']);//Patrocinador
+            $('#4no10').val(proyect[0]['investigador']);//investigador
+
+            // Sometimiento CE
+            $("#7no1").val(lugar);
+            $("#7no3").val(proyect[0]['no18']);//codigo UIS 
+            $("#7no4").val(proyect[0]['no20']);// codigo
+            $("#7no5").val(proyect[0]['no19']);// titulo del protocolo
+            $("#7no6").val(proyect[0]['no25']); // protrocinador
+            $("#7no7").val(proyect[0]['investigador']); //nombre Investigador
+
+            // Compromisos
+            $('#8no1').val(lugar);
+            $('#8no4').val(proyect[0]['no20']);//Codigo
+            $('#8no5').val(proyect[0]['no19']);//Titulo
+            $('#8no6').val(proyect[0]['no25']);//Patrocinador
+            if (empresa_id != 2) {
+                $('#8no7').val(direccion);//Direccion
+            }
+            // TODO: Hacerlo automatico cuando ya este el sistema completo
+            // $('#8no9').val(proyect[0]['titulo']);//Titulo investigador
+            // $('#8no10').val(proyect[0]['investigador']);//investigador
+            // $('#8no11').val(proyect[0]['cedula']);//cedula
+
+            // Responsabilidades
+            $("#9no1").val(lugar);
+            $("#9no3").val(proyect[0]['no20']);//codigo
+            $("#9no4").val(proyect[0]['no19']);//titulo
+            $("#9no5").val(proyect[0]['no25']);//patrocinador
+            if (empresa_id != 2) {
+                $("#9no6").val(direccion);//Direccion
+            }
+            $("#9no7").val(proyect[0]['investigador']);//Investigador
+
+            // Autorizacion
+            $("#10no1").val(lugar);
+            $("#10no3").val(proyect[0]['no20']);//Codigo
+            $("#10no4").val(proyect[0]['no19']);//titulo
+            $("#10no5").val(proyect[0]['no25']);//patrocinador
+            if (empresa_id != 2) {
+                $("#10no6").val(direccion);//Direcciona sitio clinico
+            }
+            $("#10no7").val(proyect[0]['investigador']);//investigador
+
+            // Instalaciones
+            $('#11no1').val(lugar);
+            $('#11no3').val(proyect[0]['no20']);//Codigo
+            $('#11no4').val(proyect[0]['no19']);//Titulo
+            if (empresa_id != 2) {
+                $('#11no5').val(direccion);//Direccion
+            }
+            $('#11no6').val(proyect[0]['titulo']);//Titulo investigador
+            $('#11no7').val(proyect[0]['investigador']);//investigador
+
+            // Anticorrupcion
+            $('#12no1').val(lugar)//
+
+            // Destruccion de materiales
+            $('#27no1').val(lugar);
+            if (empresa_id != 2) {
+                $('#27no6').val(direccion);//Direccion sitio clinico
+            }
+            $('#27no7').val(proyect[0]['no20']);//Codigo
+            $('#27no8').val(proyect[0]['no19']);//Titulo
+
+            // Destruccion de productos
+            $('#28no1').val(lugar);
+            if (empresa_id != 2) {
+                $('#28no6').val(direccion);//Direccion sitio clinico
+            }
+            $('#28no7').val(proyect[0]['no20']);//Codigo
+            $('#28no8').val(proyect[0]['no19']);//Titulo
+
+            // Tarjeta de bolsillo
+            $('#55no1').val(proyect[0]['no20']);//Codigo
+            $('#55no2').val(proyect[0]['no24']);//Patología
+
+            // Carpeta documento fuente
+            $('#56no1').val(proyect[0]['no20']);//Codigo
+            $('#56no2').val(proyect[0]['investigador']);//Investigador
+            if (empresa_id != 2) {
+                $('#56no5').val(direccion);//Direccion sisitio clinico
+            }
+
+            // Hoja Inicial
+            $('#57no1').val(proyect[0]['no20']);//Codigo
+            $('#57no2').val(proyect[0]['investigador']);//Investigador
+            // TODO Ver donde esta el sub investigador
+            // $('#57no3').val(proyect[0]['subinvestigador']);//sub investigador
+            // TODO ver donde esta el coordinador de estudios
+            // $('#57no4').val(proyect[0]['coordinadorestudios']);//sub investigador
+            // TODO: Ver donde esta la dirreccion, y checar si va a llevar la ciudad y la fecha en el formato.
+            if (empresa_id != 2) {
+                $('#57no9').val(direccion);//Direccion sisitio clinico
+            }
+
+            // Contacto
+            $('#58no3').val(proyect[0]['no20']);//Codigo
+
+            // Señalador de visita
+            $('#63no3').val(proyect[0]['no20']);//Codigo
+            $('#63no4').val(proyect[0]['investigador']);//Investigador
+            // TODO Ver donde esta el sub investigador
+            // $('#63no3').val(proyect[0]['subinvestigador']);//sub investigador
+            // TODO ver donde esta el coordinador de estudios
+            // $('#63no4').val(proyect[0]['coordinadorestudios']);//sub investigador
+            // TODO: Ver donde esta la dirreccion, y checar si va a llevar la ciudad y la fecha en el formato.
+            if (empresa_id != 2) {
+                $('#63no9').val(direccion);//Direccion sisitio clinico
+            }
+
+            // Recibo ICF
+            $("#72no1").val(lugar);
+            $("#72no3").val(proyect[0]['no20']);//Código
+            $("#72no4").val(proyect[0]['no19']);//Título
+            $("#72no5").val(proyect[0]['no25']);//Patrocinador
+
+            // Solicitud de resumen
+            $("#76no1").val(lugar);
+            $("#76no3").val(proyect[0]['no20']);//Código
+            $("#76no4").val(proyect[0]['no19']);//Título
+            $("#76no5").val(proyect[0]['no25']);//Patrocinador
+
+            // Privacidad para sujetos
+            $("#77no1").val(proyect[0]['no20']);//Código
+            $("#77no2").val(proyect[0]['no19']);//Título
+            $("#77no3").val(proyect[0]['investigador']);//Investigador
+            $("#77no4").val(proyect[0]['no25']);//Patrocinador
+            $("#77no5").val(sitioClinico);//Sitio clinico
+            if (empresa_id != 2) {
+                $("#77no6").val(direccion);//Dirreccón Ciudad 
+            }
+
+            // Privacidad y datos
+            $("#78no1").val(lugar);
+            $("#78no3").val(proyect[0]['no20']);//Código
+            $("#78no4").val(proyect[0]['no19']);//Título
+            $("#78no5").val(proyect[0]['no25']);//Patrocinador
+
+            // Orden de compra
+            $("#79no1").val(lugar);
+
+            // Envio de muestras
+            $("#80no1").val(lugar);
+            $("#80no2").val(proyect[0]['no20']);//Código
+            $("#80no3").val(proyect[0]['no19']);//Título
+            $("#80no4").val(proyect[0]['no25']);//Patrocinador
+
+            // Orden de compra hospital
+            $("#81no1").val(lugar);
+            $("#81no4").val(proyect[0]['no20']);//Código
+            $("#81no5").val(proyect[0]['no19']);//Título
+
+            // Aviso EAS
+            $("#82no1").val(lugar);//Sitio clinico 
+            $("#82no3").val(proyect[0]['no20']);//Código
+            $("#82no4").val(proyect[0]['no19']);//Título
+            $("#82no5").val(proyect[0]['no25']);//Patrocinador
+            $("#82no6").val(proyect[0]['investigador']);//Investigador
+
+            // Aviso Susar
+            $("#83no1").val(lugar); 
+            $("#83no3").val(proyect[0]['no20']);//Código
+            $("#83no4").val(proyect[0]['no19']);//Título
+            $("#83no5").val(proyect[0]['no25']);//Patrocinador
+            $("#83no6").val(proyect[0]['investigador']);//Investigador
+
+            // Somete desviacion
+            $("#84no1").val(lugar);
+            $("#84no3").val(proyect[0]['no18']);//codigo UIS 
+            $("#84no4").val(proyect[0]['no20']);//Código
+            $("#84no5").val(proyect[0]['no19']);//Título
+            $("#84no6").val(proyect[0]['no25']);//Patrocinador
+            $("#84no7").val(proyect[0]['investigador']);//Investigador
+
+            // Aviso al CE
+            $("#85no1").val(lugar);
+            $("#85no3").val(proyect[0]['no20']);//Código
+            $("#85no4").val(proyect[0]['no19']);//Título
+            $("#85no5").val(proyect[0]['no25']);//Patrocinador
+            $("#85no6").val(proyect[0]['investigador']);//Investigador
+
+            // Fe de Erratas
+            $("#86no1").val(lugar);
+            $("#86no3").val(proyect[0]['no20']);//Código
+            $("#86no4").val(proyect[0]['no19']);//Título
+            $("#86no5").val(proyect[0]['no25']);//Patrocinador
+            $("#86no6").val(proyect[0]['investigador']);//Investigador
+
+            // Renovacion anual
+            $("#87no1").val(lugar);//ciudad
+            $("#87no3").val(proyect[0]['no20']);//Código
+            $("#87no4").val(proyect[0]['no19']);//Título
+            $("#87no5").val(proyect[0]['no25']);//Patrocinador
+            if (empresa_id != 2) {
+                $("#87no6").val(direccion);//sitio clinico direccion
+            }
+            $("#87no16").val(proyect[0]['investigador']);//Investigador
+
+            // Informe tecnico
+            $("#88no1").val(lugar);//ciudad
+            $("#88no5").val(proyect[0]['no20']);//Código
+            $("#88no6").val(proyect[0]['no19']);//Título
+            $("#88no7").val(proyect[0]['no25']);//Patrocinador
+            if (empresa_id != 2) {
+                $("#88no8").val(direccion);//sitio clinico direccion
+            }
+            $("#88no18").val(proyect[0]['investigador']);//Investigador
+
+            // Aviso de cierre
+            $("#89no1").val(lugar);//ciudad
+            $("#89no3").val(proyect[0]['no20']);//Código
+            $("#89no4").val(proyect[0]['no19']);//Título
+            $("#89no5").val(proyect[0]['no25']);//Patrocinador
+            $("#89no17").val(proyect[0]['investigador']);//Investigador
+
+            // Archivo muerto
+            $("#90no1").val(proyect[0]['no18']);//codigo UIS 
+
+            // Cambio de domicilio
+            $("#91no1").val(lugar);//ciudad
+            $("#91no6").val(proyect[0]['no20']);//Código
+            $("#91no7").val(proyect[0]['no19']);//Título
+            $("#91no8").val(proyect[0]['no25']);//Patrocinador
+
+        }
+    });
+}
 // END cargar datos proyectos ---------------------
 
 
@@ -1013,16 +1127,11 @@ $('#no0').change(
 function borrar_campos() {
     documento_formato_id = $("#doc_formatos").val();
 
-    $("#no0").val('Seleccione un proyecto...');
-
-    // $("#empresa_id").val(null);
-    // $("#menu_id").val(null);
-    // $("#user_id").val(null);
     $("#documentoformato_id").val(null);
     $("#proyecto_id").val(null);
     $("#formato_id").val(null);
     $("#formcreate_presentacion")[0].reset();
-    $("#formcreate_constanciaAnual")[0].reset();
+    // $("#formcreate_constanciaAnual")[0].reset();
     $("#formcreate_publicidad")[0].reset();
     $("#formcreate_codigoTitulo")[0].reset();
     $("#formcreate_sometimiento")[0].reset();
@@ -1062,11 +1171,11 @@ function borrar_campos() {
         }
         publicidad_req_count = 3;
     };
-    if (sometimiento_doc_count > 7) {
-        for (let i = 8; i <= sometimiento_doc_count; i++) {
+    if (sometimiento_doc_count > 8) {
+        for (let i = 9; i <= sometimiento_doc_count; i++) {
             $("#7no" + i).parent('div').remove();
         }
-        sometimiento_doc_count = 7;
+        sometimiento_doc_count = 8;
     };
     if (responsabilidades_res_count > 10) {
         for (let i = 11; i <= responsabilidades_res_count; i++) {
@@ -1283,9 +1392,9 @@ $('#btnCdestruccionMateriales').click(function(){
 $('#btnCdestruccionProductos').click(function(){
     borrar_campos();
 })
-$('#btnCnotaarchivo').click(function(){
-    borrar_campos();
-})
+// $('#btnCnotaarchivo').click(function(){
+//     borrar_campos();
+// })
 $('#btnCtarjetabolsillo').click(function(){
     borrar_campos();
 })
@@ -1298,42 +1407,42 @@ $('#btnChojainicial').click(function(){
 $('#btnCcontacto').click(function(){
     borrar_campos();
 })
-$('#btnCeventoadverso').click(function(){
-    borrar_campos();
-})
-$('#btnCmedicamentosconta').click(function(){
-    borrar_campos();
-})
-$('#btnCmedicamentoestudio').click(function(){
-    borrar_campos();
-})
-$('#btnChitoriaclinica').click(function(){
-    borrar_campos();
-})
+// $('#btnCeventoadverso').click(function(){
+//     borrar_campos();
+// })
+// $('#btnCmedicamentosconta').click(function(){
+//     borrar_campos();
+// })
+// $('#btnCmedicamentoestudio').click(function(){
+//     borrar_campos();
+// })
+// $('#btnChitoriaclinica').click(function(){
+//     borrar_campos();
+// })
 $('#btnCseñaladorvisita').click(function(){
     borrar_campos();
 })
-$('#btnCvisitasd').click(function(){
-    borrar_campos();
-})
-$('#btnCnotamedica').click(function(){
-    borrar_campos();
-})
-$('#btnCnpreseleccion').click(function(){
-    borrar_campos();
-})
-$('#btnCseleccion').click(function(){
-    borrar_campos();
-})
-$('#btnCdocconsentimiento').click(function(){
-    borrar_campos();
-})
+// $('#btnCvisitasd').click(function(){
+//     borrar_campos();
+// })
+// $('#btnCnotamedica').click(function(){
+//     borrar_campos();
+// })
+// $('#btnCnpreseleccion').click(function(){
+//     borrar_campos();
+// })
+// $('#btnCseleccion').click(function(){
+//     borrar_campos();
+// })
+// $('#btnCdocconsentimiento').click(function(){
+//     borrar_campos();
+// })
 $('#btnCreciboicf').click(function(){
     borrar_campos();
 })
-$('#btnCcarnetviaticos').click(function(){
-    borrar_campos();
-})
+// $('#btnCcarnetviaticos').click(function(){
+//     borrar_campos();
+// })
 $('#btnCsolicitudresumen').click(function(){
     borrar_campos();
 })
@@ -1364,7 +1473,7 @@ $('#btnCsometedesviacion').click(function(){
 $('#btnCavisoce').click(function(){
     borrar_campos();
 })
-$('#btnCfedeerrata').click(function(){
+$('#btnCfedeerratas').click(function(){
     borrar_campos();
 })
 $('#btnCrenovacionanual').click(function(){
@@ -1420,7 +1529,10 @@ $("#55no3").change(
             $("#55no4").val('614 129 4020');
         }
         if (telefono == '55 1451 1757') {
-            $("55no4").val('55 2127 1039');
+            $("#55no4").val('55 2127 1039');
+        }
+        if (telefono == '') {
+            $("#55no4").val('');
         }
     }
 )
@@ -1442,10 +1554,8 @@ $("#add_requisito").click(
         $("#wrapper_publicidad").append(fieldHTML);
     }
 )
-$("#wrapper_publicidad").on('click', '.remove_button', function(e) {
-    e.preventDefault();
-
-    var div = $(this).parents('#body-publicidad');
+$("#wrapper_publicidad").on('click', '.remove_button', function() {
+    var div = $(this).parents('#body-3');
 
     $(this).parent('div').remove();
 
@@ -1467,59 +1577,8 @@ $("#wrapper_publicidad").on('click', '.remove_button', function(e) {
 })
 // END Agregar y eliminar campos del modal publicidad 
 
-// Metodo para agregar y eliminar campos del modal de Codigos y titulos 
-// var codigosTitulos_otro_count = 43;
-// $('#add_otro_codigo').click(
-//     function() {
-//         codigosTitulos_otro_count++;
-//         var id_plataforma = 'id="4no' + codigosTitulos_otro_count + '"';
-//         var name_plataforma = 'name="4no' + codigosTitulos_otro_count + '"';
-//         codigosTitulos_otro_count++;
-//         var id_liga = 'id="4no' + codigosTitulos_otro_count + '"';
-//         var name_liga = 'name="4no' + codigosTitulos_otro_count + '"';
-//         codigosTitulos_otro_count++;
-//         var id_nombre = 'id="4no' + codigosTitulos_otro_count + '"';
-//         var name_nombre = 'name="4no' + codigosTitulos_otro_count + '"';
-//         codigosTitulos_otro_count++;
-//         var id_usuario = 'id="4no' + codigosTitulos_otro_count + '"';
-//         var name_usuario = 'name="4no' + codigosTitulos_otro_count + '"';
-//         codigosTitulos_otro_count++;
-//         var id_password = 'id="4no' + codigosTitulos_otro_count + '"';
-//         var name_password = 'name="4no' + codigosTitulos_otro_count + '"';
-
-//         begin_otro_codigo = '<div class="p-2 rounded border border-dark">';
-
-//         input_plataforma = '<div class="form-group"><label class="form-label" ' + name_plataforma + '">Plataforma</label>' +
-//         '<div class="input-group-prepend">' +
-//         '<span class="input-group-text"><i class="fas fa-desktop"></i></span>' +
-//         '<input class="responsabilidades form-control" type="text" placeholder="Plataforma" ' + id_rol_estudio + ' value="" required/>' +
-//         '</div>' +
-//         '</div>';
-        
-//         '<div class="form-group">
-//         {!! Form::label('4no39', '39. Plataforma', ['class' => 'form-label']) !!}
-//         <div class="input-group-prepend">
-//         <span class="input-group-text"><i class="fas fa-desktop"></i></span>
-//         {!! Form::text('4no39', null, ['class' => 'form-control', 'placeholder' => 'Plataforma', 'required']) !!}
-//         </div>
-//     </div>';
-
-//         input_liga = '';
-
-//         input_nombre = '';
-
-//         input_usuario = '';
-        
-//         input_password = '';
-
-//         end_otro_codigo = '</div>';
-        
-//     }
-// )
-// END Agregar y eliminar campos del modal Codigos y titulos
-
 // Metodo para agregar y eliminar campos del modal de sometimiento
-var sometimiento_doc_count = 7;
+var sometimiento_doc_count = 8;
 $("#add_documento").click(
     function() {
         sometimiento_doc_count++;
@@ -1534,11 +1593,11 @@ $("#add_documento").click(
 $("#wrapper_sometimiento").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-sometimiento');
+    var div = $(this).parents('#body-7');
 
     $(this).parent('div').remove();
 
-    var aux = 8;
+    var aux = 9;
     var auxId = '7no';
     var hijos = div.find(".sometimiento");
     // console.log(hijos[0].id)
@@ -1651,7 +1710,7 @@ $("#add_personal").click(
 $("#wrapper_responsabilidades").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-responsabilidades');
+    var div = $(this).parents('#body-9');
     // console.log(div.find(".responsabilidades").length)
 
     $(this).parents('.p-2.rounded.border.border-5').remove();
@@ -1709,7 +1768,7 @@ $("#add_doc_instalaciones").click(
 $("#wrapper_instalaciones").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-instalaciones');
+    var div = $(this).parents('#body-11');
 
     $(this).parent('div').remove();
 
@@ -1755,7 +1814,7 @@ $("#add_materiales").click(
 $("#wrapper_destruccionmateriales").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-destruccionmateriales');
+    var div = $(this).parents('#body-27');
 
     $(this).parent('div').remove();
 
@@ -1802,7 +1861,7 @@ $("#add_productos").click(
 $("#wrapper_destruccionproductos").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-destruccionproductos');
+    var div = $(this).parents('#body-28');
 
     $(this).parent('div').remove();
 
@@ -1840,7 +1899,7 @@ $("#add_estudio").click(
 $("#wrapper_ordenestudio").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-ordencompra');
+    var div = $(this).parents('#body-79');
 
     $(this).parent('div').remove();
 
@@ -1932,7 +1991,7 @@ $("#add_sujeto_orden").click(
 $("#wrapper_ordensujeto").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-ordencomprahospital');
+    var div = $(this).parents('#body-81');
 
     $(this).parent('div').remove();
 
@@ -2049,7 +2108,7 @@ $("#add_servicio").click(
 $("#wrapper_ordenservicio").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-ordencomprahospital');
+    var div = $(this).parents('#body-81');
 
     $(this).parent('div').remove();
 
@@ -2120,7 +2179,7 @@ $("#add_restriccion").click(
 $("#wrapper_ordenrestriccion").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-ordencomprahospital');
+    var div = $(this).parents('#body-81');
 
     $(this).parent('div').remove();
 
@@ -2179,7 +2238,7 @@ $("#add_evento_adverso").click(
 $("#wrapper_avisoeas").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-avisoeas');
+    var div = $(this).parents('#body-82');
 
     $(this).parent('div').remove();
 
@@ -2255,7 +2314,7 @@ $("#add_reporte_susar").click(
         '</div></div>' +
 
         '<div class="col form-group">' +
-        '<label>Reporte</label>' +
+        '<label>Tipo reporte</label>' +
         '<div class="input-group-prepend">' +
         '<span class="input-group-text"><i class="fas fa-file-alt"></i></span>' +
         '<input class="avisosusar form-control" type="text" placeholder="Reporte" ' + id_reporte + ' value="" required/>' +
@@ -2281,7 +2340,7 @@ $("#add_reporte_susar").click(
 $("#wrapper_avisosusar").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-avisosusar');
+    var div = $(this).parents('#body-83');
 
     $(this).parents('.avisosusarinpust').remove();
 
@@ -2378,7 +2437,7 @@ $("#add_somete_desviacion").click(
 $("#wrapper_sometedesviacion").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-sometedesviacion');
+    var div = $(this).parents('#body-84');
 
     $(this).parents('.sometedesviacioninpust').remove();
 
@@ -2408,14 +2467,14 @@ $("#add_asunto_aviso").click(
 
         var id_asunto = 'id="85no' + aviso_ce_count + '"';
 
-        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span><input class="avisoce form-control" type="text" placeholder="Asunto" ' + id_asunto + ' value="" required/><button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>'
+        var fieldHTML = '<div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-file"></i></span><input class="avisoce form-control" type="text" placeholder="Describir los asuntos que se notifican" ' + id_asunto + ' value="" required/><button type="button" class="remove_button btn btn-danger" title="Eliminar campo"><i class="fas fa-minus-square"></i></button></div>'
         $("#wrapper_avisoce").append(fieldHTML);
     }
 )
 $("#wrapper_avisoce").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-avisoce');
+    var div = $(this).parents('#body-85');
 
     $(this).parent('div').remove();
 
@@ -2452,7 +2511,7 @@ $("#add_fe_de_erratas").click(
 $("#wrapper_fedeerratas").on('click', '.remove_button', function(e) {
     e.preventDefault();
 
-    var div = $(this).parents('#body-fedeerratas');
+    var div = $(this).parents('#body-86');
 
     $(this).parent('div').remove();
 
@@ -2486,7 +2545,7 @@ $('#formcreate_presentacion').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -2504,7 +2563,7 @@ $('#formcreate_presentacion').on('submit', function(e) {
     if (!formato_id) {
         if(documentoformato_id!="" && proyecto_id ){
             $.ajax({
-                url: "/documentos/create_formato",
+                url: "/documentos_sc/create_formato",
                 type:'post',
                 data:formData,
                 cache:false,
@@ -2597,7 +2656,7 @@ $('#formcreate_constanciaAnual').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -2708,7 +2767,7 @@ $('#formcreate_publicidad').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -2841,7 +2900,7 @@ $('#formcreate_codigoTitulo').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -2952,7 +3011,7 @@ $('#formcreate_sometimiento').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -2968,8 +3027,8 @@ $('#formcreate_sometimiento').on('submit', function(e) {
     // formData.append('_token', $('input[name=_token]').val()); 
 
     // console.log(sometimiento_doc_count);
-    if (sometimiento_doc_count > 7) {
-        for (let i = 8; i <= sometimiento_doc_count; i++) {
+    if (sometimiento_doc_count > 8) {
+        for (let i = 9; i <= sometimiento_doc_count; i++) {
             var idAppend = "7no" + i;
             var value = $("#" + idAppend).val();
             formData.append(idAppend, value);
@@ -2992,11 +3051,11 @@ $('#formcreate_sometimiento').on('submit', function(e) {
     
                     // console.log(resp);
 
-                    if (sometimiento_doc_count > 7) {
-                        for (let i = 8; i <= sometimiento_doc_count; i++) {
+                    if (sometimiento_doc_count > 8) {
+                        for (let i = 9; i <= sometimiento_doc_count; i++) {
                             $("#7no" + i).parent('div').remove();
                         }
-                        sometimiento_doc_count = 7;
+                        sometimiento_doc_count = 8;
                     };
     
                     if(resp == 'guardado'){
@@ -3044,11 +3103,11 @@ $('#formcreate_sometimiento').on('submit', function(e) {
     
                     // console.log(resp);
 
-                    if (sometimiento_doc_count > 7) {
-                        for (let i = 8; i <= sometimiento_doc_count; i++) {
+                    if (sometimiento_doc_count > 8) {
+                        for (let i = 9; i <= sometimiento_doc_count; i++) {
                             $("#7no" + i).parent('div').remove();
                         }
-                        sometimiento_doc_count = 7;
+                        sometimiento_doc_count = 8;
                     };
     
                     if(resp){
@@ -3084,7 +3143,7 @@ $('#formcreate_compromisos').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -3195,7 +3254,7 @@ $('#formcreate_responsabilidades').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -3334,7 +3393,7 @@ $('#formcreate_autorizacion').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -3445,7 +3504,7 @@ $('#formcreate_instalaciones').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -3578,7 +3637,7 @@ $('#formcreate_anticorupcion').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -3689,7 +3748,7 @@ $('#formcreate_destruccionMateriales').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -3822,7 +3881,7 @@ $('#formcreate_destruccionProductos').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -3955,7 +4014,7 @@ $('#formcreate_tarjetaBolsillo').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4066,7 +4125,7 @@ $('#formcreate_documentoFuente').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4177,7 +4236,7 @@ $('#formcreate_hojaInicial').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4288,7 +4347,7 @@ $('#formcreate_contacto').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4399,7 +4458,7 @@ $('#formcreate_señaladorVisita').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4510,7 +4569,7 @@ $('#formcreate_reciboICF').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4621,7 +4680,7 @@ $('#formcreate_solicitudResumen').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4732,7 +4791,7 @@ $('#formcreate_privacidadSujetos').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4843,7 +4902,7 @@ $('#formcreate_privacidadDatos').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -4954,7 +5013,7 @@ $('#formcreate_ordenCompra').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -5086,7 +5145,7 @@ $('#formcreate_envioMuestras').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -5250,7 +5309,7 @@ $('#formcreate_ordenCompraHospital').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -5676,7 +5735,7 @@ $('#formcreate_avisoEAS').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -5809,7 +5868,7 @@ $('#formcreate_avisoSUSAR').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -5942,7 +6001,7 @@ $('#formcreate_someteDesviacion').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -6075,7 +6134,7 @@ $('#formcreate_avisoCE').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -6207,7 +6266,7 @@ $('#formcreate_feDeErratas').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -6339,7 +6398,7 @@ $('#formcreate_renovacionAnual').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -6450,7 +6509,7 @@ $('#formcreate_informeTecnico').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -6561,7 +6620,7 @@ $('#formcreate_avisoCierre').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -6672,7 +6731,7 @@ $('#formcreate_archivoMuerto').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -6783,7 +6842,7 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
 
     formato_id = $('#formato_id').val();
     documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
+    proyecto_id = $('#protocolo_id').val();
     empresa_id = $('#empresa_id').val();
     menu_id = $('#menu_id').val();
     user_id = $('#user_id').val();
@@ -6885,679 +6944,3 @@ $('#formcreate_cambioDomicilio').on('submit', function(e) {
     
 });
 // END Submit Cambio de domicilio
-
-
-
-
-
-
-// Metodos para descargar los archivos con excepciones 
-// Generar y descargar archivo Nota al archivo 
-$('#formcreate_notaArchivo').on('submit', function(e) {
-    e.preventDefault();
-    id = 'notaArchivo';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento nota al archivo
-
-
-// Generar y descargar documento Eventos adversos
-$('#formcreate_eventosAdversos').on('submit', function(e) {
-    e.preventDefault();
-    id = 'eventosAdversos';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento Eventos adversos
-
-
-// Generar y descargar documento Medicamentos 
-$('#formcreate_medicamentosContaminantes').on('submit', function(e) {
-    e.preventDefault();
-    id = 'medicamentosContaminantes';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documentos Medicamentos contaminantes
-
-
-// Generar y descargar documentos Medicamento de estudio
-$('#formcreate_medicamentoEstudio').on('submit', function(e) {
-    e.preventDefault();
-    id = 'medicamentoEstudio';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documentos Medicamento de estudio
-
-
-// Generar y descargar documento Historia clinica
-$('#formcreate_historiaClinica').on('submit', function(e) {
-    e.preventDefault();
-    id = 'historiaClinica';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento Historia clinica
-
-
-// Generar y descargar documento Visita SD
-$('#formcreate_visitaSD').on('submit', function(e) {
-    e.preventDefault();
-    id = 'visitaSD';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento Visita SD
-
-
-// Generar y descargar documento Nota medica
-$('#formcreate_notaMedica').on('submit', function(e) {
-    e.preventDefault();
-    id = 'notaMedica';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento Nota medica
-
-
-// Generar y descargar documento Pre-seleccion
-$('#formcreate_preSeleccion').on('submit', function(e) {
-    e.preventDefault();
-    id = 'preSeleccion';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento Pre-seleccion
-
-
-// Generar y descargar documento Seleccion 
-$('#formcreate_seleccion').on('submit', function(e) {
-    e.preventDefault();
-    id = 'seleccion';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento Seleccion
-
-
-// Generar y descargar documento Documentacion consentimiento
-$('#formcreate_docConsentimiento').on('submit', function(e) {
-    e.preventDefault();
-    id = 'docConsentimiento';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento Documentacion consentimiento
-
-
-// Generar y descargar documento Carnet de viaticos 
-$('#formcreate_carnetViaticos').on('submit', function(e) {
-    e.preventDefault();
-    id = 'carnetViaticos';
-    var formData = new FormData();
-
-    formato_id = $('#formato_id').val();
-    documentoformato_id = $("#doc_formatos").val();
-    proyecto_id = $('#no0').val();
-    empresa_id = $('#empresa_id').val();
-    menu_id = $('#menu_id').val();
-    
-    formData.append('formato_id', formato_id);
-    formData.append('documentoformato_id', documentoformato_id);
-    formData.append('proyecto_id', proyecto_id);
-    formData.append('empresa_id', empresa_id);
-    formData.append('menu_id', menu_id);
-    formData.append('id', id);
-    formData.append('_token', $('input[name=_token]').val());
-
-        if(documentoformato_id!="" && proyecto_id ){
-            $.ajax({
-                url: "/documentos_sc/create_formato",
-                type:'post',
-                data:formData,
-                cache:false,
-                contentType: false,
-                processData: false,
-                beforeSend:function(){
-                    // $('#btnGpresentacion').hide();
-                },
-                success:function(resp){
-
-                    // alert(resp);
-
-                    if(resp){
-                        $('#createFormatoModal').modal('hide');
-                        // toastr.success('El formato fue guardado correctamente', 'Guardar formato', {timeOut:3000});
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        list_formatos();
-                        window.open('sc/documentos/descargar/pdf/' + resp, '_blank');
-                    }else{
-                        $('#createFormatoModal').modal('hide');
-                        // $('#btnGpresentacion').show();
-                        borrar_campos();
-                        toastr.warning('No se pudo ejecutar la acción correctamente', 'No se encontro el archivo', {timeOut:3000});
-                    }
-    
-                }
-            });
-        }else{
-            $('#createFormatoModal').scrollTop(0);
-            // alert("Seleccione un proyecto");
-            toastr.info('No se ha seleccionado un proyecto', 'Seleccione un proyecto', {timeOut:1500});
-        }
-    
-});
-// END Generar y descargar documento Carnet de viaticos

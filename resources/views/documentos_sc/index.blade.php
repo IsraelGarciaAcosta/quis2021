@@ -303,17 +303,17 @@
 
                                             <div class="table-responsive" id="tabla_buscador" style="display:none">
                                                 <div align="left">
-                                                    <button id="new_format" type="button" class="btn btn-primary"  onclick="CreateFormato();">
+                                                    <button id="new_format" type="button" class="btn btn-primary"  onclick="CreateFormato(); cargarDatosProtocolo();">
                                                     <i class="fas fa-file"></i> Nuevo</button>  
                                                 </div>
                                                 <table id="table-formato" class="table table-striped table-hover table-bordered shadow-lg mt-2" style="width:100%;">
                                                     <thead class="bg-mexg1 text-white">
                                                         <tr>
-                                                            <th scope="col">Nombre</th>
-                                                            <th scope="col">Nombre</th>
-                                                            <th scope="col">Nombre</th>
-                                                            <th scope="col">Nombre</th>
-                                                            <th scope="col">Nombre</th>
+                                                            <th scope="col">fecha</th>
+                                                            <th scope="col">fecha_aprob</th>
+                                                            <th scope="col">usuario</th>
+                                                            <th scope="col">download_delete</th>
+                                                            <th scope="col">edit</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -340,7 +340,6 @@
                         </div>
                         
                         <div class="col p-3">
-                            {!! Form::select('doc_formatos', $documentos_formatos, null, ['class' => 'form-control select2 select2-selection', 'id' =>'doc_formatos', 'style' => 'width: 100%',  'placeholder' => 'Selecciona un formato']) !!}
                         </div>
 
                         <div id="table-formato" style="display: none" class="table-responsive">
@@ -400,5 +399,5 @@
     <!-- Select2 -->
     <script src="{{ asset('vendor/select2/js/select2.full.js') }}"></script>
 
-    <script src="{{ asset('js/documentos_sc.js?5') }}"></script>
+    <script src="{{ asset('js/documentos_sc.js?10') }}"></script>
 @stop
